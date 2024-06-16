@@ -1,6 +1,7 @@
 import Foundation
 
-var packetGroups = [
+@MainActor
+let packetGroups = [
     
     PacketGroup(handlePath: "/usr/lib/system/libsystem_darwin.dylib", [
         Packet("os_variant_has_internal_diagnostics"),

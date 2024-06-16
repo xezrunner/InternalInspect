@@ -6,15 +6,23 @@ struct PacketGroupSectionView: View {
         self.group = group
     }
     
+    @Namespace var packetList
     var group: PacketGroup
+    
+    @EnvironmentObject var featureFlags: GlobalFeatureFlags
     
     var body: some View {
         Section(group.handlePath) {
-            
             ForEach (group.packets) { packet in
-                Button(action: {}, label: {
+                NavigationLink {
+                    if (!featureFlags.getBool(name: "UseZoomTransitions")) {
+                        PacketDetailView(packet: packet)
+                    } else {
+                        PacketDetailView(packet: packet)
+                            .navigationTransition(.zoom(sourceID: packet.id, in: packetList))
+                    }
+                } label: {
                     VStack(alignment: .leading) {
-                        
                         Text("\(packet.funcName)\(packet.funcArg != nil ? "(\"\(packet.funcArg!)\")" : "")")
                             .font(.system(size: 12, weight: .bold))
                             .foregroundStyle(packet.hasSymbol ? Color.accentColor : Color(UIColor.quaternaryLabel))
@@ -41,11 +49,14 @@ struct PacketGroupSectionView: View {
                         .font(.footnote)
                         .foregroundStyle(.primary)
                     }
-                    .monospaced()
-                })
+                }
+                .matchedTransitionSource(id: packet.id, in: packetList)
             }
+            .foregroundStyle((access(group.handlePath, F_OK) != 0) ? .secondary : .quaternary)
         }
-        .foregroundStyle((access(group.handlePath, F_OK) != 0) ? .secondary : .quaternary)
+        .monospaced()
+        .font(.system(size: 12))
         .textCase(.none)
+        .listSectionSpacing(0)
     }
 }

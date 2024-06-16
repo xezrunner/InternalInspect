@@ -30,7 +30,16 @@ enum PacketType {
     case PACKET_OBJC
 }
 
-class Packet: Identifiable {
+class Packet: Hashable, Identifiable {
+    // TODO: TEMP:
+    static func == (lhs: Packet, rhs: Packet) -> Bool {
+        return lhs.id == rhs.id // TEMP
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
     init(_ funcName: String, _ funcArg: String? = nil, packetType: PacketType = PacketType.PACKET_C, isStringArg: Bool = false) {
         self.funcName = funcName
         self.packetType = packetType
@@ -113,7 +122,7 @@ class Packet: Identifiable {
     
     private func RESOLVE_C() -> UnsafeMutableRawPointer! {
         if (packetGroup == nil) {
-            print("RESOLVE_C(): packetGroup was null for packet \(funcName)!")
+            print("packetGroup was null for packet \(funcName)!")
             return nil
         }
         
@@ -135,7 +144,7 @@ class Packet: Identifiable {
     
     private func RESOLVE_OBJC() -> Bool {
         if (packetGroup == nil) {
-            print("RESOLVE_OBJC(): packetGroup was null for packet \(funcName)!")
+            print("packetGroup was null for packet \(funcName)!")
             return false
         }
         
@@ -157,14 +166,14 @@ class Packet: Identifiable {
         
         let baseClass: AnyClass? = objc_getClass(className) as? AnyClass
         if (baseClass == nil) {
-            print("RESOLVE_OBJC(): failed to get base class for \(funcName)")
+            print("failed to get base class for \(funcName)")
             return false
         }
         
         let sharedInstanceSelector: Selector = sel_getUid("sharedInstance") // TODO: could differ!
         let sharedInstanceTestResponse: Bool = baseClass!.responds(to: sharedInstanceSelector)
         if (!sharedInstanceTestResponse) {
-            print("RESOLVE_OBJC(): did not respond to selector \(sharedInstanceSelector)")
+            print("did not respond to selector \(sharedInstanceSelector)")
             return false
         }
         
@@ -175,7 +184,7 @@ class Packet: Identifiable {
         let targetSelector = sel_getUid(methodName)
         let targetTestResponse: Bool = sharedInstanceResult!.responds(to: targetSelector)
         if (!targetTestResponse) {
-            print("RESOLVE_OBJC(): did not respond to selector \(targetSelector)")
+            print("did not respond to selector \(targetSelector)")
             return false
         }
         
