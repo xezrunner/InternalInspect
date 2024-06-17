@@ -3,13 +3,10 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "MGGetBoolAnswer:(null)">
+         contextName = "os_eligibility_get_domain_answer:(null)">
          <PersistentStrings>
             <PersistentString
-               value = "$x0">
-            </PersistentString>
-            <PersistentString
-               value = "(NSString*)$x0">
+               value = "$w0">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -18,6 +15,39 @@
          <PersistentStrings>
             <PersistentString
                value = "$x9">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "C_CALL_SYMBOL_BOOL(_:_:):Interop.swift">
+      </ContextState>
+      <ContextState
+         contextName = "MGGetBoolAnswer:(null)">
+         <PersistentStrings>
+            <PersistentString
+               value = "$x0">
+            </PersistentString>
+            <PersistentString
+               value = "(NSString*)$x0">
+            </PersistentString>
+            <PersistentString
+               value = "$x19">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "isFeatureEnabled(_:):(null)">
+         <PersistentStrings>
+            <PersistentString
+               value = "(String*)$x9">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__72-[BKSSystemShellService _activateServerConnectionWithIdleSleepInterval:]_block_invoke.70:(null)">
+         <PersistentStrings>
+            <PersistentString
+               value = "$w0">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

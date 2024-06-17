@@ -40,10 +40,10 @@ class Packet: Hashable, Identifiable {
         hasher.combine(id)
     }
     
-    init(_ funcName: String, _ funcArg: String? = nil, packetType: PacketType = PacketType.PACKET_C, isStringArg: Bool = false) {
+    init(_ funcName: String, _ funcArgs: String..., packetType: PacketType = PacketType.PACKET_C, isStringArg: Bool = false) {
         self.funcName = funcName
         self.packetType = packetType
-        self.funcArg = funcArg
+        self.funcArgs = funcArgs
         
         self.isStringArg = isStringArg
     }
@@ -54,7 +54,7 @@ class Packet: Hashable, Identifiable {
     
     let funcName:   String
     let packetType: PacketType
-    let funcArg:    String?
+    let funcArgs:    [String]
     
     var hasSymbol: Bool = false
     var result: Bool = false
@@ -102,21 +102,17 @@ class Packet: Hashable, Identifiable {
     
     private func RESOLVE_C_STRING() -> String {
         let symbol = RESOLVE_C()
-        if symbol == nil {
-            return ""
-        }
+        if symbol == nil || funcArgs.count == 0 { return "" }
         
-        let result = C_CALL_SYMBOL_STRING_STRING_ARG(symbol, funcArg!) as String
+        let result = C_CALL_SYMBOL_STRING_STRING_ARG(symbol, funcArgs[0]) as String
         return result
     }
     
     private func RESOLVE_C_BOOL() -> CBool {
         let symbol = RESOLVE_C()
-        if symbol == nil {
-            return false
-        }
+        if symbol == nil { return false }
         
-        let result = funcArg == nil ? C_CALL_SYMBOL_BOOL(symbol) : C_CALL_SYMBOL_BOOL_STRING_ARG(symbol, funcArg!)
+        let result = C_CALL_SYMBOL_BOOL(symbol, funcArgs)
         return result
     }
     

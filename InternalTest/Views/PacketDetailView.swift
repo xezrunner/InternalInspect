@@ -28,7 +28,8 @@ struct PacketDetailView: View {
                     .font(.footnote.bold())
                     .textCase(.uppercase)
                 
-                Text("\(packet.funcName)\(packet.funcArg != nil ? "(\"\(packet.funcArg!)\")" : "")")
+                let funcArgs = packet.funcArgs.isEmpty ? "" : packet.funcArgs.map { element in "\"\(element)\""}.joined(separator: ", ")
+                Text("\(packet.funcName)(\(funcArgs))")
                     .bold()
                     .foregroundStyle(packet.hasSymbol ? Color.accentColor : Color(UIColor.tertiaryLabel))
                 
@@ -60,6 +61,7 @@ struct PacketDetailView: View {
                     }.padding(.top, 1)
                 }
             }
+            .padding()
         }
         .font(.subheadline)
         .monospaced()

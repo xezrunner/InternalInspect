@@ -7,17 +7,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
          <BreakpointContent
-            uuid = "75A42FC1-D012-4F5F-9A3A-8488930A7F4A"
-            shouldBeEnabled = "Yes"
+            uuid = "C5B1DBFE-348B-4DBD-A453-123453E3E1C5"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
-            continueAfterRunningActions = "Yes"
-            symbolName = "isFeatureEnabled"
+            continueAfterRunningActions = "No"
+            symbolName = "_swift_os_feature_enabled_impl"
             moduleName = "">
             <Actions>
                <BreakpointActionProxy
                   ActionExtensionID = "Xcode.BreakpointAction.DebuggerCommand">
                   <ActionContent
-                     consoleCommand = "memory write $pc 20 00 80 52 C0 03 5F D6">
+                     consoleCommand = "register read">
                   </ActionContent>
                </BreakpointActionProxy>
             </Actions>
@@ -28,17 +28,19 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
          <BreakpointContent
-            uuid = "7B75F43E-3003-4858-B039-C79BD86A89F3"
-            shouldBeEnabled = "Yes"
+            uuid = "364189CF-4404-457B-9033-88E51F6B7FD0"
+            shouldBeEnabled = "No"
+            condition = "(int)strcmp($x0, &quot;UIKit&quot;) != 0 &amp;&amp; (int)strcmp($x0, &quot;FontParser&quot;) != 0 &amp;&amp; (int)strcmp($x0, &quot;Foundation&quot;) != 0 &amp;&amp; (int)strcmp($x0, &quot;CoreFoundation&quot;) != 0 &amp;&amp; (int)strcmp($x0, &quot;ArchivingExceptions&quot;) != 0 &amp;&amp; (int)strcmp($x0, &quot;CoreText&quot;) &amp;&amp; (int)strcmp($x1, &quot;gestureContainer&quot;) != 0 &amp;&amp; (int)strcmp($x0, &quot;PencilAndPaper&quot;) != 0 "
             ignoreCount = "0"
             continueAfterRunningActions = "Yes"
             symbolName = "_os_feature_enabled_impl"
             moduleName = "">
             <Actions>
                <BreakpointActionProxy
-                  ActionExtensionID = "Xcode.BreakpointAction.DebuggerCommand">
+                  ActionExtensionID = "Xcode.BreakpointAction.Log">
                   <ActionContent
-                     consoleCommand = "memory write $pc 20 00 80 52 C0 03 5F D6">
+                     message = "Packet(&quot;_os_feature_enabled_impl&quot;, @(char*)$x0@, @(char*)$x1@), // @(int)_os_feature_enabled_impl($x0, $x1)@"
+                     conveyanceType = "0">
                   </ActionContent>
                </BreakpointActionProxy>
             </Actions>

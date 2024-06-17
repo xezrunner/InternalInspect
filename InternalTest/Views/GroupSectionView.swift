@@ -23,7 +23,8 @@ struct PacketGroupSectionView: View {
                     }
                 } label: {
                     VStack(alignment: .leading) {
-                        Text("\(packet.funcName)\(packet.funcArg != nil ? "(\"\(packet.funcArg!)\")" : "")")
+                        let funcArgs = packet.funcArgs.isEmpty ? "" : packet.funcArgs.map { element in "\"\(element)\""}.joined(separator: ", ")
+                        Text("\(packet.funcName)(\(funcArgs))")
                             .font(.system(size: 12, weight: .bold))
                             .foregroundStyle(packet.hasSymbol ? Color.accentColor : Color(UIColor.quaternaryLabel))
                         

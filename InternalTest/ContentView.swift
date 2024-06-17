@@ -53,6 +53,7 @@ struct ContentView: View {
                             }
                             .presentationDetents([.large])
                             .presentationBackground(.ultraThinMaterial)
+                            .presentationDragIndicator(.visible)
                         }
                     }
                 }

@@ -6,7 +6,9 @@ public func print(_ items: String..., filename: String = #file, function : Strin
     let pretty = "\(URL(fileURLWithPath: filename).lastPathComponent) [#\(line)] \(function)"
     let output = items.map { "\($0)" }.joined(separator: separator)
     Swift.print(output, terminator: terminator)
-    globalFeatureFlags.consoleLines.append((pretty, output))
+    DispatchQueue.main.async {
+        globalFeatureFlags.consoleLines.append((pretty, output))
+    }
 }
 
 @main
