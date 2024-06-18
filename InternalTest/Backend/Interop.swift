@@ -30,3 +30,16 @@ func C_CALL_SYMBOL_STRING_STRING_ARG(_ symbol: UnsafeMutableRawPointer!, _ arg: 
     let callable = unsafeBitCast(symbol, to: FunctionPrototypeStringArg.self)
     return callable(arg)
 }
+
+func RESOLVE_C_SYMBOL(handlePath: String, symbolName: String) -> UnsafeMutableRawPointer! {
+    let handle: UnsafeMutableRawPointer! = dlopen(handlePath, RTLD_NOW)
+    print("handle: (\(handle.debugDescription))")
+    if handle == nil { return nil }
+    
+    let symbol: UnsafeMutableRawPointer! = dlsym(handle, symbolName)
+    print("symbol: \(symbolName) [\(symbol.debugDescription)] (== nil: \(symbol == nil))")
+    
+    if symbol == nil { return nil }
+
+    return symbol
+}

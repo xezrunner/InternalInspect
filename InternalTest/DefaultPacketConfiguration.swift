@@ -3,7 +3,7 @@ import Foundation
 @MainActor
 let packetGroups = [
     PacketGroup(handlePath: "/usr/lib/system/libsystem_eligibility.dylib", [
-        Packet("os_eligibility_get_domain_answer", "test", isStringArg: true),
+        Packet("eligibility", "OS_ELIGIBILITY_DOMAIN_GREYMATTER", packetType: .PACKET_ELIGIBILITY),
     ]),
     
     PacketGroup(handlePath: "/usr/lib/system/libsystem_featureflags.dylib", [
@@ -103,8 +103,8 @@ let packetGroups = [
         Packet("MGGetBoolAnswer", "HasInternalSettingsBundle"),
         Packet("MGGetBoolAnswer", "SBCanForceDebuggingInfo"),
         Packet("MGGetBoolAnswer", "SBAllowSensitiveUI"),
-        Packet("MGCopyAnswer", "ReleaseType", isStringArg: true),
-        Packet("MGCopyAnswer", "ProductType", isStringArg: true),
+        Packet("MGCopyAnswer", "ReleaseType", isStringReturnType: true),
+        Packet("MGCopyAnswer", "ProductType", isStringReturnType: true),
     ]),
     
     PacketGroup(handlePath: "/System/Library/PrivateFrameworks/BaseBoard.framework/BaseBoard", [

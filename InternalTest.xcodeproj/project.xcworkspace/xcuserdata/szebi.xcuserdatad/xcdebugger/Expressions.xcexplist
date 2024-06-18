@@ -3,7 +3,7 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "os_eligibility_get_domain_answer:(null)">
+         contextName = "__72-[BKSSystemShellService _activateServerConnectionWithIdleSleepInterval:]_block_invoke.70:(null)">
          <PersistentStrings>
             <PersistentString
                value = "$w0">
@@ -44,10 +44,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "__72-[BKSSystemShellService _activateServerConnectionWithIdleSleepInterval:]_block_invoke.70:(null)">
+         contextName = "os_eligibility_get_domain_answer:(null)">
          <PersistentStrings>
             <PersistentString
-               value = "$w0">
+               value = "$x21">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

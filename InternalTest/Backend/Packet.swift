@@ -25,9 +25,10 @@ class PacketGroup: Identifiable {
     var packets: [Packet]
 }
 
-enum PacketType {
-    case PACKET_C
-    case PACKET_OBJC
+enum PacketType: Int, Codable {
+    case PACKET_C = 0
+    case PACKET_OBJC = 1
+    case PACKET_ELIGIBILITY = 999
 }
 
 class Packet: Hashable, Identifiable {
@@ -40,12 +41,12 @@ class Packet: Hashable, Identifiable {
         hasher.combine(id)
     }
     
-    init(_ funcName: String, _ funcArgs: String..., packetType: PacketType = PacketType.PACKET_C, isStringArg: Bool = false) {
+    init(_ funcName: String, _ funcArgs: String..., packetType: PacketType = PacketType.PACKET_C, isStringReturnType: Bool = false) {
         self.funcName = funcName
         self.packetType = packetType
         self.funcArgs = funcArgs
         
-        self.isStringArg = isStringArg
+        self.isStringReturnType = isStringReturnType
     }
     
     let id = UUID()
@@ -57,22 +58,26 @@ class Packet: Hashable, Identifiable {
     let funcArgs:    [String]
     
     var hasSymbol: Bool = false
-    var result: Bool = false
     
-    let isStringArg: Bool
+    var result:    Bool = false
+    
+    var isStringReturnType: Bool
     var stringResult: String = ""
     
+    var eligibilityLookupResult: EligiblityLookupResult?
+    
     public func selfResolve() {
-        if isStringArg {
+        if packetType == .PACKET_ELIGIBILITY {
+            self.eligibilityLookupResult = resolveEligibility()
+        } else if isStringReturnType {
             self.stringResult = resolveString()
-            
         } else {
             self.result = resolveBool()
         }
     }
     
     public func resolveString() -> String {
-        if !isStringArg {
+        if !isStringReturnType {
             print("Attempted to resolve as string when in fact a bool!")
             return ""
         }
@@ -83,11 +88,14 @@ class Packet: Hashable, Identifiable {
         case .PACKET_OBJC:
             print("Objective-C string resolving not yet implemented!")
             return ""
+        case .PACKET_ELIGIBILITY:
+            print("Eligibility function not supported for RET:string functions!")
+            return ""
         }
     }
     
     public func resolveBool() -> Bool {
-        if isStringArg {
+        if isStringReturnType {
             print("Attempted to resolve as bool when in fact a string!")
             return false
         }
@@ -97,7 +105,20 @@ class Packet: Hashable, Identifiable {
             return RESOLVE_C_BOOL()
         case .PACKET_OBJC:
             return RESOLVE_OBJC()
+        case .PACKET_ELIGIBILITY:
+            print("Eligiblity function not supported for RET:bool functions!")
+            return false
         }
+    }
+    
+    public func resolveEligibility() -> EligiblityLookupResult? {
+        if packetType != .PACKET_ELIGIBILITY {
+            print("This is not an eligiblity packet!")
+            return nil
+        }
+        
+        self.hasSymbol = true
+        return RESOLVE_ELIGIBILITY()
     }
     
     private func RESOLVE_C_STRING() -> String {
@@ -113,6 +134,11 @@ class Packet: Hashable, Identifiable {
         if symbol == nil { return false }
         
         let result = C_CALL_SYMBOL_BOOL(symbol, funcArgs)
+        return result
+    }
+    
+    private func RESOLVE_ELIGIBILITY() -> EligiblityLookupResult? {
+        let result = ELIGIBLITY_RESOLVE(funcArgs[0])
         return result
     }
     

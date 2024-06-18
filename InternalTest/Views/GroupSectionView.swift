@@ -13,7 +13,7 @@ struct PacketGroupSectionView: View {
     
     var body: some View {
         Section(group.handlePath) {
-            ForEach (group.packets) { packet in
+            ForEach(group.packets) { packet in
                 NavigationLink {
                     if (!featureFlags.getBool(name: "UseZoomTransitions")) {
                         PacketDetailView(packet: packet)
@@ -37,11 +37,22 @@ struct PacketGroupSectionView: View {
                             if packet.hasSymbol {
                                 HStack {
                                     Text("Result: ")
-                                    if !packet.isStringArg {
-                                        Text("\(packet.result)").foregroundStyle(packet.result ? Color.green : (packet.hasSymbol ? .red : .gray)).padding([.leading], -10)
-                                            .font(.footnote.bold())
+                                    
+                                    if packet.packetType != .PACKET_ELIGIBILITY {
+                                        if !packet.isStringReturnType {
+                                            Text("\(packet.result)").foregroundStyle(packet.result ? Color.green : (packet.hasSymbol ? .red : .gray)).padding([.leading], -10)
+                                                .font(.footnote.bold())
+                                        } else {
+                                            Text("\"\(packet.stringResult)\"").padding([.leading], -10).font(.footnote.bold())
+                                        }
                                     } else {
-                                        Text("\"\(packet.stringResult)\"").padding([.leading], -10).font(.footnote.bold())
+                                        if packet.eligibilityLookupResult == nil {
+                                            Text("Eligibility lookup failed.").padding([.leading], -10).font(.footnote.bold())
+                                                .foregroundColor(.red)
+                                        } else {
+                                            Text("\(packet.eligibilityLookupResult!.answer.name())").padding([.leading], -10).font(.footnote.bold())
+                                                .foregroundStyle(packet.eligibilityLookupResult!.answer == .EligibilityAnswerEligible ? .green : .gray)
+                                        }
                                     }
                                     
                                 }
