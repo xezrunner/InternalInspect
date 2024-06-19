@@ -16,6 +16,7 @@
 		2157BB3C2C08ABCF00F19C85 /* Packet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2157BB3B2C08ABCF00F19C85 /* Packet.swift */; };
 		21790EE52C22389D00801CD7 /* GroupSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21790EE42C22389B00801CD7 /* GroupSectionView.swift */; };
 		2198B7A82C08FB530056EB08 /* Interop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2198B7A72C08FB530056EB08 /* Interop.swift */; };
+		21B61AD82C225AE800CA4DDB /* PopupCloseOverlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B61AD72C225ADD00CA4DDB /* PopupCloseOverlayButton.swift */; };
 		21DCDE802C1BA038007B9B28 /* PacketDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DCDE7F2C1BA02F007B9B28 /* PacketDetailView.swift */; };
 		21EE452D2C1BB84100B63200 /* DebugSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EE452C2C1BB83D00B63200 /* DebugSettingsView.swift */; };
 /* End PBXBuildFile section */
@@ -32,6 +33,7 @@
 		2157BB3B2C08ABCF00F19C85 /* Packet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Packet.swift; sourceTree = "<group>"; };
 		21790EE42C22389B00801CD7 /* GroupSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSectionView.swift; sourceTree = "<group>"; };
 		2198B7A72C08FB530056EB08 /* Interop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interop.swift; sourceTree = "<group>"; };
+		21B61AD72C225ADD00CA4DDB /* PopupCloseOverlayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupCloseOverlayButton.swift; sourceTree = "<group>"; };
 		21DCDE7F2C1BA02F007B9B28 /* PacketDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketDetailView.swift; sourceTree = "<group>"; };
 		21EE452C2C1BB83D00B63200 /* DebugSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugSettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -76,6 +78,7 @@
 		2123DF6C2C0679DB00868B53 /* InternalTest */ = {
 			isa = PBXGroup;
 			children = (
+				21B61AD62C225AD700CA4DDB /* Controls */,
 				218B09162C07D2AE00BD2AC0 /* Views */,
 				2112CA1B2C20A5C6005546CF /* Backend */,
 				2123DF6F2C0679DB00868B53 /* ContentView.swift */,
@@ -104,6 +107,14 @@
 				21EE452C2C1BB83D00B63200 /* DebugSettingsView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		21B61AD62C225AD700CA4DDB /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				21B61AD72C225ADD00CA4DDB /* PopupCloseOverlayButton.swift */,
+			);
+			path = Controls;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -180,6 +191,7 @@
 				21DCDE802C1BA038007B9B28 /* PacketDetailView.swift in Sources */,
 				21790EE52C22389D00801CD7 /* GroupSectionView.swift in Sources */,
 				2157BB392C08AA8200F19C85 /* DefaultPacketConfiguration.swift in Sources */,
+				21B61AD82C225AE800CA4DDB /* PopupCloseOverlayButton.swift in Sources */,
 				2123DF702C0679DB00868B53 /* ContentView.swift in Sources */,
 				2157BB3C2C08ABCF00F19C85 /* Packet.swift in Sources */,
 				2123DF6E2C0679DB00868B53 /* InternalTestApp.swift in Sources */,

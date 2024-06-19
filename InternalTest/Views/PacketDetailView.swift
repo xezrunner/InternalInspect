@@ -13,20 +13,43 @@ struct PacketDetailView: View {
     
     @State var packet: Packet
     
+    @State var heroAnimationTrigger = 0
+    
+    func getHeroMainIcon() -> String {
+        switch packet.packetType {
+        case .PACKET_C:    fallthrough
+        case .PACKET_OBJC: return "gear.circle.fill"
+        case .PACKET_ELIGIBILITY:
+            if packet.eligibilityLookupResult == nil || packet.eligibilityLookupResult!.error != 0 {
+                return "figure.fall.circle.fill"
+            } else {
+                if packet.eligibilityLookupResult!.answer == .EligibilityAnswerEligible {
+                    return "figure.child.and.lock.open.fill"
+                } else {
+                    return "figure.child.and.lock"
+                }
+            }
+        }
+    }
+    
     var body: some View {
         VStack(spacing: 12) {
             ZStack {
-                Image(systemName: "gear.circle.fill")
+                Image(systemName: getHeroMainIcon())
                     .resizable().aspectRatio(contentMode: .fit)
                     .frame(maxWidth: 64, maxHeight: 64)
                     .padding()
                     .opacity(packet.hasSymbol ? 1 : 0.4)
+                    .symbolEffect(.bounce.byLayer.down, value: heroAnimationTrigger)
+                    .onTapGesture { heroAnimationTrigger += 1 }
+                    .onAppear(perform: { heroAnimationTrigger += 1} )
                 
-                if !packet.hasSymbol {
+                if packet.packetType != .PACKET_ELIGIBILITY && !packet.hasSymbol {
                     Image(systemName: "questionmark.circle.fill")
                         .resizable().aspectRatio(contentMode: .fit)
                         .frame(maxWidth: 30, maxHeight: 30)
                         .offset(x: 25, y: -25)
+                        .symbolEffect(.bounce.byLayer.up, value: heroAnimationTrigger)
                 }
             }
             .background(Color(UIColor.secondarySystemBackground))
@@ -49,11 +72,11 @@ struct PacketDetailView: View {
                         .textCase(.uppercase)
                     
                     HStack {
-                        Text("\(packet.funcArgs[0])")
+                        Text("\(packet.funcName)")
                             .bold()
                             .foregroundStyle(packet.eligibilityLookupResult != nil ? Color.accentColor : Color(UIColor.tertiaryLabel))
                         
-                        if packet.eligibilityLookupResult != nil {
+                        if packet.eligibilityLookupResult?.domainCode != -1 {
                             Text("\(packet.eligibilityLookupResult!.domainCode)")
                                 .foregroundStyle(.gray).opacity(0.5)
                         }
@@ -124,7 +147,7 @@ struct PacketDetailView: View {
 #Preview {
     let exampleGroup = PacketGroup(handlePath: "/usr/lib/system/libsystem_darwin.dylib", [
             //Packet("os_variant_has_internal_diagnostics"),
-            Packet("eligibility", "OS_ELIGIBILITY_DOMAIN_GREYMATTER", packetType: .PACKET_ELIGIBILITY),
+        PacketDefinition(packetType: .PACKET_ELIGIBILITY, "OS_ELIGIBILITY_DOMAIN_GREYMATTER")
         ])
     
     PacketDetailView(packet: exampleGroup.packets.first!)

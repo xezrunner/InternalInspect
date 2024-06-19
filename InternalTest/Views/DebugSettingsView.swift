@@ -47,20 +47,6 @@ struct DebugSettingsView: View {
     
     var body: some View {
         Form {
-            Text("TRANSIENT")
-                .font(.footnote).textCase(.uppercase)
-                .frame(maxWidth: .infinity, alignment: .trailing)
-                .listRowBackground(Color.clear)
-                .opacity(0.3)
-                .listRowSeparator(.hidden)
-            
-#if os(visionOS)
-            Button(action: { dismiss() }, label: {
-                Label("Dismiss", systemImage: "xmark").labelStyle(.iconOnly)
-            })
-            .listRowSeparator(.hidden)
-#endif
-            
             VStack(alignment: .center) {
                 Image(systemName: "ant.circle.fill")
                     .resizable().aspectRatio(contentMode: .fit)
@@ -100,6 +86,18 @@ struct DebugSettingsView: View {
         }
         .scrollContentBackground(.hidden)
         .background(.clear)
+        .overlay(
+            ZStack {
+                PopupCloseOverlayButton()
+                Text("TRANSIENT")
+                    .font(.footnote).textCase(.uppercase)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    .opacity(0.3)
+                    .frame(maxHeight: .infinity, alignment: .top)
+                    .padding(.vertical, 75)
+                    .padding(.horizontal, 24)
+            }
+        )
     }
 }
 

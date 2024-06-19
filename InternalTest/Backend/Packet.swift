@@ -1,9 +1,9 @@
 import Foundation
 
 class PacketGroup: Identifiable {
-    init(handlePath: String, _ packets: [Packet]) {
+    init(handlePath: String, _ packetDefinitions: [PacketDefinition]) {
         self.handlePath = handlePath
-        self.packets    = packets
+        self.packetDefinitions = packetDefinitions
         
         // Resolve handle:
         let _handle: UnsafeMutableRawPointer! = dlopen(handlePath, RTLD_NOW)
@@ -11,9 +11,11 @@ class PacketGroup: Identifiable {
         if _handle != nil { handle = _handle }
         
         // Assign the group for each packet and resolve them:
-        self.packets.forEach { packet in
+        packetDefinitions.forEach { definition in
+            let packet: Packet = .init(definition.funcName, definition.funcArgs, packetType: definition.packetType)
             packet.packetGroup = self
             packet.selfResolve()
+            packets.append(packet)
         }
     }
     
@@ -22,13 +24,30 @@ class PacketGroup: Identifiable {
     let handlePath: String
     var handle:     UnsafeMutableRawPointer!
     
-    var packets: [Packet]
+    var packetDefinitions: [PacketDefinition] = []
+    var packets: [Packet] = []
 }
 
 enum PacketType: Int, Codable {
     case PACKET_C = 0
     case PACKET_OBJC = 1
     case PACKET_ELIGIBILITY = 999
+}
+
+struct PacketDefinition: Codable {
+    init(packetType: PacketType = .PACKET_C, _ funcName: String, _ funcArgs: String..., isStringReturnType: Bool = false) {
+        self.packetType = packetType
+        self.funcName = funcName
+        self.funcArgs = funcArgs
+        self.isStringReturnType = isStringReturnType
+    }
+    
+    let packetType: PacketType
+    
+    let funcName: String
+    let funcArgs: [String]
+    
+    let isStringReturnType: Bool
 }
 
 class Packet: Hashable, Identifiable {
@@ -41,7 +60,7 @@ class Packet: Hashable, Identifiable {
         hasher.combine(id)
     }
     
-    init(_ funcName: String, _ funcArgs: String..., packetType: PacketType = PacketType.PACKET_C, isStringReturnType: Bool = false) {
+    init(_ funcName: String, _ funcArgs: [String], packetType: PacketType = PacketType.PACKET_C, isStringReturnType: Bool = false) {
         self.funcName = funcName
         self.packetType = packetType
         self.funcArgs = funcArgs
@@ -138,7 +157,7 @@ class Packet: Hashable, Identifiable {
     }
     
     private func RESOLVE_ELIGIBILITY() -> EligiblityLookupResult? {
-        let result = ELIGIBLITY_RESOLVE(funcArgs[0])
+        let result = ELIGIBLITY_RESOLVE(funcName)
         return result
     }
     

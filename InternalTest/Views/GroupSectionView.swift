@@ -23,10 +23,22 @@ struct PacketGroupSectionView: View {
                     }
                 } label: {
                     VStack(alignment: .leading) {
-                        let funcArgs = packet.funcArgs.isEmpty ? "" : packet.funcArgs.map { element in "\"\(element)\""}.joined(separator: ", ")
-                        Text("\(packet.funcName)(\(funcArgs))")
-                            .font(.system(size: 12, weight: .bold))
-                            .foregroundStyle(packet.hasSymbol ? Color.accentColor : Color(UIColor.quaternaryLabel))
+                        if packet.packetType == .PACKET_ELIGIBILITY {
+                            HStack {
+                                Text("os_eligibility_get_domain_answer(\(packet.funcName))")
+                                    .font(.system(size: 12, weight: .bold))
+                                    .foregroundStyle(packet.hasSymbol ? Color.accentColor : Color(UIColor.quaternaryLabel))
+                                if packet.eligibilityLookupResult?.domainCode != -1 {
+                                    Text("\(packet.eligibilityLookupResult!.domainCode)")
+                                        .foregroundStyle(.gray).opacity(0.5)
+                                }
+                            }
+                        } else {
+                            let funcArgs = packet.funcArgs.isEmpty ? "" : packet.funcArgs.map { element in "\"\(element)\""}.joined(separator: ", ")
+                            Text("\(packet.funcName)(\(funcArgs))")
+                                .font(.system(size: 12, weight: .bold))
+                                .foregroundStyle(packet.hasSymbol ? Color.accentColor : Color(UIColor.quaternaryLabel))
+                        }
                         
                         VStack(alignment: .leading) {
                             VStack {

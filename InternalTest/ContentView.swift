@@ -51,9 +51,12 @@ struct ContentView: View {
                                 .monospaced()
                                 .scrollContentBackground(.hidden)
                             }
-                            .presentationDetents([.large])
+                            .overlay(PopupCloseOverlayButton())
                             .presentationBackground(.ultraThinMaterial)
-                            .presentationDragIndicator(.visible)
+                            .presentationDetents([.large])
+#if os(visionOS) || targetEnvironment(macCatalyst)
+                            .presentationDragIndicator(.hidden)
+#endif
                         }
                     }
                 }
@@ -69,6 +72,9 @@ struct ContentView: View {
                             DebugSettingsView()
                                 .presentationDetents([.medium, .large])
                                 .presentationBackground(.ultraThinMaterial)
+#if os(visionOS) || targetEnvironment(macCatalyst)
+                                .presentationDragIndicator(.hidden)
+#endif
                         }
                     }
                 }
