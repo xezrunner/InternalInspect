@@ -1,0 +1,1 @@
+To obfuscate an MG key: mgask -c "key"

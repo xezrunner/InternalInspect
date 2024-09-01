@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "closure #1 in C_CALL_SYMBOL_BOOL(_:_:):Interop.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "args">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "___lldb_unnamed_symbol1398:(null)">
          <PersistentStrings>
             <PersistentString
@@ -68,6 +76,11 @@
       </ContextState>
       <ContextState
          contextName = "C_CALL_SYMBOL_BOOL(_:_:):Interop.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "__72-[BKSSystemShellService _activateServerConnectionWithIdleSleepInterval:]_block_invoke.70:(null)">

@@ -4,10 +4,21 @@ import Foundation
 let packetGroups = [
     PacketGroup(handlePath: "/usr/lib/system/libsystem_eligibility.dylib", [
         PacketDefinition(packetType: .PACKET_ELIGIBILITY, "OS_ELIGIBILITY_DOMAIN_GREYMATTER"),
+        PacketDefinition(packetType: .PACKET_ELIGIBILITY, "OS_ELIGIBILITY_DOMAIN_IRON"),
         PacketDefinition(packetType: .PACKET_ELIGIBILITY, "INVALID"),
     ]),
+    
+    PacketGroup(handlePath: "/System/Library/PrivateFrameworks/AssistantServices.framework/AssistantServices", [
+        PacketDefinition("AFDeviceSupportsSystemAssistantExperience"),
+        PacketDefinition("AFDeviceSupportsSAEByDeviceCapabilityAndFeatureFlags"),
+        PacketDefinition("AFLocaleSupportsSAE"),
+        PacketDefinition("AFDeviceSupportsSAE"),
+        
+        PacketDefinition(packetType: PacketType.PACKET_OBJC, "+[AFFeatureFlags isSystemAssistantExperienceEnabled]"),
+        PacketDefinition(packetType: PacketType.PACKET_OBJC, "+[AFFeatureFlags isSAEOverrideEnabled]"),
+        PacketDefinition(packetType: PacketType.PACKET_OBJC, "+[CSFAvailability currentAvailability]"),
+    ]),
       
-    /*
     PacketGroup(handlePath: "/usr/lib/system/libsystem_eligibility.dylib", [
         PacketDefinition(packetType: .PACKET_ELIGIBILITY, "OS_ELIGIBILITY_DOMAIN_INVALID"),
         PacketDefinition(packetType: .PACKET_ELIGIBILITY, "OS_ELIGIBILITY_DOMAIN_TEST"),
@@ -135,8 +146,37 @@ let packetGroups = [
         PacketDefinition(packetType: .PACKET_ELIGIBILITY, "OS_ELIGIBILITY_DOMAIN_TENNESSINE"),
         PacketDefinition(packetType: .PACKET_ELIGIBILITY, "OS_ELIGIBILITY_DOMAIN_OGANESSON"),
     ]),
-     */
     
+    PacketGroup(handlePath: "/usr/lib/system/libsystem_featureflags.dylib", [
+        PacketDefinition("_os_feature_enabled_impl", "Siri", "sae_override"),
+        PacketDefinition("_os_feature_enabled_impl", "Siri", "sae"),
+        PacketDefinition("_os_feature_enabled_impl", "Siri", "assistant_engine"),
+        PacketDefinition("_os_feature_enabled_impl", "Siri", "patient_siri"),
+        PacketDefinition("_os_feature_enabled_impl", "Siri", "bobble"),
+        PacketDefinition("_os_feature_enabled_impl", "Siri", "medoc"),
+        PacketDefinition("_os_feature_enabled_impl", "Siri", "siri_state_feedback"),
+        PacketDefinition("_os_feature_enabled_impl", "Siri", "FileARadar"),
+        PacketDefinition("_os_feature_enabled_impl", "Siri", "continuous_conversation"),
+        PacketDefinition("_os_feature_enabled_impl", "Siri", "NanoSiriUIRefresh"),
+        PacketDefinition("_os_feature_enabled_impl", "Siri", "scda_trial_boosts"),
+        PacketDefinition("_os_feature_enabled_impl", "Siri", "scda_proximity"),
+        PacketDefinition("_os_feature_enabled_impl", "Siri", "siri_request_dispatcher"),
+        PacketDefinition("_os_feature_enabled_impl", "Siri", "lasso"),
+        PacketDefinition("_os_feature_enabled_impl", "Siri", "caballero"),
+        PacketDefinition("_os_feature_enabled_impl", "Siri", "sirix"),
+        
+        PacketDefinition("_os_feature_enabled_impl", "SiriUI", "sae"),
+        
+        PacketDefinition("_os_feature_enabled_impl", "SiriNL", "NLRouter"),
+        
+        PacketDefinition("_os_feature_enabled_impl", "GenerativeModels", "GenerativeModelsAvailability"),
+        
+        PacketDefinition("_os_feature_enabled_impl", "Pommes", "Sphinx"),
+        
+        PacketDefinition("_os_feature_enabled_impl", "parsecd", "ResponseFramework"),
+    ]),
+    
+    /*
     PacketGroup(handlePath: "/usr/lib/system/libsystem_featureflags.dylib", [
         PacketDefinition("_os_feature_enabled_impl", "PepperUICore", "new_system_margins"),
         
@@ -212,6 +252,7 @@ let packetGroups = [
         PacketDefinition("_os_feature_enabled_impl", "SpringBoard", "FlagOnThePlay"),
         PacketDefinition("_os_feature_enabled_impl", "SpringBoard", "FlagMeDown"),
     ]),
+     */
     
     PacketGroup(handlePath: "/usr/lib/system/libsystem_darwin.dylib", [
         PacketDefinition("os_variant_has_internal_diagnostics"),
@@ -226,6 +267,7 @@ let packetGroups = [
     ]),
     
     PacketGroup(handlePath: "/usr/lib/libMobileGestalt.dylib", [
+        /*
         PacketDefinition("MobileGestalt_get_appleInternalInstallCapability"),
         PacketDefinition("MobileGestalt_get_internalBuild"),
         PacketDefinition("MobileGestalt_get_hasInternalSettingsBundle"),
@@ -234,13 +276,23 @@ let packetGroups = [
         PacketDefinition("MobileGestalt_get_isSimulator"),
         PacketDefinition("MobileGestalt_get_storeDemoMode"),
         PacketDefinition("MGGetBoolAnswer", "apple-internal-install"),
-        PacketDefinition("MGGetBoolAnswer", "IsSimulator"),
         PacketDefinition("MGGetBoolAnswer", "ulMliLomP737aAOJ/w/evA"),
         PacketDefinition("MGGetBoolAnswer", "HasInternalSettingsBundle"),
         PacketDefinition("MGGetBoolAnswer", "SBCanForceDebuggingInfo"),
         PacketDefinition("MGGetBoolAnswer", "SBAllowSensitiveUI"),
+        */
+        PacketDefinition("MGGetBoolAnswer", "IsSimulator"),
+        
         PacketDefinition("MGGetBoolAnswer", "DeviceSupportsGrey"),
+        PacketDefinition("MGGetBoolAnswer", "8Vbp0HyqndjWuIFZibhu7g"),
+        
         PacketDefinition("MGGetBoolAnswer", "DeviceSupportsGenerativeModelSystems"),
+        PacketDefinition("MGGetBoolAnswer", "A62OafQ85EJAiiqKn4agtg"),
+        
+        PacketDefinition("MGGetBoolAnswer", "DeviceSupportsANE"),
+        PacketDefinition("MGGetBoolAnswer", "+N9mZUAHooNvMiQnjeTJ8g"),
+        
+        
         PacketDefinition("MGCopyAnswer", "ReleaseType", isStringReturnType: true),
         PacketDefinition("MGCopyAnswer", "ProductType", isStringReturnType: true),
         PacketDefinition("MGCopyAnswer", "RegionCode", isStringReturnType: true),

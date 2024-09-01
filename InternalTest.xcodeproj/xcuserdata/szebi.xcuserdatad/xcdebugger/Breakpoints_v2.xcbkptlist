@@ -5,204 +5,49 @@
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0DAE3B07-D685-496D-BAA7-00FB005D23E6"
-            shouldBeEnabled = "Yes"
+            uuid = "E4CC0A5A-4C89-48A2-8119-4792221636F1"
+            shouldBeEnabled = "No"
+            condition = "args.count &gt;= 1 &amp;&amp; args[0] == &quot;IsSimulator&quot;"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            symbolName = "-[FBMobileConfigContextManager getBool:]"
-            moduleName = "">
-            <Locations>
-            </Locations>
+            filePath = "InternalTest/Backend/Interop.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "C_CALL_SYMBOL_BOOL(_:_:)"
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
          <BreakpointContent
-            uuid = "8896A51F-D65B-4B31-8FF3-7E027BB71799"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            symbolName = "getBool"
-            moduleName = "">
-            <Locations>
-               <Location
-                  uuid = "8896A51F-D65B-4B31-8FF3-7E027BB71799 - 1edb9393189ecc07"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ctu::cf::map_adapter::getBool(__CFString const*, bool) const"
-                  moduleName = "libTelephonyUtilDynamic.dylib"
-                  usesParentBreakpointCondition = "Yes">
-               </Location>
-               <Location
-                  uuid = "8896A51F-D65B-4B31-8FF3-7E027BB71799 - 631fadedecac5df9"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "PoirotSQLite.SQLiteArgument.getBool() -&gt; Swift.Bool"
-                  moduleName = "PoirotSQLite"
-                  usesParentBreakpointCondition = "Yes">
-               </Location>
-               <Location
-                  uuid = "8896A51F-D65B-4B31-8FF3-7E027BB71799 - e69af017dc220400"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "InternalTest.GlobalFeatureFlags.getBool(name: Swift.String) -&gt; Swift.Bool"
-                  moduleName = "InternalTest.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/szebi/Projects/Hacking/Projects/InternalTest/InternalTest/Views/DebugSettingsView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "43"
-                  endingLineNumber = "43">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
-         <BreakpointContent
-            uuid = "1465B06D-1579-4DE7-BFFB-43906796AD71"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            symbolName = "getBool:"
-            moduleName = "">
-            <Locations>
-               <Location
-                  uuid = "1465B06D-1579-4DE7-BFFB-43906796AD71 - 186676fae9c400ee"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "+[TransparencySettings getBool:]"
-                  moduleName = "Transparency"
-                  usesParentBreakpointCondition = "Yes">
-               </Location>
-               <Location
-                  uuid = "1465B06D-1579-4DE7-BFFB-43906796AD71 - 15c4220b2c8f84ea"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[TransparencySettings getBool:]"
-                  moduleName = "Transparency"
-                  usesParentBreakpointCondition = "Yes">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
-         <BreakpointContent
-            uuid = "38A872A8-F9EC-477A-B478-E2CD68D15215"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            symbolName = "getBoolWithoutLogging:"
-            moduleName = "">
-            <Locations>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
-         <BreakpointContent
-            uuid = "A3ED6B0F-AA05-4C47-B9E0-2FD71920EE1B"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            symbolName = "getBool:withOptions:"
-            moduleName = "">
-            <Locations>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
-         <BreakpointContent
-            uuid = "62B623B4-2DC7-4EB2-BDF0-04185CAD5849"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            symbolName = "getBool:withDefault:"
-            moduleName = "">
-            <Locations>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
-         <BreakpointContent
-            uuid = "FEF4A58D-003F-467A-9656-6B8C1B659EB9"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            symbolName = "getBool:withDefault:"
-            moduleName = "">
-            <Locations>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
-         <BreakpointContent
-            uuid = "F0B56A55-535B-4C9B-96D8-1050D76EF467"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            symbolName = "_LSIsMessengerBundleIdentifier"
-            moduleName = "">
-            <Locations>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
-         <BreakpointContent
-            uuid = "121472EB-9D96-48DE-BA86-8D5FA383419C"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            symbolName = "LSIsMessengerBundleIdentifier"
-            moduleName = "">
-            <Locations>
-               <Location
-                  uuid = "121472EB-9D96-48DE-BA86-8D5FA383419C - a338177d69f4c987"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "___lldb_unnamed_symbol10202"
-                  moduleName = "LightSpeedCore"
-                  usesParentBreakpointCondition = "Yes">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
-         <BreakpointContent
-            uuid = "25B4D343-B423-4523-B1DD-48E19E8A8A22"
+            uuid = "56E00E83-C233-4222-A16D-4D2E2D8EC589"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            symbolName = "numberWithBool:"
+            symbolName = "MGGetBoolAnswer"
             moduleName = "">
             <Locations>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.AddressBreakpoint">
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "EFD2D848-D186-457D-8CAA-75FEE1B52CBB"
-            shouldBeEnabled = "Yes"
+            uuid = "838986E7-E516-4373-A68C-15B826C112C4"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            symbolName = "*0x8163f4">
-            <Locations>
-            </Locations>
+            filePath = "InternalTest/Backend/Packet.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "223"
+            endingLineNumber = "223"
+            landmarkName = "RESOLVE_OBJC()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

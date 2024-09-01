@@ -196,45 +196,73 @@ class Packet: Hashable, Identifiable {
             return false
         }
         
+        
         let parts = funcName.components(separatedBy: " ")
-            guard parts.count == 2, parts[0].hasPrefix("-[") else {
-                print("Invalid Objective-C method format for \(funcName)")
-                return false
-            }
+        if (parts.count != 2) {
+            print(print("Invalid Objective-C method format for \(funcName)"))
+            return false
+        }
+        
+        let isClassMethod = parts[0].hasPrefix("+[")
         
         let className  = String(parts[0].dropFirst(2))
         let methodName = String(parts[1].dropLast())
         
-        let baseClass: AnyClass? = objc_getClass(className) as? AnyClass
-        if (baseClass == nil) {
-            print("failed to get base class for \(funcName)")
+        let theClass: AnyClass? = objc_getClass(className) as? AnyClass
+        if (theClass == nil) {
+            print("failed to get base class for \(className): \(methodName)")
             return false
         }
+        print("found class: \(className)")
         
-        let sharedInstanceSelector: Selector = sel_getUid("sharedInstance") // TODO: could differ!
-        let sharedInstanceTestResponse: Bool = baseClass!.responds(to: sharedInstanceSelector)
-        if (!sharedInstanceTestResponse) {
-            print("did not respond to selector \(sharedInstanceSelector)")
-            return false
+        let result: CBool
+        let method: Method?
+        
+        if isClassMethod {
+            // +[Class methods]:
+            let selector = sel_getUid(methodName)
+            if !theClass!.responds(to: selector) {
+                print("+[: class did not respond to selector \(selector) for \(className): \(methodName)")
+                return false
+            }
+            hasSymbol = true
+            method = theClass?.method(for: selector)
+        } else {
+            // -[Instance methods]:
+            
+            // Get the shared instance of the class:
+            let sharedInstanceSelector: Selector = sel_getUid("sharedInstance") // TODO: could differ!
+            let sharedInstanceTestResponse: Bool = theClass!.responds(to: sharedInstanceSelector)
+            if (!sharedInstanceTestResponse) {
+                print("-[: class did not respond to selector \(sharedInstanceSelector) for \(className): \(methodName)")
+                return false
+            }
+            
+            let sharedInstanceMethodImpl = theClass!.method(for: sharedInstanceSelector)
+            let sharedInstanceMethod = unsafeBitCast(sharedInstanceMethodImpl, to: instancePrototype.self)
+            let sharedInstanceResult : AnyClass? = sharedInstanceMethod() // TODO: test for fail!
+            
+            // Get the method:
+            let targetSelector = sel_getUid(methodName)
+            let targetTestResponse: Bool = sharedInstanceResult!.responds(to: targetSelector)
+            self.hasSymbol = targetTestResponse
+            if (!targetTestResponse) {
+                print("-[: instance did not respond to selector \(targetSelector)")
+                return false
+            }
+            
+            method = sharedInstanceResult?.method(for: targetSelector)
         }
         
-        let sharedInstanceMethodImpl = baseClass!.method(for: sharedInstanceSelector)
-        let sharedInstanceMethod = unsafeBitCast(sharedInstanceMethodImpl, to: instancePrototype.self)
-        let sharedInstanceResult : AnyClass? = sharedInstanceMethod() // TODO: test for fail!
-        
-        let targetSelector = sel_getUid(methodName)
-        let targetTestResponse: Bool = sharedInstanceResult!.responds(to: targetSelector)
-        if (!targetTestResponse) {
-            print("did not respond to selector \(targetSelector)")
+        if (method == nil) {
+            print("failed to get method for \(funcName)")
             return false
         }
+        print("got method: \(methodName) for \(funcName)")
         
-        hasSymbol = targetTestResponse
+        let callableMethod = unsafeBitCast(method, to: FunctionPrototypeBool.self)
+        result = callableMethod()
         
-        let targetMethodImpl = sharedInstanceResult?.method(for: targetSelector)
-        let targetMethod = unsafeBitCast(targetMethodImpl, to: FunctionPrototypeBool.self)
-        
-        let result = targetMethod()
         return result
     }
 }
