@@ -3,12 +3,60 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "__72-[BKSSystemShellService _activateServerConnectionWithIdleSleepInterval:]_block_invoke.70:(null)">
+         contextName = "___lldb_unnamed_symbol1398:(null)">
          <PersistentStrings>
             <PersistentString
-               value = "$w0">
+               value = "(NSString*)$x0">
+            </PersistentString>
+            <PersistentString
+               value = "(NSString*)$x10">
+            </PersistentString>
+            <PersistentString
+               value = "(NSString*)$x8">
+            </PersistentString>
+            <PersistentString
+               value = "(NSString*)$x3">
+            </PersistentString>
+            <PersistentString
+               value = "(NSString*)$x13">
+            </PersistentString>
+            <PersistentString
+               value = "(NSString*)$x6">
+            </PersistentString>
+            <PersistentString
+               value = "(NSString*)$x1">
+            </PersistentString>
+            <PersistentString
+               value = "(NSString*)$x12">
+            </PersistentString>
+            <PersistentString
+               value = "(NSString*)$x9">
+            </PersistentString>
+            <PersistentString
+               value = "(NSString*)$x4">
+            </PersistentString>
+            <PersistentString
+               value = "(NSString*)$x15">
+            </PersistentString>
+            <PersistentString
+               value = "(NSString*)$x11">
+            </PersistentString>
+            <PersistentString
+               value = "(NSString*)$x7">
+            </PersistentString>
+            <PersistentString
+               value = "(NSString*)$x2">
+            </PersistentString>
+            <PersistentString
+               value = "(NSString*)$x14">
+            </PersistentString>
+            <PersistentString
+               value = "(NSString*)$x5">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Packet.RESOLVE_C_BOOL():Packet.swift">
       </ContextState>
       <ContextState
          contextName = "___lldb_unnamed_symbol1357:(null)">
@@ -22,24 +70,10 @@
          contextName = "C_CALL_SYMBOL_BOOL(_:_:):Interop.swift">
       </ContextState>
       <ContextState
-         contextName = "MGGetBoolAnswer:(null)">
+         contextName = "__72-[BKSSystemShellService _activateServerConnectionWithIdleSleepInterval:]_block_invoke.70:(null)">
          <PersistentStrings>
             <PersistentString
-               value = "$x0">
-            </PersistentString>
-            <PersistentString
-               value = "(NSString*)$x0">
-            </PersistentString>
-            <PersistentString
-               value = "$x19">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "isFeatureEnabled(_:):(null)">
-         <PersistentStrings>
-            <PersistentString
-               value = "(String*)$x9">
+               value = "$w0">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -48,6 +82,49 @@
          <PersistentStrings>
             <PersistentString
                value = "$x21">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MGGetBoolAnswer:(null)">
+         <PersistentStrings>
+            <PersistentString
+               value = "(NSString*)$x7">
+            </PersistentString>
+            <PersistentString
+               value = "(NSString*)$x2">
+            </PersistentString>
+            <PersistentString
+               value = "$x19">
+            </PersistentString>
+            <PersistentString
+               value = "$x0">
+            </PersistentString>
+            <PersistentString
+               value = "(NSString*)$x0">
+            </PersistentString>
+            <PersistentString
+               value = "(NSString*)$x5">
+            </PersistentString>
+            <PersistentString
+               value = "(NSString*)$x3">
+            </PersistentString>
+            <PersistentString
+               value = "(NSString*)$x6">
+            </PersistentString>
+            <PersistentString
+               value = "(NSString*)$x1">
+            </PersistentString>
+            <PersistentString
+               value = "(NSString*)$x4">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "isFeatureEnabled(_:):(null)">
+         <PersistentStrings>
+            <PersistentString
+               value = "(String*)$x9">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

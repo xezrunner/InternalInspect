@@ -1,0 +1,15 @@
+{
+  "originHash" : "9e226c5a226b3b3ba782d8abba4f4a902066b98cf553d89d0392562e9b3c3b82",
+  "pins" : [
+    {
+      "identity" : "swiftui-system-colors",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/diniska/swiftui-system-colors",
+      "state" : {
+        "revision" : "5127afab23337699a714e036588f02d9481ae612",
+        "version" : "1.2.0"
+      }
+    }
+  ],
+  "version" : 3
+}

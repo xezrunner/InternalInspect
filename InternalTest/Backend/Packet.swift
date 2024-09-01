@@ -12,7 +12,7 @@ class PacketGroup: Identifiable {
         
         // Assign the group for each packet and resolve them:
         packetDefinitions.forEach { definition in
-            let packet: Packet = .init(definition.funcName, definition.funcArgs, packetType: definition.packetType)
+            let packet: Packet = .init(definition.funcName, definition.funcArgs, packetType: definition.packetType, isStringReturnType: definition.isStringReturnType)
             packet.packetGroup = self
             packet.selfResolve()
             packets.append(packet)

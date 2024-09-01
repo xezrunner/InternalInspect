@@ -1,5 +1,6 @@
 import Foundation
 import SwiftUI
+import SystemColors
 
 struct PacketGroupSectionView: View {
     init(_ group: PacketGroup) {
@@ -19,25 +20,29 @@ struct PacketGroupSectionView: View {
                         PacketDetailView(packet: packet)
                     } else {
                         PacketDetailView(packet: packet)
+#if !os(macOS)
                             .navigationTransition(.zoom(sourceID: packet.id, in: packetList))
+#else
+                        #endif
                     }
                 } label: {
                     VStack(alignment: .leading) {
                         if packet.packetType == .PACKET_ELIGIBILITY {
                             HStack {
-                                Text("os_eligibility_get_domain_answer(\(packet.funcName))")
+                                Text("os_eligibility_get_domain_answer()\n\(packet.funcName)")
                                     .font(.system(size: 12, weight: .bold))
-                                    .foregroundStyle(packet.hasSymbol ? Color.accentColor : Color(UIColor.quaternaryLabel))
-                                if packet.eligibilityLookupResult?.domainCode != -1 {
+                                    .foregroundStyle(packet.eligibilityLookupResult?.error == 0 ? (packet.eligibilityLookupResult?.answer == .EligibilityAnswerEligible ? Color.accentColor : Color.gray) : Color(Color.quaternaryLabel))
+                                if packet.eligibilityLookupResult?.error == 0 {
                                     Text("\(packet.eligibilityLookupResult!.domainCode)")
                                         .foregroundStyle(.gray).opacity(0.5)
+                                        .frame(maxHeight: .infinity, alignment: .bottom)
                                 }
                             }
                         } else {
                             let funcArgs = packet.funcArgs.isEmpty ? "" : packet.funcArgs.map { element in "\"\(element)\""}.joined(separator: ", ")
                             Text("\(packet.funcName)(\(funcArgs))")
                                 .font(.system(size: 12, weight: .bold))
-                                .foregroundStyle(packet.hasSymbol ? Color.accentColor : Color(UIColor.quaternaryLabel))
+                                .foregroundStyle(packet.hasSymbol ? Color.accentColor : Color(Color.quaternaryLabel))
                         }
                         
                         VStack(alignment: .leading) {
@@ -58,9 +63,9 @@ struct PacketGroupSectionView: View {
                                             Text("\"\(packet.stringResult)\"").padding([.leading], -10).font(.footnote.bold())
                                         }
                                     } else {
-                                        if packet.eligibilityLookupResult == nil {
+                                        if packet.eligibilityLookupResult == nil || packet.eligibilityLookupResult!.error != 0 {
                                             Text("Eligibility lookup failed.").padding([.leading], -10).font(.footnote.bold())
-                                                .foregroundColor(.red)
+                                                .foregroundColor(.gray)
                                         } else {
                                             Text("\(packet.eligibilityLookupResult!.answer.name())").padding([.leading], -10).font(.footnote.bold())
                                                 .foregroundStyle(packet.eligibilityLookupResult!.answer == .EligibilityAnswerEligible ? .green : .gray)
@@ -81,6 +86,8 @@ struct PacketGroupSectionView: View {
         .monospaced()
         .font(.system(size: 12))
         .textCase(.none)
+#if !os(macOS)
         .listSectionSpacing(0)
+#endif
     }
 }

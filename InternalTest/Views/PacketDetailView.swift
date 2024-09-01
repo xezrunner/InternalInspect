@@ -1,4 +1,5 @@
 import SwiftUI
+import SystemColors
 
 struct PacketDetailView: View {
     func visualInfoForEligiblityAnswer(_ answer: EligiblityAnswer) -> (color: Color, systemImage: String) {
@@ -11,6 +12,8 @@ struct PacketDetailView: View {
         }
     }
     
+    @EnvironmentObject var featureFlags: GlobalFeatureFlags
+    
     @State var packet: Packet
     
     @State var heroAnimationTrigger = 0
@@ -18,15 +21,17 @@ struct PacketDetailView: View {
     func getHeroMainIcon() -> String {
         switch packet.packetType {
         case .PACKET_C:    fallthrough
-        case .PACKET_OBJC: return "gear.circle.fill"
+        case .PACKET_OBJC:
+            if packet.result { return "gear.circle.fill" }
+            else { return "nosign.app.fill" }
         case .PACKET_ELIGIBILITY:
             if packet.eligibilityLookupResult == nil || packet.eligibilityLookupResult!.error != 0 {
-                return "figure.fall.circle.fill"
+                return "exclamationmark.lock.fill"
             } else {
                 if packet.eligibilityLookupResult!.answer == .EligibilityAnswerEligible {
-                    return "figure.child.and.lock.open.fill"
+                    return "checkmark.shield.fill"
                 } else {
-                    return "figure.child.and.lock"
+                    return "lock.circle.dotted"
                 }
             }
         }
@@ -52,7 +57,7 @@ struct PacketDetailView: View {
                         .symbolEffect(.bounce.byLayer.up, value: heroAnimationTrigger)
                 }
             }
-            .background(Color(UIColor.secondarySystemBackground))
+            .background(Color.gray.opacity(0.10).gradient)
             .clipShape(.rect(cornerRadius: 18, style: .continuous))
             .padding(.vertical, 20)
             
@@ -65,7 +70,7 @@ struct PacketDetailView: View {
                     let funcArgs = packet.funcArgs.isEmpty ? "" : packet.funcArgs.map { element in "\"\(element)\""}.joined(separator: ", ")
                     Text("\(packet.funcName)(\(funcArgs))")
                         .bold()
-                        .foregroundStyle(packet.hasSymbol ? Color.accentColor : Color(UIColor.tertiaryLabel))
+                        .foregroundStyle(packet.hasSymbol ? Color.accentColor : Color(Color.tertiaryLabel))
                 } else {
                     Text("DOMAIN")
                         .font(.footnote.bold())
@@ -74,11 +79,22 @@ struct PacketDetailView: View {
                     HStack {
                         Text("\(packet.funcName)")
                             .bold()
-                            .foregroundStyle(packet.eligibilityLookupResult != nil ? Color.accentColor : Color(UIColor.tertiaryLabel))
+                            .foregroundStyle(packet.eligibilityLookupResult != nil ? Color.accentColor : Color(Color.tertiaryLabel))
                         
                         if packet.eligibilityLookupResult?.domainCode != -1 {
                             Text("\(packet.eligibilityLookupResult!.domainCode)")
                                 .foregroundStyle(.gray).opacity(0.5)
+                        }
+                    }
+                    
+                    if (packet.packetType == .PACKET_ELIGIBILITY && featureFlags.getBool(name: "ShowDebugInformation")) {
+                        if (packet.eligibilityLookupResult?.error != 0){
+                            Text("ERROR")
+                                .font(.footnote.bold())
+                                .textCase(.uppercase)
+                            
+                            Text("\(packet.eligibilityLookupResult!.error)")
+                                .bold()
                         }
                     }
                 }
@@ -90,7 +106,7 @@ struct PacketDetailView: View {
                     .padding(.top, 8)
                 
                 Text("\(packet.packetGroup?.handlePath ?? "nil")")
-                    .foregroundStyle(packet.hasSymbol ? Color.primary : Color(UIColor.tertiaryLabel))
+                    .foregroundStyle(packet.hasSymbol ? Color.primary : Color(Color.tertiaryLabel))
                 
                 Text("RESULT")
                     .font(.footnote.bold())
@@ -151,4 +167,5 @@ struct PacketDetailView: View {
         ])
     
     PacketDetailView(packet: exampleGroup.packets.first!)
+        .environmentObject(GlobalFeatureFlags())
 }

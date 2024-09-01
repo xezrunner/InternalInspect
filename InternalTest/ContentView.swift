@@ -10,29 +10,59 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             List() {
-                VStack(alignment: .center) {
-                    Image(systemName: "gear.circle.fill")
-                        .resizable().aspectRatio(contentMode: .fit)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 48)
-                        .padding(.bottom, 2)
-                    
-                    Text("Internal states").font(.headline).bold()
-                    Text("A list of results from various functions that report internal and other relevant states.")
-                        .font(.subheadline)
-                        .multilineTextAlignment(.center)
-                        .padding(.top, 2)
+                if (featureFlags.getBool(name: "HideForPublicDemo")) {
+                    VStack {
+                        VStack(alignment: .center) {
+                            Image(systemName: "eye.slash.circle.fill")
+                                .resizable().aspectRatio(contentMode: .fit)
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 48)
+                                .padding(.bottom, 2)
+                            
+                            Text("Gatekeeping").font(.headline).bold()
+                            Text("Contents of this application have been hidden for so-called \"gatekeeping purposes\" (🙂‍↔️) and is unavailable to view on the platform you're seeing this on.")
+                                .font(.subheadline)
+                                .multilineTextAlignment(.center)
+                                .padding(.top, 2)
+                        }
+                        .padding(.vertical)
+                        .padding(.horizontal, 8)
+                    }
+                } else {
+                    VStack(alignment: .center) {
+                        Image(systemName: "gear.circle.fill")
+                            .resizable().aspectRatio(contentMode: .fit)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 48)
+                            .padding(.bottom, 2)
+                        
+                        Text("Internal states").font(.headline).bold()
+                        Text("A list of results from various functions that report internal and other relevant states.")
+                            .font(.subheadline)
+                            .multilineTextAlignment(.center)
+                            .padding(.top, 2)
+                    }
+                    .padding(.vertical)
+                    .padding(.horizontal, 8)
                 }
-                .padding(.vertical)
-                .padding(.horizontal, 8)
                 
                 ForEach(packetGroups) { group in
-                    PacketGroupSectionView(group)
+                    if (featureFlags.getBool(name: "HideForPublicDemo")) {
+                        Section(group.id.uuidString) {
+                            ForEach(group.packets) { packet in
+                                NavigationLink(packet.id.uuidString, destination: { Text("Hidden!") })
+                            }
+                        }
+                    } else {
+                        PacketGroupSectionView(group)
+                    }
                 }
             }
+#if !os(macOS)
             .listSectionSpacing(.compact)
+#endif
             .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
+                ToolbarItem(placement: .primaryAction) {
                     Button(action: { showConsoleSheet = !showConsoleSheet }, label: {
                         Label("Console", systemImage: showConsoleSheet ? "ladybug.circle.fill" : "ladybug.circle")
                     })
@@ -41,11 +71,12 @@ struct ContentView: View {
                         ZStack {
                             if colorScheme == .light { Color.white.ignoresSafeArea(.all) }
                             VStack {
+                                let formatter = NumberFormatter()
                                 List(0 ..< featureFlags.consoleLines.count, id: \.self) { index in
                                     let pair = featureFlags.consoleLines[index]
                                     VStack(alignment: .leading) {
-                                        Text(pair.0).bold().font(.system(size: 12))
-                                        Text(pair.1).font(.system(size: 10))
+                                        Text(featureFlags.getBool(name: "HideForPublicDemo") ? formatter.string(from: NSNumber(value: pair.0.hashValue))! : pair.0).bold().font(.system(size: 12))
+                                        Text(featureFlags.getBool(name: "HideForPublicDemo") ? formatter.string(from: NSNumber(value: pair.0.hashValue))! : pair.1).font(.system(size: 10))
                                     }.listRowBackground(Color.clear)
                                 }
                                 .monospaced()
@@ -61,7 +92,7 @@ struct ContentView: View {
                     }
                 }
                 
-                ToolbarItem(placement: .topBarTrailing) {
+                ToolbarItem(placement: .primaryAction) {
                     Button(action: { showDebugSheet = !showDebugSheet }, label: {
                         Label("Debug settings", systemImage: showDebugSheet ? "ant.circle.fill" : "ant.circle")
                     })
@@ -70,6 +101,7 @@ struct ContentView: View {
                         ZStack {
                             if colorScheme == .light { Color.white.ignoresSafeArea(.all) }
                             DebugSettingsView()
+                                .environmentObject(globalFeatureFlags)
                                 .presentationDetents([.medium, .large])
                                 .presentationBackground(.ultraThinMaterial)
 #if os(visionOS) || targetEnvironment(macCatalyst)
@@ -78,14 +110,6 @@ struct ContentView: View {
                         }
                     }
                 }
-                
-                //                ToolbarItem(placement: .topBarTrailing) {
-                //                    Button(action: {
-                //                        alertMessage("Info", "This application lists functions that report internal status. They are called and their results are presented.")
-                //                    }, label: {
-                //                        Label("Internal states", systemImage: "info.circle")
-                //                    })
-                //                }
             }
             /*
              .safeAreaInset(edge: .top) {
@@ -100,17 +124,8 @@ struct ContentView: View {
              }
              */
         }
+        .navigationTitle(featureFlags.getBool(name: "HideForPublicDemo") ? "<private>" : "Internal states")
     }
-}
-
-@MainActor func alertMessage(_ title: String, _ message: String) {
-    let alertVC = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
-    let okAction = UIAlertAction(title: "OK", style: .default) { (action: UIAlertAction) in
-    }
-    alertVC.addAction(okAction)
-    
-    let viewController = UIApplication.shared.windows.first!.rootViewController!
-    viewController.present(alertVC, animated: true, completion: nil)
 }
 
 #Preview {

@@ -19,9 +19,19 @@ class GlobalFeatureFlags: ObservableObject {
     @Published var consoleLines: [(String, String)] = []
     
     @Published var flags: [FeatureFlag] = [
+        FeatureFlag(name: "ShowDebugInformation",
+                    description: "Show additional debugging information about packets.",
+                    symbol: "square.stack.3d.up.trianglebadge.exclamationmark.fill",
+                    value: false),
+        
         FeatureFlag(name: "UseZoomTransitions",
                     description: "Use the new WWDC24 zoom transitions.",
                     symbol: "square.arrowtriangle.4.outward",
+                    value: false),
+        
+        FeatureFlag(name: "HideForPublicDemo",
+                    description: "Hide application contents for public demo.",
+                    symbol: "eye.slash.circle.fill",
                     value: false),
         
         FeatureFlag(name: "ExampleFlag",
