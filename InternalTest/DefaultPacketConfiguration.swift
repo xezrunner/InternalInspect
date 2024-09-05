@@ -13,12 +13,16 @@ let packetGroups = [
         PacketDefinition("AFDeviceSupportsSAEByDeviceCapabilityAndFeatureFlags"),
         PacketDefinition("AFLocaleSupportsSAE"),
         PacketDefinition("AFDeviceSupportsSAE"),
+        PacketDefinition("AFHasGMSCapabilityUnembargoed"),
         
+        PacketDefinition(packetType: PacketType.PACKET_OBJC, "+[AFSystemAssistantExperienceStatusManager isSAEEnabled]"),
         PacketDefinition(packetType: PacketType.PACKET_OBJC, "+[AFFeatureFlags isSystemAssistantExperienceEnabled]"),
         PacketDefinition(packetType: PacketType.PACKET_OBJC, "+[AFFeatureFlags isSAEOverrideEnabled]"),
+        PacketDefinition(packetType: PacketType.PACKET_OBJC, "+[AFFeatureFlags isNLRouterEnabled]"),
         PacketDefinition(packetType: PacketType.PACKET_OBJC, "+[CSFAvailability currentAvailability]"),
     ]),
       
+    /*
     PacketGroup(handlePath: "/usr/lib/system/libsystem_eligibility.dylib", [
         PacketDefinition(packetType: .PACKET_ELIGIBILITY, "OS_ELIGIBILITY_DOMAIN_INVALID"),
         PacketDefinition(packetType: .PACKET_ELIGIBILITY, "OS_ELIGIBILITY_DOMAIN_TEST"),
@@ -146,6 +150,7 @@ let packetGroups = [
         PacketDefinition(packetType: .PACKET_ELIGIBILITY, "OS_ELIGIBILITY_DOMAIN_TENNESSINE"),
         PacketDefinition(packetType: .PACKET_ELIGIBILITY, "OS_ELIGIBILITY_DOMAIN_OGANESSON"),
     ]),
+    */
     
     PacketGroup(handlePath: "/usr/lib/system/libsystem_featureflags.dylib", [
         PacketDefinition("_os_feature_enabled_impl", "Siri", "sae_override"),
@@ -289,7 +294,7 @@ let packetGroups = [
         PacketDefinition("MGGetBoolAnswer", "DeviceSupportsGenerativeModelSystems"),
         PacketDefinition("MGGetBoolAnswer", "A62OafQ85EJAiiqKn4agtg"),
         
-        PacketDefinition("MGGetBoolAnswer", "DeviceSupportsANE"),
+        //PacketDefinition("MGGetBoolAnswer", "DeviceSupportsANE"),
         PacketDefinition("MGGetBoolAnswer", "+N9mZUAHooNvMiQnjeTJ8g"),
         
         
@@ -299,6 +304,7 @@ let packetGroups = [
         PacketDefinition("MGCopyAnswer", "RegionInfo", isStringReturnType: true),
     ]),
     
+    /*
     PacketGroup(handlePath: "/System/Library/PrivateFrameworks/BaseBoard.framework/BaseBoard", [
         PacketDefinition("_BSIsInternalInstall"),
         PacketDefinition("_BSHasInternalSettings"),
@@ -323,5 +329,6 @@ let packetGroups = [
         PacketDefinition(packetType: PacketType.PACKET_OBJC, "-[BSPlatform isInternalOrCarrierBuild]"),
         PacketDefinition(packetType: PacketType.PACKET_OBJC, "-[BSPlatform test]"),
     ])
+    */
     
 ]
