@@ -13,13 +13,19 @@ let packetGroups = [
         PacketDefinition("AFDeviceSupportsSAEByDeviceCapabilityAndFeatureFlags"),
         PacketDefinition("AFLocaleSupportsSAE"),
         PacketDefinition("AFDeviceSupportsSAE"),
+        PacketDefinition("AFHasGMSCapability"),
         PacketDefinition("AFHasGMSCapabilityUnembargoed"),
         
-        PacketDefinition(packetType: PacketType.PACKET_OBJC, "+[AFSystemAssistantExperienceStatusManager isSAEEnabled]"),
+        
+        // CRASHES IN SIMULATOR!
+        //PacketDefinition(packetType: PacketType.PACKET_OBJC, "+[AFSystemAssistantExperienceStatusManager isSAEEnabled]"),
+        
         PacketDefinition(packetType: PacketType.PACKET_OBJC, "+[AFFeatureFlags isSystemAssistantExperienceEnabled]"),
         PacketDefinition(packetType: PacketType.PACKET_OBJC, "+[AFFeatureFlags isSAEOverrideEnabled]"),
         PacketDefinition(packetType: PacketType.PACKET_OBJC, "+[AFFeatureFlags isNLRouterEnabled]"),
         PacketDefinition(packetType: PacketType.PACKET_OBJC, "+[CSFAvailability currentAvailability]"),
+        
+        PacketDefinition(packetType: PacketType.PACKET_OBJC, "-[EligibilityDomain computeInputStatusForGenerativeModelSystemInput:]"),
     ]),
       
     /*
@@ -176,6 +182,8 @@ let packetGroups = [
         
         PacketDefinition("_os_feature_enabled_impl", "GenerativeModels", "GenerativeModelsAvailability"),
         
+        PacketDefinition("_os_feature_enabled_impl", "IntelligenceFlow", "IntelligenceFlow"),
+        
         PacketDefinition("_os_feature_enabled_impl", "Pommes", "Sphinx"),
         
         PacketDefinition("_os_feature_enabled_impl", "parsecd", "ResponseFramework"),
@@ -302,6 +310,11 @@ let packetGroups = [
         PacketDefinition("MGCopyAnswer", "ProductType", isStringReturnType: true),
         PacketDefinition("MGCopyAnswer", "RegionCode", isStringReturnType: true),
         PacketDefinition("MGCopyAnswer", "RegionInfo", isStringReturnType: true),
+        
+        PacketDefinition("_MobileGestalt_get_deviceSupportsSiriUnderstandingOnDevice"),
+        PacketDefinition("MobileGestalt_get_deviceSupportsSiriUnderstandingOnDevice"),
+        
+        PacketDefinition("MGGetBoolAnswer", "WXi7NQbOKnEX4vPQFeZAdQ"),
     ]),
     
     /*

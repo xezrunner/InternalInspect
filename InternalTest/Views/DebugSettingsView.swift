@@ -29,11 +29,6 @@ class GlobalFeatureFlags: ObservableObject {
                     symbol: "square.arrowtriangle.4.outward",
                     value: false),
         
-        FeatureFlag(name: "HideForPublicDemo",
-                    description: "Hide application contents for public demo.",
-                    symbol: "eye.slash.circle.fill",
-                    value: false),
-        
         FeatureFlag(name: "ExampleFlag",
                     description: "No symbol.",
                     value: false),
