@@ -12,7 +12,7 @@ struct PacketDetailView: View {
         }
     }
     
-    @EnvironmentObject var featureFlags: GlobalFeatureFlags
+    @EnvironmentObject var globalState: GlobalState
     
     @State var packet: Packet
     
@@ -87,7 +87,7 @@ struct PacketDetailView: View {
                         }
                     }
                     
-                    if (packet.packetType == .PACKET_ELIGIBILITY && featureFlags.getBool(name: "ShowDebugInformation")) {
+                    if (packet.packetType == .PACKET_ELIGIBILITY && is_feature_flag_enabled("ShowDebugInformation")) {
                         if (packet.eligibilityLookupResult?.error != 0){
                             Text("ERROR")
                                 .font(.footnote.bold())
@@ -167,5 +167,5 @@ struct PacketDetailView: View {
         ])
     
     PacketDetailView(packet: exampleGroup.packets.first!)
-        .environmentObject(GlobalFeatureFlags())
+        .environmentObject(GlobalState())
 }

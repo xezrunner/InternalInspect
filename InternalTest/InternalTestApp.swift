@@ -7,7 +7,7 @@ public func print(_ items: String..., filename: String = #file, function : Strin
     let output = items.map { "\($0)" }.joined(separator: separator)
     Swift.print(output, terminator: terminator)
     DispatchQueue.main.async {
-        globalFeatureFlags.consoleLines.append((pretty, output))
+        globalState.consoleLines.append((pretty, output))
     }
 }
 
@@ -16,7 +16,7 @@ struct InternalTestApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(globalFeatureFlags)
+                .environmentObject(globalState)
         }
     }
 }

@@ -10,13 +10,13 @@ struct PacketGroupSectionView: View {
     @Namespace var packetList
     var group: PacketGroup
     
-    @EnvironmentObject var featureFlags: GlobalFeatureFlags
+    @EnvironmentObject var globalState: GlobalState
     
     var body: some View {
         Section(group.handlePath) {
             ForEach(group.packets) { packet in
                 NavigationLink {
-                    if (!featureFlags.getBool(name: "UseZoomTransitions")) {
+                    if (!is_feature_flag_enabled("UseZoomTransitions")) {
                         PacketDetailView(packet: packet)
                     } else {
                         PacketDetailView(packet: packet)
