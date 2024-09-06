@@ -85,6 +85,17 @@ class Packet: Hashable, Identifiable {
     
     var eligibilityLookupResult: EligiblityLookupResult?
     
+    var isResultSuccessful: Bool {
+        get {
+            switch self.packetType {
+            case .PACKET_ELIGIBILITY:
+                return self.eligibilityLookupResult?.answer == .EligibilityAnswerEligible
+            case .PACKET_C:    fallthrough
+            case .PACKET_OBJC: return self.result
+            }
+        }
+    }
+    
     public func selfResolve() {
         if packetType == .PACKET_ELIGIBILITY {
             self.eligibilityLookupResult = resolveEligibility()

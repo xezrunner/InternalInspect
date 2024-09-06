@@ -44,8 +44,8 @@
             filePath = "InternalTest/Backend/Packet.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "227"
-            endingLineNumber = "227"
+            startingLineNumber = "238"
+            endingLineNumber = "238"
             landmarkName = "RESOLVE_OBJC()"
             landmarkType = "7">
          </BreakpointContent>

@@ -25,12 +25,22 @@ struct GlobalFeatureFlags {
         FeatureFlag(name: "UseZoomTransitions",
                     description: "Use the new WWDC24 zoom transitions.",
                     symbol: "square.arrowtriangle.4.outward",
-                    value: false),
+                    value: true),
         
         FeatureFlag(name: "NoHeroBackplate",
                     description: "Use transparent backgrounds on heroes",
                     symbol: "light.panel",
-                    value: false),
+                    value: true),
+        
+        FeatureFlag(name: "UsePlainListBackground",
+                    description: "Use a plain white/black color for the main list background",
+                    symbol: "square.fill",
+                    value: true),
+        
+        FeatureFlag(name: "UseLegacyListItem",
+                    description: "Use the previous packet list item style",
+                    symbol:"testtube.2",
+                    value:false),
         
         FeatureFlag(name: "ExampleFlag",
                     description: "No symbol.",

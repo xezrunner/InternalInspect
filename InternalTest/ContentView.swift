@@ -12,13 +12,13 @@ struct ContentView: View {
                               symbolName:  "gear.circle.fill")
                 
                 ForEach(packetGroups) { group in
-                    PacketGroupSectionView(group)
+                    PacketGroupSection(group)
                 }
             }
+            .scrollContentBackground(is_feature_flag_enabled("UsePlainListBackground") ? .hidden : .visible)
             .toolbar { MainToolbar() }
-            .toolbar {
-                is_feature_flag_enabled("EnableDebug") ? DebugToolbar() : nil
-            }
+            .toolbar { is_feature_flag_enabled("EnableDebug") ? DebugToolbar() : nil }
+            .shadow(color: .secondary.opacity(0.10), radius: 5, x: 0, y: 3)
 #if !os(macOS)
             .listSectionSpacing(.compact)
 #endif

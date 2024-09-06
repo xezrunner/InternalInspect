@@ -16,13 +16,15 @@
 		2130EEE12C8A776C0026C1A6 /* FeatureFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2130EEE02C8A776B0026C1A6 /* FeatureFlag.swift */; };
 		2157BB392C08AA8200F19C85 /* DefaultPacketConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2157BB382C08AA8100F19C85 /* DefaultPacketConfiguration.swift */; };
 		2157BB3C2C08ABCF00F19C85 /* Packet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2157BB3B2C08ABCF00F19C85 /* Packet.swift */; };
-		21790EE52C22389D00801CD7 /* GroupSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21790EE42C22389B00801CD7 /* GroupSectionView.swift */; };
+		21790EE52C22389D00801CD7 /* PacketGroupSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21790EE42C22389B00801CD7 /* PacketGroupSection.swift */; };
 		2198B7A82C08FB530056EB08 /* Interop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2198B7A72C08FB530056EB08 /* Interop.swift */; };
 		21A8007E2C8B38D2009C049F /* MainToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8007D2C8B38D0009C049F /* MainToolbar.swift */; };
 		21AD64262C2B8204008DA41C /* SystemColors in Frameworks */ = {isa = PBXBuildFile; productRef = 21AD64252C2B8204008DA41C /* SystemColors */; };
 		21B61AD82C225AE800CA4DDB /* PopupCloseOverlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B61AD72C225ADD00CA4DDB /* PopupCloseOverlayButton.swift */; };
 		21DCDE802C1BA038007B9B28 /* PacketDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DCDE7F2C1BA02F007B9B28 /* PacketDetailView.swift */; };
+		21E7812A2C8B807C00EFF561 /* Packet+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E781292C8B807400EFF561 /* Packet+UI.swift */; };
 		21EE452D2C1BB84100B63200 /* DebugSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EE452C2C1BB83D00B63200 /* DebugSettingsView.swift */; };
+		21F6487E2C8B57AF00AB7634 /* PacketListLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F6487D2C8B57A800AB7634 /* PacketListLabel.swift */; };
 		21FF22142C8A70F700DB7C29 /* HeroExplainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FF22132C8A70ED00DB7C29 /* HeroExplainer.swift */; };
 		21FF22162C8A73C300DB7C29 /* DebugToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FF22152C8A73BE00DB7C29 /* DebugToolbar.swift */; };
 /* End PBXBuildFile section */
@@ -39,12 +41,14 @@
 		2130EEE02C8A776B0026C1A6 /* FeatureFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlag.swift; sourceTree = "<group>"; };
 		2157BB382C08AA8100F19C85 /* DefaultPacketConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPacketConfiguration.swift; sourceTree = "<group>"; };
 		2157BB3B2C08ABCF00F19C85 /* Packet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Packet.swift; sourceTree = "<group>"; };
-		21790EE42C22389B00801CD7 /* GroupSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSectionView.swift; sourceTree = "<group>"; };
+		21790EE42C22389B00801CD7 /* PacketGroupSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketGroupSection.swift; sourceTree = "<group>"; };
 		2198B7A72C08FB530056EB08 /* Interop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interop.swift; sourceTree = "<group>"; };
 		21A8007D2C8B38D0009C049F /* MainToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainToolbar.swift; sourceTree = "<group>"; };
 		21B61AD72C225ADD00CA4DDB /* PopupCloseOverlayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupCloseOverlayButton.swift; sourceTree = "<group>"; };
 		21DCDE7F2C1BA02F007B9B28 /* PacketDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketDetailView.swift; sourceTree = "<group>"; };
+		21E781292C8B807400EFF561 /* Packet+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Packet+UI.swift"; sourceTree = "<group>"; };
 		21EE452C2C1BB83D00B63200 /* DebugSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugSettingsView.swift; sourceTree = "<group>"; };
+		21F6487D2C8B57A800AB7634 /* PacketListLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketListLabel.swift; sourceTree = "<group>"; };
 		21FF22132C8A70ED00DB7C29 /* HeroExplainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroExplainer.swift; sourceTree = "<group>"; };
 		21FF22152C8A73BE00DB7C29 /* DebugToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugToolbar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,7 +128,6 @@
 		218B09162C07D2AE00BD2AC0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				21790EE42C22389B00801CD7 /* GroupSectionView.swift */,
 				21DCDE7F2C1BA02F007B9B28 /* PacketDetailView.swift */,
 				21EE452C2C1BB83D00B63200 /* DebugSettingsView.swift */,
 			);
@@ -134,10 +137,13 @@
 		21B61AD62C225AD700CA4DDB /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				21E781292C8B807400EFF561 /* Packet+UI.swift */,
+				21F6487D2C8B57A800AB7634 /* PacketListLabel.swift */,
 				21A8007D2C8B38D0009C049F /* MainToolbar.swift */,
 				21FF22152C8A73BE00DB7C29 /* DebugToolbar.swift */,
 				21FF22132C8A70ED00DB7C29 /* HeroExplainer.swift */,
 				21B61AD72C225ADD00CA4DDB /* PopupCloseOverlayButton.swift */,
+				21790EE42C22389B00801CD7 /* PacketGroupSection.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -221,13 +227,15 @@
 				2112A3CD2C22253900D64EA9 /* Eligiblity.swift in Sources */,
 				21DCDE802C1BA038007B9B28 /* PacketDetailView.swift in Sources */,
 				21A8007E2C8B38D2009C049F /* MainToolbar.swift in Sources */,
-				21790EE52C22389D00801CD7 /* GroupSectionView.swift in Sources */,
+				21790EE52C22389D00801CD7 /* PacketGroupSection.swift in Sources */,
+				21F6487E2C8B57AF00AB7634 /* PacketListLabel.swift in Sources */,
 				2157BB392C08AA8200F19C85 /* DefaultPacketConfiguration.swift in Sources */,
 				21FF22142C8A70F700DB7C29 /* HeroExplainer.swift in Sources */,
 				2130EEDC2C8A769B0026C1A6 /* GlobalState.swift in Sources */,
 				21B61AD82C225AE800CA4DDB /* PopupCloseOverlayButton.swift in Sources */,
 				2123DF702C0679DB00868B53 /* ContentView.swift in Sources */,
 				2157BB3C2C08ABCF00F19C85 /* Packet.swift in Sources */,
+				21E7812A2C8B807C00EFF561 /* Packet+UI.swift in Sources */,
 				2123DF6E2C0679DB00868B53 /* InternalTestApp.swift in Sources */,
 				2130EEE12C8A776C0026C1A6 /* FeatureFlag.swift in Sources */,
 				21EE452D2C1BB84100B63200 /* DebugSettingsView.swift in Sources */,

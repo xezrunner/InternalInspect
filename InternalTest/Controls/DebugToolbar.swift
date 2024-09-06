@@ -13,7 +13,7 @@ struct DebugToolbar: ToolbarContent {
             Button(action: { showConsoleSheet = !showConsoleSheet }, label: {
                 Label("Console", systemImage: showConsoleSheet ? "ladybug.circle.fill" : "ladybug.circle")
             })
-            .tint(.primary.opacity(0.3))
+            .tint(.primary)
             .sheet(isPresented: $showConsoleSheet) {
                 VStack {
                     List(0 ..< globalState.consoleLines.count, id: \.self) { index in
@@ -41,7 +41,7 @@ struct DebugToolbar: ToolbarContent {
             Button(action: { showDebugSheet = !showDebugSheet }, label: {
                 Label("Debug settings", systemImage: showDebugSheet ? "ant.circle.fill" : "ant.circle")
             })
-            .tint(.primary.opacity(0.3))
+            .tint(.primary)
             .sheet(isPresented: $showDebugSheet) {
                 DebugSettingsView()
                     .environmentObject(globalState)

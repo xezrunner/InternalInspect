@@ -22,7 +22,7 @@ struct HeroExplainer: View {
                 Text(description).font(.subheadline).multilineTextAlignment(.center)
             }
         }
-        .padding(.vertical)
+        .padding(.vertical, is_feature_flag_enabled("NoHeroBackplate") ? 0 : 16)
         .padding(.horizontal, 6) // TODO: this looks odd?
         .listRowBackground(is_feature_flag_enabled("NoHeroBackplate") ? Color.clear : Color.secondarySystemBackground)
     }

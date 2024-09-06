@@ -18,29 +18,10 @@ struct PacketDetailView: View {
     
     @State var heroAnimationTrigger = 0
     
-    func getHeroMainIcon() -> String {
-        switch packet.packetType {
-        case .PACKET_C:    fallthrough
-        case .PACKET_OBJC:
-            if packet.result { return "gear.circle.fill" }
-            else { return "nosign.app.fill" }
-        case .PACKET_ELIGIBILITY:
-            if packet.eligibilityLookupResult == nil || packet.eligibilityLookupResult!.error != 0 {
-                return "exclamationmark.lock.fill"
-            } else {
-                if packet.eligibilityLookupResult!.answer == .EligibilityAnswerEligible {
-                    return "checkmark.shield.fill"
-                } else {
-                    return "lock.circle.dotted"
-                }
-            }
-        }
-    }
-    
     var body: some View {
         VStack(spacing: 12) {
             ZStack {
-                Image(systemName: getHeroMainIcon())
+                Image(systemName: packet.getPacketSymbol())
                     .resizable().aspectRatio(contentMode: .fit)
                     .frame(maxWidth: 64, maxHeight: 64)
                     .padding()
