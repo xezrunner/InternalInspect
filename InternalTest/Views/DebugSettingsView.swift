@@ -6,22 +6,9 @@ struct DebugSettingsView: View {
     
     var body: some View {
         Form {
-            VStack(alignment: .center) {
-                Image(systemName: "ant.circle.fill")
-                    .resizable().aspectRatio(contentMode: .fit)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 48)
-                    .padding(.bottom, 2)
-                
-                Text("Debug settings").font(.headline).bold()
-                Text("If you're reading this, you are violating the terms and conditions of this app.")
-                    .font(.subheadline)
-                    .multilineTextAlignment(.center)
-                    .padding(.top, 2)
-            }
-            .padding(.vertical)
-            .padding(.horizontal, 8)
-            .listRowBackground(Color.clear)
+            HeroExplainer(title: "Debug settings",
+                          description: "Transient mode - changes will not persist!",
+                          symbolName: "ant.circle.fill")
             
             Section("Feature flags") {
                 ForEach(0 ..< globalState.featureFlags.flags.count, id: \.self) { index in
@@ -46,16 +33,7 @@ struct DebugSettingsView: View {
         .scrollContentBackground(.hidden)
         .background(.clear)
         .overlay(
-            ZStack {
-                PopupCloseOverlayButton()
-                Text("TRANSIENT")
-                    .font(.footnote).textCase(.uppercase)
-                    .frame(maxWidth: .infinity, alignment: .trailing)
-                    .opacity(0.3)
-                    .frame(maxHeight: .infinity, alignment: .top)
-                    .padding(.vertical, 75)
-                    .padding(.horizontal, 24)
-            }
+            PopupCloseOverlayButton()
         )
     }
 }

@@ -11,13 +11,14 @@ struct ContentView: View {
                               description: "A list of results from various functions that report internal and other relevant states.",
                               symbolName:  "gear.circle.fill")
                 
-                
                 ForEach(packetGroups) { group in
                     PacketGroupSectionView(group)
                 }
             }
-            .toolbar { DebugToolbar() }
             .toolbar { MainToolbar() }
+            .toolbar {
+                is_feature_flag_enabled("EnableDebug") ? DebugToolbar() : nil
+            }
 #if !os(macOS)
             .listSectionSpacing(.compact)
 #endif

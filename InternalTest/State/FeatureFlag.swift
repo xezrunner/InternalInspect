@@ -37,7 +37,7 @@ struct GlobalFeatureFlags {
                     value: false),
         
         FeatureFlag(name: "EnableDebug",
-                    description: "Disabling this not easily reversible, unless session is transient.",
+                    description: "⚠️ Disabling this not easily reversible, unless session is transient.",
                     symbol: "ant",
                     value: true),
     ]
