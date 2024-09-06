@@ -14,12 +14,3 @@ class GlobalState: ObservableObject {
 }
 
 @MainActor var globalState = GlobalState()
-
-// MARK: Miscellaneous
-
-@MainActor func is_feature_flag_enabled(_ name: String) -> Bool {
-    let flag = globalState.featureFlags.flags.first(
-        where: { (flag) -> Bool in return flag.name == name }
-    )
-    return flag?.value ?? false
-}

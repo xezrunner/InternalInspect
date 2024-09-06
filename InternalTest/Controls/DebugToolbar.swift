@@ -9,7 +9,7 @@ struct DebugToolbar: ToolbarContent {
     
     var body: some ToolbarContent {
         // MARK: Console
-        ToolbarItem(placement: .primaryAction) {
+        ToolbarItem(placement: .topBarLeading) {
             Button(action: { showConsoleSheet = !showConsoleSheet }, label: {
                 Label("Console", systemImage: showConsoleSheet ? "ladybug.circle.fill" : "ladybug.circle")
             })
@@ -37,7 +37,7 @@ struct DebugToolbar: ToolbarContent {
         }
         
         // MARK: Debug settings
-        ToolbarItem(placement: .primaryAction) {
+        ToolbarItem(placement: .topBarLeading) {
             Button(action: { showDebugSheet = !showDebugSheet }, label: {
                 Label("Debug settings", systemImage: showDebugSheet ? "ant.circle.fill" : "ant.circle")
             })
