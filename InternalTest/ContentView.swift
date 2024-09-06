@@ -4,9 +4,11 @@ struct ContentView: View {
     @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var globalState: GlobalState
     
+    @Namespace var packetExpansion
+    
     var body: some View {
         NavigationStack {
-            List {
+            List(selection: $globalState.packetSelection) {
                 HeroExplainer(title:       "Internal states",
                               description: "A list of results from various functions that report internal and other relevant states.",
                               symbolName:  "gear.circle.fill")

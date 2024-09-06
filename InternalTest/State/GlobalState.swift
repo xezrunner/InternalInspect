@@ -2,6 +2,9 @@ import SwiftUI
 
 // MARK: Global state
 class GlobalState: ObservableObject {
+    // MARK: Main
+    @Published var packetSelection: Packet? = nil
+    
     // MARK: Console
     @Published var consoleLines: [(String, String)] = []
     
