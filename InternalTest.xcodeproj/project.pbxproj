@@ -18,6 +18,7 @@
 		2157BB3C2C08ABCF00F19C85 /* Packet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2157BB3B2C08ABCF00F19C85 /* Packet.swift */; };
 		21790EE52C22389D00801CD7 /* GroupSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21790EE42C22389B00801CD7 /* GroupSectionView.swift */; };
 		2198B7A82C08FB530056EB08 /* Interop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2198B7A72C08FB530056EB08 /* Interop.swift */; };
+		21A8007E2C8B38D2009C049F /* MainToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8007D2C8B38D0009C049F /* MainToolbar.swift */; };
 		21AD64262C2B8204008DA41C /* SystemColors in Frameworks */ = {isa = PBXBuildFile; productRef = 21AD64252C2B8204008DA41C /* SystemColors */; };
 		21B61AD82C225AE800CA4DDB /* PopupCloseOverlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B61AD72C225ADD00CA4DDB /* PopupCloseOverlayButton.swift */; };
 		21DCDE802C1BA038007B9B28 /* PacketDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DCDE7F2C1BA02F007B9B28 /* PacketDetailView.swift */; };
@@ -40,6 +41,7 @@
 		2157BB3B2C08ABCF00F19C85 /* Packet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Packet.swift; sourceTree = "<group>"; };
 		21790EE42C22389B00801CD7 /* GroupSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSectionView.swift; sourceTree = "<group>"; };
 		2198B7A72C08FB530056EB08 /* Interop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interop.swift; sourceTree = "<group>"; };
+		21A8007D2C8B38D0009C049F /* MainToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainToolbar.swift; sourceTree = "<group>"; };
 		21B61AD72C225ADD00CA4DDB /* PopupCloseOverlayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupCloseOverlayButton.swift; sourceTree = "<group>"; };
 		21DCDE7F2C1BA02F007B9B28 /* PacketDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketDetailView.swift; sourceTree = "<group>"; };
 		21EE452C2C1BB83D00B63200 /* DebugSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugSettingsView.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 		21B61AD62C225AD700CA4DDB /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				21A8007D2C8B38D0009C049F /* MainToolbar.swift */,
 				21FF22152C8A73BE00DB7C29 /* DebugToolbar.swift */,
 				21FF22132C8A70ED00DB7C29 /* HeroExplainer.swift */,
 				21B61AD72C225ADD00CA4DDB /* PopupCloseOverlayButton.swift */,
@@ -217,6 +220,7 @@
 			files = (
 				2112A3CD2C22253900D64EA9 /* Eligiblity.swift in Sources */,
 				21DCDE802C1BA038007B9B28 /* PacketDetailView.swift in Sources */,
+				21A8007E2C8B38D2009C049F /* MainToolbar.swift in Sources */,
 				21790EE52C22389D00801CD7 /* GroupSectionView.swift in Sources */,
 				2157BB392C08AA8200F19C85 /* DefaultPacketConfiguration.swift in Sources */,
 				21FF22142C8A70F700DB7C29 /* HeroExplainer.swift in Sources */,

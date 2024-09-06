@@ -6,7 +6,7 @@ struct ContentView: View {
     
     var body: some View {
         NavigationStack {
-            List() {
+            List {
                 HeroExplainer(title:       "Internal states",
                               description: "A list of results from various functions that report internal and other relevant states.",
                               symbolName:  "gear.circle.fill")
@@ -16,7 +16,8 @@ struct ContentView: View {
                     PacketGroupSectionView(group)
                 }
             }
-            .toolbar{DebugToolbar()}
+            .toolbar { DebugToolbar() }
+            .toolbar { MainToolbar() }
 #if !os(macOS)
             .listSectionSpacing(.compact)
 #endif
