@@ -2,15 +2,23 @@ import SwiftUI
 
 struct MainToolbar: ToolbarContent {
     var body: some ToolbarContent {
-        ToolbarItem(placement: .topBarTrailing) {
-            Button(action: { }) {
+        ToolbarItemGroup(placement: .topBarTrailing) {
+            if false {
                 Label("Test", systemImage: "questionmark.circle")
-            }.disabled(true)
-        }
-        ToolbarItem(placement: .topBarTrailing) {
-            Button(action: { }) {
-                Label("Settings", systemImage: "gear")
-            }.disabled(true)
+                    .disabled(true).opacity(0.25)
+            }
+            
+            Menu(
+                content: {
+                    DebugMenu()
+                },
+                label: {
+                    Label("Settings", systemImage: "gear")
+                },
+                primaryAction: {
+                    // Settings!
+                }
+            )
         }
     }
 }

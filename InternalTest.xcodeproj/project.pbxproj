@@ -26,7 +26,7 @@
 		21EE452D2C1BB84100B63200 /* DebugSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EE452C2C1BB83D00B63200 /* DebugSettingsView.swift */; };
 		21F6487E2C8B57AF00AB7634 /* PacketListLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F6487D2C8B57A800AB7634 /* PacketListLabel.swift */; };
 		21FF22142C8A70F700DB7C29 /* HeroExplainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FF22132C8A70ED00DB7C29 /* HeroExplainer.swift */; };
-		21FF22162C8A73C300DB7C29 /* DebugToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FF22152C8A73BE00DB7C29 /* DebugToolbar.swift */; };
+		21FF22162C8A73C300DB7C29 /* DebugMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FF22152C8A73BE00DB7C29 /* DebugMenu.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,7 +50,7 @@
 		21EE452C2C1BB83D00B63200 /* DebugSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugSettingsView.swift; sourceTree = "<group>"; };
 		21F6487D2C8B57A800AB7634 /* PacketListLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketListLabel.swift; sourceTree = "<group>"; };
 		21FF22132C8A70ED00DB7C29 /* HeroExplainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroExplainer.swift; sourceTree = "<group>"; };
-		21FF22152C8A73BE00DB7C29 /* DebugToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugToolbar.swift; sourceTree = "<group>"; };
+		21FF22152C8A73BE00DB7C29 /* DebugMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugMenu.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,7 +140,7 @@
 				21E781292C8B807400EFF561 /* Packet+UI.swift */,
 				21F6487D2C8B57A800AB7634 /* PacketListLabel.swift */,
 				21A8007D2C8B38D0009C049F /* MainToolbar.swift */,
-				21FF22152C8A73BE00DB7C29 /* DebugToolbar.swift */,
+				21FF22152C8A73BE00DB7C29 /* DebugMenu.swift */,
 				21FF22132C8A70ED00DB7C29 /* HeroExplainer.swift */,
 				21B61AD72C225ADD00CA4DDB /* PopupCloseOverlayButton.swift */,
 				21790EE42C22389B00801CD7 /* PacketGroupSection.swift */,
@@ -240,7 +240,7 @@
 				2130EEE12C8A776C0026C1A6 /* FeatureFlag.swift in Sources */,
 				21EE452D2C1BB84100B63200 /* DebugSettingsView.swift in Sources */,
 				2198B7A82C08FB530056EB08 /* Interop.swift in Sources */,
-				21FF22162C8A73C300DB7C29 /* DebugToolbar.swift in Sources */,
+				21FF22162C8A73C300DB7C29 /* DebugMenu.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

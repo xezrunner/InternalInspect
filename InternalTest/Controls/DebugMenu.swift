@@ -1,20 +1,30 @@
 import SwiftUI
 
-struct DebugToolbar: ToolbarContent {
-    @Environment(\.colorScheme) var colorScheme
+struct DebugMenu: View {
     @EnvironmentObject var globalState: GlobalState
     
-    @State var showDebugSheet   = false
-    @State var showConsoleSheet = false
+    var body: some View {
+        Section("Debug") {
+            Button(action: { globalState.showConsole = true }) {
+                Label("Console", systemImage: "ladybug.circle")
+            }
+            Button(action: { globalState.showDebugSettings = true }) {
+                Label("Debug settings", systemImage: "ant.circle")
+            }
+        }
+        Section("Build number") {
+            Text(Bundle.main.buildVersionNumber ?? "???")
+        }
+    }
+}
+
+struct DebugView: View {
+    @EnvironmentObject var globalState: GlobalState
+    @Environment(\.colorScheme) var colorScheme
     
-    var body: some ToolbarContent {
-        // MARK: Console
-        ToolbarItem(placement: .topBarLeading) {
-            Button(action: { showConsoleSheet = !showConsoleSheet }, label: {
-                Label("Console", systemImage: showConsoleSheet ? "ladybug.circle.fill" : "ladybug.circle")
-            })
-            .tint(.primary)
-            .sheet(isPresented: $showConsoleSheet) {
+    var body: some View {
+        ZStack {}
+            .sheet(isPresented: $globalState.showConsole) {
                 VStack {
                     List(0 ..< globalState.consoleLines.count, id: \.self) { index in
                         let pair = globalState.consoleLines[index]
@@ -34,15 +44,7 @@ struct DebugToolbar: ToolbarContent {
                 .presentationDragIndicator(.hidden)
 #endif
             }
-        }
-        
-        // MARK: Debug settings
-        ToolbarItem(placement: .topBarLeading) {
-            Button(action: { showDebugSheet = !showDebugSheet }, label: {
-                Label("Debug settings", systemImage: showDebugSheet ? "ant.circle.fill" : "ant.circle")
-            })
-            .tint(.primary)
-            .sheet(isPresented: $showDebugSheet) {
+            .sheet(isPresented: $globalState.showDebugSettings) {
                 DebugSettingsView()
                     .environmentObject(globalState)
                     .presentationDetents([.medium, .large])
@@ -52,6 +54,5 @@ struct DebugToolbar: ToolbarContent {
                     .presentationDragIndicator(.hidden)
 #endif
             }
-        }
     }
 }

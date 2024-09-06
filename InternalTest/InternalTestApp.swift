@@ -1,7 +1,5 @@
 import SwiftUI
 
-nonisolated(unsafe) var globalFeatureFlags = GlobalFeatureFlags()
-
 public func print(_ items: String..., filename: String = #file, function : String = #function, line: Int = #line, separator: String = " ", terminator: String = "\n") {
     let pretty = "\(URL(fileURLWithPath: filename).lastPathComponent) [#\(line)] \(function)"
     let output = items.map { "\($0)" }.joined(separator: separator)
@@ -18,5 +16,14 @@ struct InternalTestApp: App {
             ContentView()
                 .environmentObject(globalState)
         }
+    }
+}
+
+extension Bundle {
+    var releaseVersionNumber: String? {
+        return infoDictionary?["CFBundleShortVersionString"] as? String
+    }
+    var buildVersionNumber: String? {
+        return infoDictionary?["CFBundleVersion"] as? String
     }
 }
