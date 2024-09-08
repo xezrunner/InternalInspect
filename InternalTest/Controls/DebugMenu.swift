@@ -6,10 +6,10 @@ struct DebugMenu: View {
     var body: some View {
         Section("Debug") {
             Button(action: { globalState.showConsole = true }) {
-                Label("Console", systemImage: "ladybug.circle")
+                Label("Console", systemImage: "apple.terminal.fill")
             }
             Button(action: { globalState.showDebugSettings = true }) {
-                Label("Debug settings", systemImage: "ant.circle")
+                Label("Debug settings", systemImage: "ant.fill")
             }
         }
         Section("Build number") {
@@ -25,17 +25,7 @@ struct DebugView: View {
     var body: some View {
         ZStack {}
             .sheet(isPresented: $globalState.showConsole) {
-                VStack {
-                    List(0 ..< globalState.consoleLines.count, id: \.self) { index in
-                        let pair = globalState.consoleLines[index]
-                        VStack(alignment: .leading) {
-                            Text(pair.0).bold().font(.system(size: 12))
-                            Text(pair.1).font(.system(size: 10))
-                        }.listRowBackground(Color.clear)
-                    }
-                    .monospaced()
-                    .scrollContentBackground(.hidden)
-                }
+                ConsoleView()
                 .overlay(PopupCloseOverlayButton())
                 //.presentationBackground(.ultraThinMaterial)
                 .presentationBackground(colorScheme == .light ? Color.white : Color.black)

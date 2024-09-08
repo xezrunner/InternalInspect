@@ -7,11 +7,10 @@ class GlobalState: ObservableObject {
     
     // MARK: Console
     @Published var showConsole: Bool = false
-    @Published var consoleLines: [(String, String)] = []
-    
-    public func addConsoleLine(text: (String, String)) {
-        consoleLines.append(text)
-    }
+    @Published var consoleLines: [ConsoleLineInfo] = [
+        // ConsoleLineInfo(fileName: "testFile.swift", functionName: "test()", lineNumber: -1, text: "This is a test entry."),
+        // ConsoleLineInfo(fileName: "testFile.swift", functionName: "test()", lineNumber: -1, text: "This is a slightly longer test entry."),
+    ]
     
     // MARK: Debug settings
     @Published var showDebugSettings: Bool = false

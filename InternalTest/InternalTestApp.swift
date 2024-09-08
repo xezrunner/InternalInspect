@@ -1,11 +1,14 @@
 import SwiftUI
 
-public func print(_ items: String..., filename: String = #file, function : String = #function, line: Int = #line, separator: String = " ", terminator: String = "\n") {
-    let pretty = "\(URL(fileURLWithPath: filename).lastPathComponent) [#\(line)] \(function)"
+public func print(_ items: String..., filePath: String = #file, function : String = #function, line: Int = #line, separator: String = " ", terminator: String = "\n") {
+    let fileName = URL(fileURLWithPath: filePath).lastPathComponent
+    let prefix = "\(fileName):\(line)::\(function)"
     let output = items.map { "\($0)" }.joined(separator: separator)
-    Swift.print(output, terminator: terminator)
+    Swift.print("\(prefix):\n\(output)\n", terminator: terminator)
+    
+    let consoleLineInfo = ConsoleLineInfo(fileName: fileName, functionName: function, lineNumber: line, text: output)
     DispatchQueue.main.async {
-        globalState.consoleLines.append((pretty, output))
+        globalState.consoleLines.append(consoleLineInfo)
     }
 }
 

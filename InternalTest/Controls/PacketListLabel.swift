@@ -11,12 +11,10 @@ struct PacketListLabel: View {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(packet.getPacketTitle())
                         .foregroundStyle(packet.isResultSuccessful ? .primary : .secondary)
-                        .font(.footnote).dynamicTypeSize(.xSmall)
                         .bold()
                     
                     VStack(alignment: .leading, spacing: 0) {
                         Text("Result:").bold()
-                            .dynamicTypeSize(.xSmall)
                         
                         Text(packet.getPacketResultText())
                             .foregroundStyle(packet.resultColor)
@@ -29,6 +27,7 @@ struct PacketListLabel: View {
                     .frame(width: symbolSize, height: symbolSize)
                     .foregroundStyle(packet.isResultSuccessful ? .primary : .secondary)
             })
+            .dynamicTypeSize(.xSmall)
         }
         else {
             VStack(alignment: .leading) {

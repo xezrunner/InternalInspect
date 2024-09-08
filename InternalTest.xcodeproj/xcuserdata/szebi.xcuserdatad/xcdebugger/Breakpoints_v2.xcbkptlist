@@ -73,8 +73,8 @@
             filePath = "InternalTest/InternalTestApp.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -113,15 +113,6 @@
             symbolName = "AFDeviceSupportsSAE"
             moduleName = "">
             <Locations>
-               <Location
-                  uuid = "2D9C9989-90BF-4F16-A76B-3A187FD6FA94 - 90c7548370eb313c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "AFDeviceSupportsSAE"
-                  moduleName = "AssistantServices"
-                  usesParentBreakpointCondition = "Yes">
-               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
