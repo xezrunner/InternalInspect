@@ -4,7 +4,7 @@ struct PopupCloseOverlayButton: View {
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
-#if os(visionOS) || targetEnvironment(macCatalyst)
+#if os(visionOS) || targetEnvironment(macCatalyst) || os(macOS)
         HStack {
             Spacer()
             Button(action: { dismiss() }, label: {

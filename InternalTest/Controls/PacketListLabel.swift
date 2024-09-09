@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct PacketListLabel: View {
+    @EnvironmentObject var globalState: GlobalState
+    
     @State var packet: Packet
     
     let symbolSize: CGFloat = 22

@@ -23,7 +23,7 @@ let packetGroups = [
         PacketDefinition(packetType: PacketType.PACKET_OBJC, "+[AFFeatureFlags isSystemAssistantExperienceEnabled]"),
         PacketDefinition(packetType: PacketType.PACKET_OBJC, "+[AFFeatureFlags isSAEOverrideEnabled]"),
         PacketDefinition(packetType: PacketType.PACKET_OBJC, "+[AFFeatureFlags isNLRouterEnabled]"),
-        PacketDefinition(packetType: PacketType.PACKET_OBJC, "+[CSFAvailability currentAvailability]"),
+        //PacketDefinition(packetType: PacketType.PACKET_OBJC, "+[CSFAvailability currentAvailability]"),
         
         PacketDefinition(packetType: PacketType.PACKET_OBJC, "-[EligibilityDomain computeInputStatusForGenerativeModelSystemInput:]"),
     ]),

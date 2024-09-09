@@ -2,7 +2,7 @@ import SwiftUI
 
 struct MainToolbar: ToolbarContent {
     var body: some ToolbarContent {
-        ToolbarItemGroup(placement: .topBarTrailing) {
+        ToolbarItemGroup(placement: .primaryAction) {
             if false {
                 Label("Test", systemImage: "questionmark.circle")
                     .disabled(true).opacity(0.25)
