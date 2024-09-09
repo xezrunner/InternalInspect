@@ -39,7 +39,7 @@ extension Packet {
     
     func getPacketTitle() -> String {
         switch self.packetType {
-        case .PACKET_C:           return "\(self.funcName)()"
+        case .PACKET_C:           return "\(self.funcName)(\(self.funcArgs.joined(separator: ", ")))"
         case .PACKET_OBJC:        fallthrough
         case .PACKET_ELIGIBILITY: return self.funcName
         }
