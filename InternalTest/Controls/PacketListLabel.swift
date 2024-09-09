@@ -11,10 +11,11 @@ struct PacketListLabel: View {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(packet.getPacketTitle())
                         .foregroundStyle(packet.isResultSuccessful ? .primary : .secondary)
+                        .lineLimit(1)
                         .bold()
                     
                     VStack(alignment: .leading, spacing: 0) {
-                        Text("Result:").bold()
+                        //Text("Result:").bold()
                         
                         Text(packet.getPacketResultText())
                             .foregroundStyle(packet.resultColor)

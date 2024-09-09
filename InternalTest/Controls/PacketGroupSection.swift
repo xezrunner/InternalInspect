@@ -11,28 +11,29 @@ struct PacketGroupSection: View {
     
     @Namespace var packetExpansion
     var group: PacketGroup
-        
+    
     @State var selection: Int? = nil
     
     var body: some View {
         Section(group.handlePath) {
             ForEach(group.packets) { packet in
-                NavigationLink(
-                    destination: {
-                        if (!is_feature_flag_enabled("UseZoomTransitions")) {
-                            PacketDetailView(packet: packet)
-                        } else {
-                            PacketDetailView(packet: packet)
-    #if !os(macOS)
-                                .navigationTransition(.zoom(sourceID: packet.id, in: packetExpansion))
-    #endif
-                        }
-                    },
-                    label: {
-                        PacketListLabel(packet: packet)
+                PacketListLabel(packet: packet)
+                    .background {
+                        NavigationLink(
+                            "",
+                            destination: {
+                                if (!is_feature_flag_enabled("UseZoomTransitions")) {
+                                    PacketDetailView(packet: packet)
+                                } else {
+                                    PacketDetailView(packet: packet)
+#if !os(macOS)
+                                        .navigationTransition(.zoom(sourceID: packet.id, in: packetExpansion))
+#endif
+                                }
+                            }
+                        ).opacity(0)
                     }
-                )
-                .matchedTransitionSource(id: packet.id, in: packetExpansion)
+                    .matchedTransitionSource(id: packet.id, in: packetExpansion)
             }
             .foregroundStyle((access(group.handlePath, F_OK) != 0) ? .secondary : .quaternary)
         }
