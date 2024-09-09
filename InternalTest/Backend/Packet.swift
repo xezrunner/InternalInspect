@@ -112,9 +112,11 @@ class Packet: Hashable, Identifiable {
             return ""
         }
         
+        let result: String?
+        
         switch packetType {
         case .PACKET_C:
-            return RESOLVE_C_STRING()
+            result = RESOLVE_C_STRING()
         case .PACKET_OBJC:
             print("Objective-C string resolving not yet implemented!")
             return ""
@@ -122,6 +124,9 @@ class Packet: Hashable, Identifiable {
             print("Eligibility function not supported for RET:string functions!")
             return ""
         }
+        
+        self.result = result != nil
+        return result ?? "<failed>"
     }
     
     public func resolveBool() -> Bool {
@@ -151,9 +156,9 @@ class Packet: Hashable, Identifiable {
         return RESOLVE_ELIGIBILITY()
     }
     
-    private func RESOLVE_C_STRING() -> String {
+    private func RESOLVE_C_STRING() -> String? {
         let symbol = RESOLVE_C()
-        if symbol == nil || funcArgs.count == 0 { return "" }
+        if symbol == nil || funcArgs.count == 0 { return nil }
         
         let result = C_CALL_SYMBOL_STRING_STRING_ARG(symbol, funcArgs[0]) as String
         return result
