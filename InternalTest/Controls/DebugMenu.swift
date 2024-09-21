@@ -17,32 +17,3 @@ struct DebugMenu: View {
         }
     }
 }
-
-struct DebugView: View {
-    @EnvironmentObject var globalState: GlobalState
-    @Environment(\.colorScheme) var colorScheme
-    
-    var body: some View {
-        ZStack {}
-            .sheet(isPresented: $globalState.showConsole) {
-                ConsoleView()
-                .overlay(PopupCloseOverlayButton())
-                //.presentationBackground(.ultraThinMaterial)
-                .presentationBackground(colorScheme == .light ? Color.white : Color.black)
-                .presentationDetents([.large])
-#if os(visionOS) || targetEnvironment(macCatalyst)
-                .presentationDragIndicator(.hidden)
-#endif
-            }
-            .sheet(isPresented: $globalState.showDebugSettings) {
-                DebugSettingsView()
-                    .environmentObject(globalState)
-                    .presentationDetents([.medium, .large])
-                    .presentationBackground(colorScheme == .light ? Color.white : Color.black)
-                //.presentationBackground(.ultraThinMaterial)
-#if os(visionOS) || targetEnvironment(macCatalyst)
-                    .presentationDragIndicator(.hidden)
-#endif
-            }
-    }
-}

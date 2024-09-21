@@ -23,7 +23,7 @@ let packetGroups = [
         PacketDefinition(packetType: PacketType.PACKET_OBJC, "+[AFFeatureFlags isSystemAssistantExperienceEnabled]"),
         PacketDefinition(packetType: PacketType.PACKET_OBJC, "+[AFFeatureFlags isSAEOverrideEnabled]"),
         PacketDefinition(packetType: PacketType.PACKET_OBJC, "+[AFFeatureFlags isNLRouterEnabled]"),
-        //PacketDefinition(packetType: PacketType.PACKET_OBJC, "+[CSFAvailability currentAvailability]"),
+        PacketDefinition(packetType: PacketType.PACKET_OBJC, "+[CSFAvailability currentAvailability]"),
         
         PacketDefinition(packetType: PacketType.PACKET_OBJC, "-[EligibilityDomain computeInputStatusForGenerativeModelSystemInput:]"),
     ]),
@@ -280,6 +280,20 @@ let packetGroups = [
     ]),
     
     PacketGroup(handlePath: "/usr/lib/libMobileGestalt.dylib", [
+        PacketDefinition("MGGetBoolAnswer", "DeviceSupportsGrey"),
+        PacketDefinition("MGGetBoolAnswer", "8Vbp0HyqndjWuIFZibhu7g"),
+        
+        PacketDefinition("MGGetBoolAnswer", "DeviceSupportsGenerativeModelSystems"),
+        PacketDefinition("MGGetBoolAnswer", "A62OafQ85EJAiiqKn4agtg"),
+        
+        PacketDefinition("MGGetBoolAnswer", "DeviceSupportsANE"),
+        PacketDefinition("MGGetBoolAnswer", "+N9mZUAHooNvMiQnjeTJ8g"),
+        
+        PacketDefinition("MGGetBoolAnswer", "SBAllowSensitiveUI"),
+        PacketDefinition("MGGetBoolAnswer", "CpVSHukvtqlJzCgSdoHW5w"),
+    ]),
+    
+    PacketGroup(handlePath: "/usr/lib/libMobileGestalt.dylib", [
         /*
         PacketDefinition("MobileGestalt_get_appleInternalInstallCapability"),
         PacketDefinition("MobileGestalt_get_internalBuild"),
@@ -313,8 +327,6 @@ let packetGroups = [
         
         PacketDefinition("_MobileGestalt_get_deviceSupportsSiriUnderstandingOnDevice"),
         PacketDefinition("MobileGestalt_get_deviceSupportsSiriUnderstandingOnDevice"),
-        
-        PacketDefinition("MGGetBoolAnswer", "WXi7NQbOKnEX4vPQFeZAdQ"),
     ]),
     
     /*

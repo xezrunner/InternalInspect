@@ -7,14 +7,16 @@ struct HeroExplainer: View {
     @State var title      : String
     @State var description: String
     @State var symbolName : String
+    @State var tint       : Color
     
     var body: some View {
         VStack(alignment: .center, spacing: 8) {
             Image(systemName: symbolName)
                 .resizable().aspectRatio(contentMode: .fit)
-                .frame(maxWidth: .infinity)
-                .frame(height: 48)
+                .foregroundStyle(.tint)
                 .padding(.bottom, 4)
+                .frame(width: 48, height: 48)
+                .tint(tint)
             
             Text(title).font(.headline).bold()
             
@@ -22,22 +24,26 @@ struct HeroExplainer: View {
                 Text(description).font(.subheadline).multilineTextAlignment(.center)
             }
         }
+        .frame(maxWidth: .infinity)
         .padding(.vertical, is_feature_flag_enabled("NoHeroBackplate") ? 0 : 16)
         .padding(.horizontal, 6) // TODO: this looks odd?
         .listRowBackground(is_feature_flag_enabled("NoHeroBackplate") ? Color.clear : Color.secondarySystemBackground)
     }
     
-    init(title: String, description: String, symbolName: String) {
+    init(title: String, description: String, symbolName: String, tint: Color = .primary) {
         self.title = title
         self.description = description
         self.symbolName = symbolName
+        self.tint = tint
     }
 }
 
 #Preview {
     List {
-        VStack { HeroExplainer(title:       "Hero Title",
-                               description: "This should descript what the page is about.",
-                               symbolName:  "gear.circle.fill") }
+        VStack {
+            HeroExplainer(title:       "Hero Title",
+                          description: "This should descript what the page is about.",
+                          symbolName:  "gear.circle.fill")
+        }
     }
 }

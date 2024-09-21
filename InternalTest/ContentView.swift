@@ -12,7 +12,7 @@ struct ContentView: View {
                 List(selection: $globalState.packetSelection) {
                     HeroExplainer(title:       "Internal states",
                                   description: "A list of results from various functions that report internal and other relevant states.",
-                                  symbolName:  "gear.circle.fill")
+                                  symbolName:  "wrench.and.screwdriver.fill")
                     
                     ForEach(packetGroups) { group in
                         PacketGroupSection(group)
@@ -28,7 +28,8 @@ struct ContentView: View {
             }
             .navigationTitle("Internal states")
             
-            DebugView()
+            SettingsUILayer()
+            DebugUILayer()
         }
     }
 }

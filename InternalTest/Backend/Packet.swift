@@ -1,6 +1,6 @@
 import Foundation
 
-class PacketGroup: Identifiable {
+struct PacketGroup: Identifiable, Hashable {
     init(handlePath: String, _ packetDefinitions: [PacketDefinition]) {
         self.handlePath = handlePath
         self.packetDefinitions = packetDefinitions
@@ -21,6 +21,10 @@ class PacketGroup: Identifiable {
     
     let id = UUID()
     
+    static func == (lhs: PacketGroup, rhs: PacketGroup) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
     let handlePath: String
     var handle:     UnsafeMutableRawPointer!
     
@@ -34,7 +38,7 @@ enum PacketType: Int, Codable {
     case PACKET_ELIGIBILITY = 999
 }
 
-struct PacketDefinition: Codable {
+struct PacketDefinition: Codable, Hashable {
     init(packetType: PacketType = .PACKET_C, _ funcName: String, _ funcArgs: String..., isStringReturnType: Bool = false) {
         self.packetType = packetType
         self.funcName = funcName

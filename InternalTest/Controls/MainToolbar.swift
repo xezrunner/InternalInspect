@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct MainToolbar: ToolbarContent {
+    @EnvironmentObject var globalState: GlobalState
+    
     var body: some ToolbarContent {
         ToolbarItemGroup(placement: .primaryAction) {
             if false {
@@ -16,7 +18,7 @@ struct MainToolbar: ToolbarContent {
                     Label("Settings", systemImage: "gear")
                 },
                 primaryAction: {
-                    // Settings!
+                    globalState.showSettings = true
                 }
             )
         }
