@@ -14,6 +14,10 @@ public func print(_ items: String..., filePath: String = #file, function : Strin
 
 @main
 struct InternalTestApp: App {
+    init() {
+        
+    }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()

@@ -1,5 +1,32 @@
 import Foundation
 
+#if false
+protocol Resolvable {
+    associatedtype T
+    func resolve() -> T
+}
+
+protocol Packet: Identifiable, Hashable {
+    var description: String { get set }
+    
+    var functionName: String      { get }
+    var functionArgs: [AnyObject] { get set }
+    
+    // etc..
+}
+
+struct EligibilityPacket: Packet, Resolvable {
+    typealias T = Int // TODO: type!
+    
+    var id: UUID = UUID()
+    //static func == (lhs: EligibilityPacket, rhs: EligibilityPacket) -> Bool { return lhs.id == rhs.id }
+    //func hash(into hasher: inout Hasher) { hasher.combine(id) }
+    
+    let functionName: String = "os_"
+    
+    // resolve()
+}
+#else
 struct PacketGroup: Identifiable, Hashable {
     init(handlePath: String, _ packetDefinitions: [PacketDefinition]) {
         self.handlePath = handlePath
@@ -286,3 +313,4 @@ class Packet: Hashable, Identifiable {
         return result
     }
 }
+#endif

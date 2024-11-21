@@ -7,7 +7,7 @@ struct ContentView: View {
     @Namespace var packetExpansion
     
     var body: some View {
-        Group {
+        ZStack {
             NavigationStack {
                 List(selection: $globalState.packetSelection) {
                     HeroExplainer(title:       "Internal states",
@@ -28,6 +28,7 @@ struct ContentView: View {
             }
             .navigationTitle("Internal states")
             
+            AppLaunchUILayer()
             SettingsUILayer()
             DebugUILayer()
         }

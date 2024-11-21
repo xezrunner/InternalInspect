@@ -11,6 +11,10 @@ class GlobalState: ObservableObject {
     // MARK: UI layers
     @Published var showSettings:      Bool = false
     @Published var showDebugSettings: Bool = false
+    @Published var showAppLaunch:     Bool = false
+    
+    // MARK: App launch
+    @Published var appLaunchList: [String] = getAllApps()
     
     // MARK: Console
     @Published var showConsole: Bool = false

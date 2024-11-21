@@ -15,18 +15,33 @@ let packetGroups = [
         PacketDefinition("AFDeviceSupportsSAE"),
         PacketDefinition("AFHasGMSCapability"),
         PacketDefinition("AFHasGMSCapabilityUnembargoed"),
+        PacketDefinition("AFSimulatorSupportsSiriUOD"),
+        PacketDefinition("AFDeviceSupportsSiriUOD"),
+        PacketDefinition("AFUODStatusSupportedFull"),
+        PacketDefinition("AFDeviceSupportsMedoc"),
+        PacketDefinition("AFPreferencesTypeToSiriEnabled"),
+        PacketDefinition("AFPreferencesHoldToTalkForTypeToSiriEnabled"),
         
         
         // CRASHES IN SIMULATOR!
         //PacketDefinition(packetType: PacketType.PACKET_OBJC, "+[AFSystemAssistantExperienceStatusManager isSAEEnabled]"),
         
         PacketDefinition(packetType: PacketType.PACKET_OBJC, "+[AFFeatureFlags isSystemAssistantExperienceEnabled]"),
+        //PacketDefinition(packetType: PacketType.PACKET_OBJC, "+[AFSystemAssistantExperienceStatusManager isSAEEnabled]"),
         PacketDefinition(packetType: PacketType.PACKET_OBJC, "+[AFFeatureFlags isSAEOverrideEnabled]"),
         PacketDefinition(packetType: PacketType.PACKET_OBJC, "+[AFFeatureFlags isNLRouterEnabled]"),
-        PacketDefinition(packetType: PacketType.PACKET_OBJC, "+[CSFAvailability currentAvailability]"),
+        PacketDefinition(packetType: PacketType.PACKET_OBJC, "+[AFFeatureFlags isSiriUODForceEnabledForDevice]"),
+        //PacketDefinition(packetType: PacketType.PACKET_OBJC, "+[CSFAvailability currentAvailability]"),
+        PacketDefinition(packetType: PacketType.PACKET_OBJC, "+[AssistantUtilities deviceIsiPhone]"),
+        PacketDefinition(packetType: PacketType.PACKET_OBJC, "-[AFPreferences quickTypeGestureEnabled]"),
         
         PacketDefinition(packetType: PacketType.PACKET_OBJC, "-[EligibilityDomain computeInputStatusForGenerativeModelSystemInput:]"),
     ]),
+    
+    PacketGroup(handlePath: "/Applications/Siri.app/Siri", [
+        PacketDefinition(packetType: PacketType.PACKET_OBJC, "+[GMSCompatabilityWrapper siriGMAssetsAvailable]"),
+    ]),
+    
       
     /*
     PacketGroup(handlePath: "/usr/lib/system/libsystem_eligibility.dylib", [
@@ -177,6 +192,7 @@ let packetGroups = [
         PacketDefinition("_os_feature_enabled_impl", "Siri", "sirix"),
         
         PacketDefinition("_os_feature_enabled_impl", "SiriUI", "sae"),
+        PacketDefinition("_os_feature_enabled_impl", "SiriUI", "sae_use_container"),
         
         PacketDefinition("_os_feature_enabled_impl", "SiriNL", "NLRouter"),
         
@@ -187,6 +203,8 @@ let packetGroups = [
         PacketDefinition("_os_feature_enabled_impl", "Pommes", "Sphinx"),
         
         PacketDefinition("_os_feature_enabled_impl", "parsecd", "ResponseFramework"),
+        
+        PacketDefinition("_os_feature_enabled_impl", "Mail", "BlackPearl"),
     ]),
     
     /*
@@ -309,6 +327,7 @@ let packetGroups = [
         PacketDefinition("MGGetBoolAnswer", "SBAllowSensitiveUI"),
         */
         PacketDefinition("MGGetBoolAnswer", "IsSimulator"),
+        PacketDefinition("MGGetBoolAnswer", "IsVirtualDevice"),
         
         PacketDefinition("MGGetBoolAnswer", "DeviceSupportsGrey"),
         PacketDefinition("MGGetBoolAnswer", "8Vbp0HyqndjWuIFZibhu7g"),

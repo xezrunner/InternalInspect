@@ -10,6 +10,11 @@ struct MainToolbar: ToolbarContent {
                     .disabled(true).opacity(0.25)
             }
             
+            Label("App launch test", systemImage: "list.bullet")
+                .onTapGesture {
+                    globalState.showAppLaunch = true
+                }
+            
             Menu(
                 content: {
                     DebugMenu()

@@ -16,6 +16,7 @@
 		2123DF752C0679DE00868B53 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2123DF742C0679DE00868B53 /* Preview Assets.xcassets */; };
 		2130EEDC2C8A769B0026C1A6 /* GlobalState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2130EEDB2C8A76930026C1A6 /* GlobalState.swift */; };
 		2130EEE12C8A776C0026C1A6 /* FeatureFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2130EEE02C8A776B0026C1A6 /* FeatureFlag.swift */; };
+		2157487A2CB4DC8A00AE876C /* AppLaunchUILayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215748792CB4DC8A00AE876C /* AppLaunchUILayer.swift */; };
 		2157BB392C08AA8200F19C85 /* DefaultPacketConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2157BB382C08AA8100F19C85 /* DefaultPacketConfiguration.swift */; };
 		2157BB3C2C08ABCF00F19C85 /* Packet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2157BB3B2C08ABCF00F19C85 /* Packet.swift */; };
 		2166CD6F2C8BA868005EC975 /* ConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2166CD6E2C8BA867005EC975 /* ConsoleView.swift */; };
@@ -45,6 +46,7 @@
 		2123DF742C0679DE00868B53 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2130EEDB2C8A76930026C1A6 /* GlobalState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalState.swift; sourceTree = "<group>"; };
 		2130EEE02C8A776B0026C1A6 /* FeatureFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlag.swift; sourceTree = "<group>"; };
+		215748792CB4DC8A00AE876C /* AppLaunchUILayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLaunchUILayer.swift; sourceTree = "<group>"; };
 		2157BB382C08AA8100F19C85 /* DefaultPacketConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPacketConfiguration.swift; sourceTree = "<group>"; };
 		2157BB3B2C08ABCF00F19C85 /* Packet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Packet.swift; sourceTree = "<group>"; };
 		2166CD6E2C8BA867005EC975 /* ConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleView.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 			children = (
 				211DCA532C9A41460039A1D5 /* SettingsUILayer.swift */,
 				211DCA512C9A41340039A1D5 /* DebugUILayer.swift */,
+				215748792CB4DC8A00AE876C /* AppLaunchUILayer.swift */,
 			);
 			path = Layers;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 				21B61AD82C225AE800CA4DDB /* PopupCloseOverlayButton.swift in Sources */,
 				2123DF702C0679DB00868B53 /* ContentView.swift in Sources */,
 				2157BB3C2C08ABCF00F19C85 /* Packet.swift in Sources */,
+				2157487A2CB4DC8A00AE876C /* AppLaunchUILayer.swift in Sources */,
 				21E7812A2C8B807C00EFF561 /* Packet+UI.swift in Sources */,
 				2123DF6E2C0679DB00868B53 /* InternalTestApp.swift in Sources */,
 				2130EEE12C8A776C0026C1A6 /* FeatureFlag.swift in Sources */,
@@ -407,6 +411,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = InternalTest/InternalTest.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"InternalTest/Preview Content\"";
@@ -427,6 +432,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.xezrunner.InternalTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				REGISTER_APP_GROUPS = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
 				SUPPORTS_MACCATALYST = YES;
@@ -446,6 +452,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = InternalTest/InternalTest.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"InternalTest/Preview Content\"";
@@ -466,6 +473,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.xezrunner.InternalTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				REGISTER_APP_GROUPS = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
 				SUPPORTS_MACCATALYST = YES;
