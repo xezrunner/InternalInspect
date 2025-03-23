@@ -46,7 +46,7 @@ struct PacketGroup: Identifiable, Hashable {
         }
     }
     
-    let id = UUID()
+    var id = UUID()
     
     static func == (lhs: PacketGroup, rhs: PacketGroup) -> Bool {
         return lhs.id == rhs.id

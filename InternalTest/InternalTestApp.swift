@@ -15,12 +15,15 @@ public func print(_ items: String..., filePath: String = #file, function : Strin
 @main
 struct InternalTestApp: App {
     init() {
-        
     }
+    
+    @State var globalState2 = GlobalState2()
     
     var body: some Scene {
         WindowGroup {
+//            Scratch()
             ContentView()
+                .environment(globalState2)
                 .environmentObject(globalState)
         }
     }

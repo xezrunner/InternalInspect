@@ -16,12 +16,20 @@
 		2123DF752C0679DE00868B53 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2123DF742C0679DE00868B53 /* Preview Assets.xcassets */; };
 		2130EEDC2C8A769B0026C1A6 /* GlobalState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2130EEDB2C8A76930026C1A6 /* GlobalState.swift */; };
 		2130EEE12C8A776C0026C1A6 /* FeatureFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2130EEE02C8A776B0026C1A6 /* FeatureFlag.swift */; };
+		2144D1712D90A79100439A81 /* FeatureFlagsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2144D1702D90A78B00439A81 /* FeatureFlagsTabView.swift */; };
+		215654D02D90AA340096D778 /* FeatureFlagsSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215654CF2D90AA290096D778 /* FeatureFlagsSupport.swift */; };
 		2157487A2CB4DC8A00AE876C /* AppLaunchUILayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215748792CB4DC8A00AE876C /* AppLaunchUILayer.swift */; };
 		2157BB392C08AA8200F19C85 /* DefaultPacketConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2157BB382C08AA8100F19C85 /* DefaultPacketConfiguration.swift */; };
 		2157BB3C2C08ABCF00F19C85 /* Packet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2157BB3B2C08ABCF00F19C85 /* Packet.swift */; };
 		2166CD6F2C8BA868005EC975 /* ConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2166CD6E2C8BA867005EC975 /* ConsoleView.swift */; };
 		21790EE52C22389D00801CD7 /* PacketGroupSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21790EE42C22389B00801CD7 /* PacketGroupSection.swift */; };
+		218110AF2D9067EF0044E116 /* Scratch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218110AE2D9067ED0044E116 /* Scratch.swift */; };
+		218110B22D9072DC0044E116 /* PacketsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218110B12D9072D70044E116 /* PacketsTabView.swift */; };
+		218110B42D90748A0044E116 /* AppKitMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218110B32D9074810044E116 /* AppKitMainView.swift */; };
+		218110B62D9078DC0044E116 /* Tabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218110B52D9078D20044E116 /* Tabs.swift */; };
+		218110B82D9095850044E116 /* UIKitMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218110B72D9095830044E116 /* UIKitMainView.swift */; };
 		2198B7A82C08FB530056EB08 /* Interop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2198B7A72C08FB530056EB08 /* Interop.swift */; };
+		219FC3902D8FC8990002F41E /* FeatureFlagsBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 219FC38F2D8FC8990002F41E /* FeatureFlagsBridge.m */; };
 		21A8007E2C8B38D2009C049F /* MainToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8007D2C8B38D0009C049F /* MainToolbar.swift */; };
 		21AD64262C2B8204008DA41C /* SystemColors in Frameworks */ = {isa = PBXBuildFile; productRef = 21AD64252C2B8204008DA41C /* SystemColors */; };
 		21B61AD82C225AE800CA4DDB /* PopupCloseOverlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B61AD72C225ADD00CA4DDB /* PopupCloseOverlayButton.swift */; };
@@ -46,12 +54,23 @@
 		2123DF742C0679DE00868B53 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2130EEDB2C8A76930026C1A6 /* GlobalState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalState.swift; sourceTree = "<group>"; };
 		2130EEE02C8A776B0026C1A6 /* FeatureFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlag.swift; sourceTree = "<group>"; };
+		2144D1702D90A78B00439A81 /* FeatureFlagsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlagsTabView.swift; sourceTree = "<group>"; };
+		215654CF2D90AA290096D778 /* FeatureFlagsSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlagsSupport.swift; sourceTree = "<group>"; };
 		215748792CB4DC8A00AE876C /* AppLaunchUILayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLaunchUILayer.swift; sourceTree = "<group>"; };
 		2157BB382C08AA8100F19C85 /* DefaultPacketConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPacketConfiguration.swift; sourceTree = "<group>"; };
 		2157BB3B2C08ABCF00F19C85 /* Packet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Packet.swift; sourceTree = "<group>"; };
 		2166CD6E2C8BA867005EC975 /* ConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleView.swift; sourceTree = "<group>"; };
 		21790EE42C22389B00801CD7 /* PacketGroupSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketGroupSection.swift; sourceTree = "<group>"; };
+		218110AE2D9067ED0044E116 /* Scratch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scratch.swift; sourceTree = "<group>"; };
+		218110B12D9072D70044E116 /* PacketsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketsTabView.swift; sourceTree = "<group>"; };
+		218110B32D9074810044E116 /* AppKitMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppKitMainView.swift; sourceTree = "<group>"; };
+		218110B52D9078D20044E116 /* Tabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tabs.swift; sourceTree = "<group>"; };
+		218110B72D9095830044E116 /* UIKitMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitMainView.swift; sourceTree = "<group>"; };
 		2198B7A72C08FB530056EB08 /* Interop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interop.swift; sourceTree = "<group>"; };
+		219FC38D2D8FC8990002F41E /* InternalTest-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "InternalTest-Bridging-Header.h"; sourceTree = "<group>"; };
+		219FC38E2D8FC8990002F41E /* FeatureFlagsBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeatureFlagsBridge.h; sourceTree = "<group>"; };
+		219FC38F2D8FC8990002F41E /* FeatureFlagsBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeatureFlagsBridge.m; sourceTree = "<group>"; };
+		219FC3922D8FC99D0002F41E /* FeatureFlagsSupport.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = FeatureFlagsSupport.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/PrivateFrameworks/FeatureFlagsSupport.framework/Versions/A/FeatureFlagsSupport.tbd; sourceTree = DEVELOPER_DIR; };
 		21A8007D2C8B38D0009C049F /* MainToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainToolbar.swift; sourceTree = "<group>"; };
 		21B61AD72C225ADD00CA4DDB /* PopupCloseOverlayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupCloseOverlayButton.swift; sourceTree = "<group>"; };
 		21DCDE7F2C1BA02F007B9B28 /* PacketDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketDetailView.swift; sourceTree = "<group>"; };
@@ -100,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				2123DF6C2C0679DB00868B53 /* InternalTest */,
+				219FC3912D8FC99C0002F41E /* Frameworks */,
 				2123DF6B2C0679DB00868B53 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -115,10 +135,14 @@
 		2123DF6C2C0679DB00868B53 /* InternalTest */ = {
 			isa = PBXGroup;
 			children = (
+				218110B02D9072D30044E116 /* Tab management */,
+				2144D16F2D90A78000439A81 /* Tabs */,
+				219FC38C2D8FC8690002F41E /* Feature flags support */,
 				21B61AD62C225AD700CA4DDB /* Controls */,
 				218B09162C07D2AE00BD2AC0 /* Views */,
 				2112CA1B2C20A5C6005546CF /* Backend */,
 				2130EEDF2C8A77090026C1A6 /* State */,
+				218110AE2D9067ED0044E116 /* Scratch.swift */,
 				2123DF6F2C0679DB00868B53 /* ContentView.swift */,
 				2123DF6D2C0679DB00868B53 /* InternalTestApp.swift */,
 				2123DF712C0679DE00868B53 /* Assets.xcassets */,
@@ -145,6 +169,25 @@
 			path = State;
 			sourceTree = "<group>";
 		};
+		2144D16F2D90A78000439A81 /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				2144D1702D90A78B00439A81 /* FeatureFlagsTabView.swift */,
+				218110B12D9072D70044E116 /* PacketsTabView.swift */,
+			);
+			path = Tabs;
+			sourceTree = "<group>";
+		};
+		218110B02D9072D30044E116 /* Tab management */ = {
+			isa = PBXGroup;
+			children = (
+				218110B52D9078D20044E116 /* Tabs.swift */,
+				218110B32D9074810044E116 /* AppKitMainView.swift */,
+				218110B72D9095830044E116 /* UIKitMainView.swift */,
+			);
+			path = "Tab management";
+			sourceTree = "<group>";
+		};
 		218B09162C07D2AE00BD2AC0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +198,25 @@
 				21EE452C2C1BB83D00B63200 /* DebugSettingsView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		219FC38C2D8FC8690002F41E /* Feature flags support */ = {
+			isa = PBXGroup;
+			children = (
+				215654CF2D90AA290096D778 /* FeatureFlagsSupport.swift */,
+				219FC38E2D8FC8990002F41E /* FeatureFlagsBridge.h */,
+				219FC38F2D8FC8990002F41E /* FeatureFlagsBridge.m */,
+				219FC38D2D8FC8990002F41E /* InternalTest-Bridging-Header.h */,
+			);
+			path = "Feature flags support";
+			sourceTree = "<group>";
+		};
+		219FC3912D8FC99C0002F41E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				219FC3922D8FC99D0002F41E /* FeatureFlagsSupport.tbd */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		21B61AD62C225AD700CA4DDB /* Controls */ = {
@@ -206,6 +268,7 @@
 				TargetAttributes = {
 					2123DF692C0679DB00868B53 = {
 						CreatedOnToolsVersion = 15.4;
+						LastSwiftMigration = 1630;
 					};
 				};
 			};
@@ -259,13 +322,21 @@
 				2130EEDC2C8A769B0026C1A6 /* GlobalState.swift in Sources */,
 				21B61AD82C225AE800CA4DDB /* PopupCloseOverlayButton.swift in Sources */,
 				2123DF702C0679DB00868B53 /* ContentView.swift in Sources */,
+				2144D1712D90A79100439A81 /* FeatureFlagsTabView.swift in Sources */,
 				2157BB3C2C08ABCF00F19C85 /* Packet.swift in Sources */,
 				2157487A2CB4DC8A00AE876C /* AppLaunchUILayer.swift in Sources */,
+				219FC3902D8FC8990002F41E /* FeatureFlagsBridge.m in Sources */,
 				21E7812A2C8B807C00EFF561 /* Packet+UI.swift in Sources */,
+				218110AF2D9067EF0044E116 /* Scratch.swift in Sources */,
 				2123DF6E2C0679DB00868B53 /* InternalTestApp.swift in Sources */,
 				2130EEE12C8A776C0026C1A6 /* FeatureFlag.swift in Sources */,
+				218110B42D90748A0044E116 /* AppKitMainView.swift in Sources */,
 				21EE452D2C1BB84100B63200 /* DebugSettingsView.swift in Sources */,
 				211DCA522C9A41340039A1D5 /* DebugUILayer.swift in Sources */,
+				218110B22D9072DC0044E116 /* PacketsTabView.swift in Sources */,
+				215654D02D90AA340096D778 /* FeatureFlagsSupport.swift in Sources */,
+				218110B82D9095850044E116 /* UIKitMainView.swift in Sources */,
+				218110B62D9078DC0044E116 /* Tabs.swift in Sources */,
 				2198B7A82C08FB530056EB08 /* Interop.swift in Sources */,
 				21FF22162C8A73C300DB7C29 /* DebugMenu.swift in Sources */,
 				21E5C0732C90FC3F00F6C35E /* SettingsView.swift in Sources */,
@@ -410,6 +481,7 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = InternalTest/InternalTest.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -418,6 +490,7 @@
 				DEVELOPMENT_TEAM = W7TTKAZX72;
 				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -439,8 +512,10 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "InternalTest/Feature flags support/InternalTest-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 6.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = "1,2,6,7";
 				_EXPERIMENTAL_SWIFT_EXPLICIT_MODULES = YES;
 			};
 			name = Debug;
@@ -451,6 +526,7 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = InternalTest/InternalTest.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -459,6 +535,7 @@
 				DEVELOPMENT_TEAM = W7TTKAZX72;
 				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -480,8 +557,9 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "InternalTest/Feature flags support/InternalTest-Bridging-Header.h";
 				SWIFT_VERSION = 6.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = "1,2,6,7";
 				_EXPERIMENTAL_SWIFT_EXPLICIT_MODULES = YES;
 			};
 			name = Release;

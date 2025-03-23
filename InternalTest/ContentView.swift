@@ -4,39 +4,84 @@ struct ContentView: View {
     @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var globalState: GlobalState
     
-    @Namespace var packetExpansion
-    
     var body: some View {
         ZStack {
-            NavigationStack {
-                List(selection: $globalState.packetSelection) {
-                    HeroExplainer(title:       "Internal states",
-                                  description: "A list of results from various functions that report internal and other relevant states.",
-                                  symbolName:  "wrench.and.screwdriver.fill")
-                    
-                    ForEach(packetGroups) { group in
-                        PacketGroupSection(group)
+            
+            Group {
+#if os(macOS) || targetEnvironment(macCatalyst)
+                macOSMainView()
+                    .toolbar {
+                        MainToolbar()
                     }
-                }
-                .scrollContentBackground(is_feature_flag_enabled("UsePlainListBackground") ? .hidden : .visible)
-                .toolbar { MainToolbar() }
-                .tint(.primary)
-                .shadow(color: .secondary.opacity(0.10), radius: 5, x: 0, y: 3)
-    #if !os(macOS)
-                .listSectionSpacing(.compact)
-    #endif
+#else
+                UIKitMainView()
+#endif
             }
-            .navigationTitle("Internal states")
             
             AppLaunchUILayer()
             SettingsUILayer()
             DebugUILayer()
         }
     }
+    
+#if false
+    @Namespace var packetExpansion
+    var body1: some View {
+        ZStack {
+            
+            //            HeroExplainer(title:       "Internal states",
+            //                          description: "A list of results from various functions that report internal and other relevant states.",
+            //                          symbolName:  "wrench.and.screwdriver.fill")
+            
+            TabView {
+                Group {
+                    Tab("Packets", systemImage: "") {
+                        NavigationStack {
+                            List(selection: $globalState.packetSelection) {
+                                ForEach(packetGroups) { group in
+                                    PacketGroupSection(group)
+                                }
+                            }
+                            .scrollContentBackground(is_feature_flag_enabled("UsePlainListBackground") ? .hidden : .visible)
+                            .listSectionSpacing(.compact)
+#if !os(macOS)
+                            .shadow(color: .secondary.opacity(0.10), radius: 5, x: 0, y: 3)
+#endif
+                            .toolbar() {
+                                MainToolbar()
+                            }
+                        }
+                        
+                    }
+                    
+                    Tab("Features", systemImage: "") {
+                        EmptyView()
+                            .toolbar() {
+                                MainToolbar()
+                            }
+                    }
+                }
+                //                .navigationTitle("Internal states")
+            }
+            //            .tabViewStyle(SidebarAdaptableTabViewStyle())
+            .tint(.primary)
+            .toolbar() {
+                MainToolbar()
+            }
+            
+            AppLaunchUILayer()
+            SettingsUILayer()
+            DebugUILayer()
+        }
+    }
+#endif
 }
 
 #Preview {
+    @Previewable @State var globalState2 = GlobalState2()
+    
     ContentView()
         .environmentObject(globalState)
+        .environment(globalState2)
 }
 

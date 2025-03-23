@@ -7,28 +7,47 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
          <BreakpointContent
-            uuid = "079A5C9A-7A3A-44FD-A1B5-DE87FA900CC4"
+            uuid = "F8F41F0E-7649-4E70-82D4-95C6DA89BD1F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            symbolName = "setValue:feature:domain:levelIndex:buildVersion:"
+            moduleName = "">
+            <Locations>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "148F35A7-E7EF-4BD7-869F-90AE22B67197"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "InternalTest/FF test/FFtest.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "+load"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.AddressBreakpoint">
+         <BreakpointContent
+            uuid = "8143FA10-364C-4432-BDAE-1D7D0C7330AD"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            symbolName = "isSAEEnabled"
-            moduleName = "">
-            <Actions>
-               <BreakpointActionProxy
-                  ActionExtensionID = "Xcode.BreakpointAction.DebuggerCommand">
-                  <ActionContent
-                     consoleCommand = "memory write $pc 20 00 80 52 C0 03 5F D6">
-                  </ActionContent>
-               </BreakpointActionProxy>
-            </Actions>
+            symbolName = "*0x1c7d0aa70">
             <Locations>
                <Location
-                  uuid = "079A5C9A-7A3A-44FD-A1B5-DE87FA900CC4 - eff5a9a33896f2a7"
+                  uuid = "8143FA10-364C-4432-BDAE-1D7D0C7330AD - 847ac08d21c73066"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "+[AFSystemAssistantExperienceStatusManager isSAEEnabled]"
-                  moduleName = "AssistantServices"
+                  symbolName = "*0x1c7d0aa70"
                   usesParentBreakpointCondition = "Yes">
                </Location>
             </Locations>
@@ -37,28 +56,60 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
          <BreakpointContent
-            uuid = "3B409A94-A6A0-43D2-B857-8E0CABDE0D77"
+            uuid = "15B92C14-3C6B-42F6-B1A3-DFDC16494F3C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            symbolName = "createMutableDomainConfig:levelIndex:"
+            moduleName = "">
+            <Locations>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
+         <BreakpointContent
+            uuid = "72BA8AB4-D9A7-44BA-8871-59D9F54A1925"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            symbolName = "commitUpdates:"
+            moduleName = "">
+            <Locations>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AF0847C3-5BF0-4A83-812B-96A2CC148AC4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "InternalTest/FF test/FFtest.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "+load"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.AddressBreakpoint">
+         <BreakpointContent
+            uuid = "621BE588-DE80-4BF2-A611-892705DA9BA8"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            symbolName = "AFHasGMSCapability"
-            moduleName = "">
-            <Actions>
-               <BreakpointActionProxy
-                  ActionExtensionID = "Xcode.BreakpointAction.DebuggerCommand">
-                  <ActionContent
-                     consoleCommand = "memory write $pc 20 00 80 52 C0 03 5F D6">
-                  </ActionContent>
-               </BreakpointActionProxy>
-            </Actions>
+            symbolName = "*0x1c2c02c08">
             <Locations>
                <Location
-                  uuid = "3B409A94-A6A0-43D2-B857-8E0CABDE0D77 - d9e897e897165d91"
+                  uuid = "621BE588-DE80-4BF2-A611-892705DA9BA8 - 8336026478b35d34"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "AFHasGMSCapability"
-                  moduleName = "AssistantServices"
+                  symbolName = "*0x1c2c02c08"
                   usesParentBreakpointCondition = "Yes">
                </Location>
             </Locations>

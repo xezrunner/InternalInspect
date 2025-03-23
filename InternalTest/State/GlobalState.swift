@@ -1,9 +1,15 @@
 import SwiftUI
 
+@Observable class GlobalState2 {
+    var packetsTabViewState      = PacketsTabViewGlobalState()
+    var featureFlagsTabViewState = FeatureFlagsTabViewGlobalState()
+}
+
 // MARK: Global state
 class GlobalState: ObservableObject {
     // MARK: Main
     @Published var packetSelection: Packet? = nil
+//    @Published var packetsTabViewGlobalState = PacketsTabViewGlobalState()
     
     // MARK: Feature flags
     @Published var featureFlags = GlobalFeatureFlags()
