@@ -31,5 +31,11 @@ class FeatureFlagsSupport {
         return all
     }
     
+    @MainActor public static func setFeature(newState: Bool, domain: String, feature: String) {
+        FeatureFlagsBridge.setFeature(newState, domain, feature)
+        
+        InternalTestApp.globalState2.featureFlagsTabViewState.reloadDictionary()
+    }
+    
     
 }

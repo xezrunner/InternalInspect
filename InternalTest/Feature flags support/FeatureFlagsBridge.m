@@ -64,6 +64,24 @@ NSObject* FFConfiguration_shared;
     return [FFConfiguration_shared performSelector:sel withObject:domain];
 }
 
++ (void)setFeature:(BOOL)newState :(NSString*)domain :(NSString*)feature {
+    const char* enableSelector  = "enableFeature:domain:levelIndex:transient:";
+    const char* disableSelector = "disableFeature:domain:levelIndex:transient:";
+    
+    typedef NSObject* (*send_type)(NSObject*, SEL, NSString*, NSString*, int, BOOL);
+    send_type func = (send_type)objc_msgSend;
+    
+    // 0x4 is Profiles.plist, 0x7 is Settings.plist, both in /Library/Preferences/FeatureFlags/
+    func(FFConfiguration_shared, sel_getUid(newState ? enableSelector : disableSelector), feature, domain, 0x7, YES);
+    
+    NSError* error = nil;
+    
+    SEL commitSel = NSSelectorFromString(@"commitUpdates:");
+    [FFConfiguration_shared performSelector:commitSel withObject:error];
+    
+    if (error) NSLog(@"[setFeature]: Got error: %@", error);
+}
+
 + (void)load {
     NSLog(@"[FeatureFlagsBridge] load()!");
     
@@ -81,12 +99,12 @@ NSObject* FFConfiguration_shared;
     
     NSLog(@"[FeatureFlagsBridge] shared FFConfiguration obj: %@", obj);
     
-    SEL checkSel = NSSelectorFromString(@"stateForFeature:domain:");
-    NSObject* result = [obj performSelector:checkSel withObject:@"vision_os_keyboard_should_display_writing_tools_candidates_options" withObject:@"UIKit"];
-    NSLog(@"result: %@", result ? @"YES" : @"NO");
     
 #if false && !TARGET_OS_MAC
     
+//    SEL checkSel = NSSelectorFromString(@"stateForFeature:domain:");
+//    NSObject* result = [obj performSelector:checkSel withObject:@"vision_os_keyboard_should_display_writing_tools_candidates_options" withObject:@"UIKit"];
+//    NSLog(@"result: %@", result ? @"YES" : @"NO");
     
 //    SEL domainsSel = NSSelectorFromString(@"domains");
 //    NSString* domains = [obj performSelector: domainsSel];

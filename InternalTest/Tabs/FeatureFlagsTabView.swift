@@ -15,6 +15,11 @@ import SwiftUI
     init() {
         dictionary = FeatureFlagsSupport.getAllFF()
     }
+    
+    // TODO: duplicate:
+    func reloadDictionary() {
+        dictionary = FeatureFlagsSupport.getAllFF()
+    }
 }
 
 struct FeatureFlagDomainEntryView: View {
@@ -37,7 +42,10 @@ struct FeatureFlagFeatureEntryView: View {
     @State var result: FeatureFlagState
     
     var body: some View {
-        NavigationLink(value: feature, label: {
+        Button(action: {
+            FeatureFlagsSupport.setFeature(newState: !result.isEnabled(), domain: result.domain, feature: feature)
+        }) {
+//        NavigationLink(value: feature, label: {
             HStack {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(feature).bold()
@@ -74,7 +82,7 @@ struct FeatureFlagFeatureEntryView: View {
                     .frame(height: 16)
                     .aspectRatio(1, contentMode: .fit)
             }
-        })
+        }
     }
 }
 
@@ -115,5 +123,6 @@ struct FeatureFlagsTabView: View {
                 }
             }
         }
+        .id(globalState.featureFlagsTabViewState.dictionary.hashValue)
     }
 }

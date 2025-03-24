@@ -33,6 +33,7 @@
 		21A8007E2C8B38D2009C049F /* MainToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8007D2C8B38D0009C049F /* MainToolbar.swift */; };
 		21AD64262C2B8204008DA41C /* SystemColors in Frameworks */ = {isa = PBXBuildFile; productRef = 21AD64252C2B8204008DA41C /* SystemColors */; };
 		21B61AD82C225AE800CA4DDB /* PopupCloseOverlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B61AD72C225ADD00CA4DDB /* PopupCloseOverlayButton.swift */; };
+		21BE66312D90F20400BF1D2E /* DynamicSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BE66302D90F20400BF1D2E /* DynamicSwizzle.m */; };
 		21DCDE802C1BA038007B9B28 /* PacketDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DCDE7F2C1BA02F007B9B28 /* PacketDetailView.swift */; };
 		21E5C0732C90FC3F00F6C35E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E5C0722C90FC3A00F6C35E /* SettingsView.swift */; };
 		21E7812A2C8B807C00EFF561 /* Packet+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E781292C8B807400EFF561 /* Packet+UI.swift */; };
@@ -73,6 +74,8 @@
 		219FC3922D8FC99D0002F41E /* FeatureFlagsSupport.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = FeatureFlagsSupport.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/PrivateFrameworks/FeatureFlagsSupport.framework/Versions/A/FeatureFlagsSupport.tbd; sourceTree = DEVELOPER_DIR; };
 		21A8007D2C8B38D0009C049F /* MainToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainToolbar.swift; sourceTree = "<group>"; };
 		21B61AD72C225ADD00CA4DDB /* PopupCloseOverlayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupCloseOverlayButton.swift; sourceTree = "<group>"; };
+		21BE662F2D90F20400BF1D2E /* DynamicSwizzle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DynamicSwizzle.h; sourceTree = "<group>"; };
+		21BE66302D90F20400BF1D2E /* DynamicSwizzle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DynamicSwizzle.m; sourceTree = "<group>"; };
 		21DCDE7F2C1BA02F007B9B28 /* PacketDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketDetailView.swift; sourceTree = "<group>"; };
 		21E5C0722C90FC3A00F6C35E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		21E781292C8B807400EFF561 /* Packet+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Packet+UI.swift"; sourceTree = "<group>"; };
@@ -135,6 +138,7 @@
 		2123DF6C2C0679DB00868B53 /* InternalTest */ = {
 			isa = PBXGroup;
 			children = (
+				21BE662E2D90F20100BF1D2E /* DynamicSwizzle */,
 				218110B02D9072D30044E116 /* Tab management */,
 				2144D16F2D90A78000439A81 /* Tabs */,
 				219FC38C2D8FC8690002F41E /* Feature flags support */,
@@ -233,6 +237,15 @@
 			path = Controls;
 			sourceTree = "<group>";
 		};
+		21BE662E2D90F20100BF1D2E /* DynamicSwizzle */ = {
+			isa = PBXGroup;
+			children = (
+				21BE662F2D90F20400BF1D2E /* DynamicSwizzle.h */,
+				21BE66302D90F20400BF1D2E /* DynamicSwizzle.m */,
+			);
+			path = DynamicSwizzle;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -318,6 +331,7 @@
 				21F6487E2C8B57AF00AB7634 /* PacketListLabel.swift in Sources */,
 				2157BB392C08AA8200F19C85 /* DefaultPacketConfiguration.swift in Sources */,
 				211DCA542C9A414A0039A1D5 /* SettingsUILayer.swift in Sources */,
+				21BE66312D90F20400BF1D2E /* DynamicSwizzle.m in Sources */,
 				21FF22142C8A70F700DB7C29 /* HeroExplainer.swift in Sources */,
 				2130EEDC2C8A769B0026C1A6 /* GlobalState.swift in Sources */,
 				21B61AD82C225AE800CA4DDB /* PopupCloseOverlayButton.swift in Sources */,
@@ -491,6 +505,7 @@
 				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -536,6 +551,7 @@
 				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
