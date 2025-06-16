@@ -2,8 +2,52 @@ import Foundation
 
 @MainActor
 let packetGroups = [
+    PacketGroup(handlePath: "/usr/lib/system/libsystem_featureflags.dylib", [
+        PacketDefinition("_os_feature_enabled_impl", "SwiftUI", "Solarium"),
+        PacketDefinition("_os_feature_enabled_impl", "SwiftUI", "SolariumTV"),
+        PacketDefinition("_os_feature_enabled_impl", "SwiftUI", "containerContextStylingEnabled"),
+        
+        PacketDefinition("_os_feature_enabled_impl", "PepperUICore", "new_system_margins"),
+        
+        PacketDefinition("_os_feature_enabled_impl", "SystemPrefsApp", "Pantheon"),
+        PacketDefinition("_os_feature_enabled_impl", "SystemPrefsApp", "SemanticSearch"),
+        PacketDefinition("_os_feature_enabled_impl", "SystemPrefsApp", "extensible_enablement"),
+        
+        PacketDefinition("_os_feature_enabled_impl", "Finder", "UseModernAirDropUI"),
+        PacketDefinition("_os_feature_enabled_impl", "Finder", "DriveRSA"),
+        
+        PacketDefinition("_os_feature_enabled_impl", "AppKit", "UpdateCycle"),
+        PacketDefinition("_os_feature_enabled_impl", "AppKit", "UpdateCycle"),
+        
+        PacketDefinition("_os_feature_enabled_impl", "libmalloc", "ZeroOnFree"),
+        PacketDefinition("_os_feature_enabled_impl", "libmalloc", "SecureAllocator_ThreadCaching"),
+        
+        PacketDefinition("_os_feature_enabled_impl", "InternalWatermark", "MacOSDefaultUITypeStandard"),
+        PacketDefinition("_os_feature_enabled_impl", "RemoteUI", "MacOSDefaultUITypeStandard"),
+        
+        PacketDefinition("_os_feature_enabled_impl", "WindowServer", "WindowManagerBridgeOperations"),
+        PacketDefinition("_os_feature_enabled_impl", "AGX", "enable_airnt_interfaces_for_metal3"),
+        
+        PacketDefinition("_os_feature_enabled_impl", "Music", "use_native_main_window"),
+        PacketDefinition("_os_feature_enabled_impl", "Music", "use_modern_window_frame_design"),
+        PacketDefinition("_os_feature_enabled_impl", "Music", "use_native_playlist_container_view"),
+        PacketDefinition("_os_feature_enabled_impl", "Music", "use_native_play_queue"),
+        PacketDefinition("_os_feature_enabled_impl", "Music", "MacBottomPlayer"),
+        PacketDefinition("_os_feature_enabled_impl", "Music", "search_as_a_destination"),
+        PacketDefinition("_os_feature_enabled_impl", "Music", "make_content_edge_to_edge"),
+        
+        PacketDefinition("_os_feature_enabled_impl", "Link", "viewActions"),
+        PacketDefinition("_os_feature_enabled_impl", "Sonic", "Alchemy"),
+        
+        PacketDefinition("_os_feature_enabled_impl", "Safari", "slm"),
+        
+        PacketDefinition("_os_feature_enabled_impl", "Foundation", "NSURLUseNewParsing"),
+    ]),
+
     PacketGroup(handlePath: "/usr/lib/system/libsystem_eligibility.dylib", [
         PacketDefinition(packetType: .PACKET_ELIGIBILITY, "OS_ELIGIBILITY_DOMAIN_GREYMATTER"),
+        PacketDefinition(packetType: .PACKET_ELIGIBILITY, "OS_ELIGIBILITY_DOMAIN_PERSONAL_QA"),
+        PacketDefinition(packetType: .PACKET_ELIGIBILITY, "OS_ELIGIBILITY_DOMAIN_SIRI_WITH_APP_INTENTS"),
         PacketDefinition(packetType: .PACKET_ELIGIBILITY, "OS_ELIGIBILITY_DOMAIN_IRON"),
         PacketDefinition(packetType: .PACKET_ELIGIBILITY, "INVALID"),
     ]),
@@ -174,6 +218,8 @@ let packetGroups = [
     */
     
     PacketGroup(handlePath: "/usr/lib/system/libsystem_featureflags.dylib", [
+        PacketDefinition("_os_feature_enabled_impl", "UIKit", "catalyst_pointer_interaction"),
+        
         PacketDefinition("_os_feature_enabled_impl", "Siri", "sae_override"),
         PacketDefinition("_os_feature_enabled_impl", "Siri", "sae"),
         PacketDefinition("_os_feature_enabled_impl", "Siri", "assistant_engine"),
@@ -190,6 +236,9 @@ let packetGroups = [
         PacketDefinition("_os_feature_enabled_impl", "Siri", "lasso"),
         PacketDefinition("_os_feature_enabled_impl", "Siri", "caballero"),
         PacketDefinition("_os_feature_enabled_impl", "Siri", "sirix"),
+        
+        PacketDefinition("_os_feature_enabled_impl", "IntelligenceFlow", "UIIntelligence"),
+        PacketDefinition("_os_feature_enabled_impl", "SiriAssistantSuggestions", "siriHelpThirdParty"),
         
         PacketDefinition("_os_feature_enabled_impl", "SiriUI", "sae"),
         PacketDefinition("_os_feature_enabled_impl", "SiriUI", "sae_use_container"),

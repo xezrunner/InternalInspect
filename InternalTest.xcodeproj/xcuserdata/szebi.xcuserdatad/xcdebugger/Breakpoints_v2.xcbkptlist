@@ -7,58 +7,59 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
          <BreakpointContent
-            uuid = "079A5C9A-7A3A-44FD-A1B5-DE87FA900CC4"
-            shouldBeEnabled = "Yes"
+            uuid = "34388568-AB84-42B4-83B1-E7E1D8DC2E2F"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            symbolName = "isSAEEnabled"
+            symbolName = "$s15MRPreferencesUI19RestrictionsManagerC14VisibilityTypeO6isHideSbvg"
             moduleName = "">
-            <Actions>
-               <BreakpointActionProxy
-                  ActionExtensionID = "Xcode.BreakpointAction.DebuggerCommand">
-                  <ActionContent
-                     consoleCommand = "memory write $pc 20 00 80 52 C0 03 5F D6">
-                  </ActionContent>
-               </BreakpointActionProxy>
-            </Actions>
             <Locations>
-               <Location
-                  uuid = "079A5C9A-7A3A-44FD-A1B5-DE87FA900CC4 - eff5a9a33896f2a7"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "+[AFSystemAssistantExperienceStatusManager isSAEEnabled]"
-                  moduleName = "AssistantServices"
-                  usesParentBreakpointCondition = "Yes">
-               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
          <BreakpointContent
-            uuid = "3B409A94-A6A0-43D2-B857-8E0CABDE0D77"
-            shouldBeEnabled = "Yes"
+            uuid = "7FD5BA44-4400-44F5-8EA1-205993A5AC42"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            symbolName = "AFHasGMSCapability"
+            symbolName = "$s15MRPreferencesUI19RestrictionsManagerC14VisibilityTypeO13isUnavailableSbvg"
             moduleName = "">
-            <Actions>
-               <BreakpointActionProxy
-                  ActionExtensionID = "Xcode.BreakpointAction.DebuggerCommand">
-                  <ActionContent
-                     consoleCommand = "memory write $pc 20 00 80 52 C0 03 5F D6">
-                  </ActionContent>
-               </BreakpointActionProxy>
-            </Actions>
+            <Locations>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
+         <BreakpointContent
+            uuid = "1F2F3965-85E8-4725-879D-FECB1770407B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            symbolName = "$s15MRPreferencesUI12RestrictablePAAE14isUnrestricted5underSbAA19RestrictionsManagerC0G0VSg_tF"
+            moduleName = "">
+            <Locations>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
+         <BreakpointContent
+            uuid = "636A08A4-06C7-4BD8-B577-D9084C32B7BF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            symbolName = "_os_feature_enabled_impl"
+            moduleName = "">
             <Locations>
                <Location
-                  uuid = "3B409A94-A6A0-43D2-B857-8E0CABDE0D77 - d9e897e897165d91"
+                  uuid = "636A08A4-06C7-4BD8-B577-D9084C32B7BF - 9d3bc8c8a130004d"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "AFHasGMSCapability"
-                  moduleName = "AssistantServices"
+                  symbolName = "_os_feature_enabled_impl"
+                  moduleName = "libsystem_featureflags.dylib"
                   usesParentBreakpointCondition = "Yes">
                </Location>
             </Locations>
