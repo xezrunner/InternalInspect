@@ -17,15 +17,11 @@ struct InternalTestApp: App {
     init() {
     }
     
-    // @State var globalState2 = GlobalState2()
-    static var globalState2 = GlobalState2()
-    
     var body: some Scene {
         WindowGroup {
 //            Scratch()
             ContentView()
-                .environment(InternalTestApp.globalState2)
-                .environmentObject(globalState)
+                .environment(globalState)
         }
     }
 }

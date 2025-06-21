@@ -7,20 +7,6 @@
 
 import SwiftUI
 
-@Observable class FeatureFlagsTabViewGlobalState {
-    var dictionary: FeatureFlagsDictionary
-    
-    var selectedDomain: String?
-    
-    init() {
-        dictionary = FeatureFlagsSupport._getAllFFWithStates()
-    }
-    
-    // TODO: duplicate:
-    func reloadDictionary() {
-        dictionary = FeatureFlagsSupport._getAllFFWithStates()
-    }
-}
 
 struct FeatureFlagDomainEntryView: View {
     @State var domain: String
@@ -38,7 +24,7 @@ struct FeatureFlagDomainEntryView: View {
 }
 
 struct FeatureFlagFeatureEntryView: View {
-    @Environment(GlobalState2.self) var globalState: GlobalState2
+    @Environment(FeatureFlagsTabState.self) var state
     
     @State var feature: String
     @State var result: FeatureFlagState
@@ -54,11 +40,11 @@ struct FeatureFlagFeatureEntryView: View {
     func toggleFeature(domainName: String, featureName: String) {
         FeatureFlagsSupport.setFeature(newState: !result.isEnabled(), domain: domainName, feature: featureName)
         
-        guard let domain = globalState.featureFlagsTabViewState.dictionary[domainName] else { return }
+        guard let domain = state.dictionary[domainName] else { return }
         guard domain[featureName] != nil else { return }
         let response = FeatureFlagsSupport.getFeature(domain: domainName, feature: featureName)
         
-        globalState.featureFlagsTabViewState.dictionary[domainName]![featureName] = response
+        state.dictionary[domainName]![featureName] = response
     }
     
     var featureEntryLabel: some View {
@@ -104,15 +90,16 @@ struct FeatureFlagFeatureEntryView: View {
     }
 }
 
-struct FeatureFlagsTabView: View {
-    @Environment(GlobalState2.self) var globalState: GlobalState2
+struct FeatureFlagsTab: View {
+    @Environment(FeatureFlagsTabState.self) var state
     
     @State var domainsSearchQuery:  String = ""
     @State var featuresSearchQuery: String = ""
     
     var body: some View {
-        @Bindable var globalState = globalState
-        let domains = globalState.featureFlagsTabViewState.dictionary
+        @Bindable var state = state
+        
+        let domains = state.dictionary
         let domainsArray = Array(domains)
             .sorted { $0.key < $1.key }
             .filter { entry in
@@ -120,13 +107,13 @@ struct FeatureFlagsTabView: View {
             }
         
         NavigationSplitView {
-            List(domainsArray, id: \.key, selection: $globalState.featureFlagsTabViewState.selectedDomain) { domain, features in
+            List(domainsArray, id: \.key, selection: $state.selectedDomain) { domain, features in
                 FeatureFlagDomainEntryView(domain: domain, features: features)
             }
             .searchable(text: $domainsSearchQuery, placement: .sidebar)
             .toolbar(removing: .sidebarToggle)
         } detail: {
-            if let selectedDomain = globalState.featureFlagsTabViewState.selectedDomain {
+            if let selectedDomain = state.selectedDomain {
                 if let features = domains[selectedDomain] {
                     let featuresArray = Array(features)
                         .sorted { $0.key < $1.key }
@@ -141,6 +128,6 @@ struct FeatureFlagsTabView: View {
                 }
             }
         }
-        .id(globalState.featureFlagsTabViewState.dictionary.hashValue)
+        .id(state.dictionary.hashValue)
     }
 }

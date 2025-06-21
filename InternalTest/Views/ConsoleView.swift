@@ -87,5 +87,5 @@ struct ConsoleView: View {
 
 #Preview {
     ConsoleView()
-        .environmentObject(GlobalState())
+        .environment(GlobalState())
 }

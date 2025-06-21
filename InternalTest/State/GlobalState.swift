@@ -1,30 +1,20 @@
 import SwiftUI
 
-@Observable class GlobalState2 {
-    var packetsTabViewState      = PacketsTabViewGlobalState()
-    var featureFlagsTabViewState = FeatureFlagsTabViewGlobalState()
-}
-
-// MARK: Global state
-class GlobalState: ObservableObject {
-    // MARK: Main
-    @Published var packetSelection: Packet? = nil
-//    @Published var packetsTabViewGlobalState = PacketsTabViewGlobalState()
+@Observable class GlobalState {
+    // MARK: - Feature flags
+    var featureFlags = GlobalFeatureFlags()
     
-    // MARK: Feature flags
-    @Published var featureFlags = GlobalFeatureFlags()
+    // MARK: - UI layers
+    var showSettings:      Bool = false
+    var showDebugSettings: Bool = false
+    var showAppLaunch:     Bool = false
     
-    // MARK: UI layers
-    @Published var showSettings:      Bool = false
-    @Published var showDebugSettings: Bool = false
-    @Published var showAppLaunch:     Bool = false
+    // MARK: - App launch
+    var appLaunchList: [String] = getAllApps()
     
-    // MARK: App launch
-    @Published var appLaunchList: [String] = getAllApps()
-    
-    // MARK: Console
-    @Published var showConsole: Bool = false
-    @Published var consoleLines: [ConsoleLineInfo] = [
+    // MARK: - Console
+    var showConsole: Bool = false
+    var consoleLines: [ConsoleLineInfo] = [
         // ConsoleLineInfo(fileName: "testFile.swift", functionName: "test()", lineNumber: -1, text: "This is a test entry."),
         // ConsoleLineInfo(fileName: "testFile.swift", functionName: "test()", lineNumber: -1, text: "This is a slightly longer test entry."),
     ]

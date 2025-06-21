@@ -1,10 +1,12 @@
 import SwiftUI
 
 struct SettingsUILayer: View {
-    @EnvironmentObject var globalState: GlobalState
+    @Environment(GlobalState.self) var globalState
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
+        @Bindable var globalState = globalState
+        
         ZStack {}
             .sheet(isPresented: $globalState.showSettings) {
                 SettingsView()
@@ -25,7 +27,7 @@ struct SettingsUILayer: View {
         }.buttonStyle(.bordered)
         
         SettingsUILayer()
-            .environmentObject(globalState)
+            .environment(globalState)
             .onAppear {
                 globalState.showSettings = true
             }

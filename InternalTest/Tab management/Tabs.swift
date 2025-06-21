@@ -23,8 +23,10 @@ enum MainTab: String, CaseIterable, Identifiable, Hashable {
     @MainActor @ViewBuilder
     public func view() -> some View {
         switch self {
-        case .packets:  PacketsTabView()
-        case .featureFlags: FeatureFlagsTabView()
+        case .packets:
+            PacketsTab().environment(PacketsTabState())
+        case .featureFlags:
+            FeatureFlagsTab().environment(FeatureFlagsTabState())
         }
     }
 }

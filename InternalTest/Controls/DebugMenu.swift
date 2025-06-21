@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct DebugMenu: View {
-    @EnvironmentObject var globalState: GlobalState
+    @Environment(GlobalState.self) var globalState
     
     var body: some View {
         Section("Debug") {

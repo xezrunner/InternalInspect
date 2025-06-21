@@ -7,10 +7,6 @@
 
 import SwiftUI
 
-@Observable class PacketsTabViewGlobalState {
-    var selectedPacketGroup: PacketGroup?
-}
-
 struct PacketGroupDetailView: View {
     @Binding var group: PacketGroup?
     
@@ -25,12 +21,12 @@ struct PacketGroupDetailView: View {
     }
 }
 
-struct PacketsTabView: View {
-    @Environment(GlobalState2.self) var globalState: GlobalState2
+struct PacketsTab: View {
+    @Environment(PacketsTabState.self) var packetsTabViewState
     
     var body: some View {
-        @Bindable var globalState = globalState
-        let selectedGroupBinding = $globalState.packetsTabViewState.selectedPacketGroup
+        @Bindable var state = packetsTabViewState
+        let selectedGroupBinding = $state.selectedPacketGroup
         
         NavigationSplitView {
             List(packetGroups, selection: selectedGroupBinding) { group in

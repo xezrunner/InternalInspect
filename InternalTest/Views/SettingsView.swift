@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct SettingsPacketGroupView: View {
-    @EnvironmentObject var globalState: GlobalState
+    @Environment(GlobalState.self) var globalState
     
     @Binding var group: PacketGroup?
     
@@ -29,7 +29,7 @@ struct SettingsPacketGroupView: View {
 
 struct SettingsView: View {
     @Environment(\.colorScheme) var colorScheme
-    @EnvironmentObject var globalState: GlobalState
+    @Environment(GlobalState.self) var globalState
     
     @State var groupSelection: PacketGroup? = nil
     
@@ -82,5 +82,5 @@ struct SettingsView: View {
 
 #Preview {
     SettingsView()
-        .environmentObject(GlobalState())
+        .environment(GlobalState())
 }

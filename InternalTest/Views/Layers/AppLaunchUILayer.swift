@@ -16,12 +16,14 @@ func openApp(_ bundleID: String) -> Bool {
 }
 
 struct AppLaunchUILayer: View {
-    @EnvironmentObject var globalState: GlobalState
+    @Environment(GlobalState.self) var globalState
     @Environment(\.colorScheme) var colorScheme
     
     @State private var input = ""
     
     var body: some View {
+        @Bindable var globalState = globalState
+        
         ZStack {}
             .sheet(isPresented: $globalState.showAppLaunch) {
                 VStack {
@@ -59,7 +61,7 @@ struct AppLaunchUILayer: View {
     
     VStack {
         AppLaunchUILayer()
-            .environmentObject(globalState)
+            .environment(globalState)
             .onAppear() {
                 globalState.showAppLaunch = true
             }

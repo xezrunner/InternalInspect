@@ -12,7 +12,7 @@ struct PacketDetailView: View {
         }
     }
     
-    @EnvironmentObject var globalState: GlobalState
+    @Environment(GlobalState.self) var globalState
     
     @State var packet: Packet
     
@@ -148,5 +148,5 @@ struct PacketDetailView: View {
         ])
     
     PacketDetailView(packet: exampleGroup.packets.first!)
-        .environmentObject(GlobalState())
+        .environment(GlobalState())
 }

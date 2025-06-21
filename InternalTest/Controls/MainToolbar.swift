@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct MainToolbar: ToolbarContent {
-    @EnvironmentObject var globalState: GlobalState
+    @Environment(GlobalState.self) var globalState: GlobalState
     
     var body: some ToolbarContent {
         ToolbarItemGroup(placement: .primaryAction) {

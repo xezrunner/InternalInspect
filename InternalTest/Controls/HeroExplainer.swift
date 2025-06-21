@@ -2,7 +2,7 @@ import SwiftUI
 
 struct HeroExplainer: View {
     // NOTE: This is needed anywhere we want to listen for changes in the global state.
-    @EnvironmentObject var globalState: GlobalState
+    @Environment(GlobalState.self) var globalState
     
     @State var title      : String
     @State var description: String

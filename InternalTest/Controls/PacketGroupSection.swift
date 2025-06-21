@@ -7,7 +7,7 @@ struct PacketGroupSection: View {
         self.group = group
     }
     
-    @EnvironmentObject var globalState: GlobalState
+    @Environment(GlobalState.self) var globalState
     
     @Namespace var packetExpansion
     var group: PacketGroup

@@ -1,10 +1,12 @@
 import SwiftUI
 
 struct DebugSettingsView: View {
-    @EnvironmentObject var globalState: GlobalState
+    @Environment(GlobalState.self) var globalState
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
+        @Bindable var globalState = globalState
+        
         Form {
             HeroExplainer(title: "Debug settings",
                           description: "Transient mode - changes will not persist!",
@@ -40,5 +42,5 @@ struct DebugSettingsView: View {
 
 #Preview {
     DebugSettingsView()
-        .environmentObject(GlobalState())
+        .environment(GlobalState())
 }

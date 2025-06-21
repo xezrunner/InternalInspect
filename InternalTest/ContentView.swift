@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     @Environment(\.colorScheme) var colorScheme
-    @EnvironmentObject var globalState: GlobalState
+    @Environment(GlobalState.self) var globalState
     
     var body: some View {
         ZStack {
@@ -78,10 +78,7 @@ struct ContentView: View {
 }
 
 #Preview {
-    @Previewable @State var globalState2 = GlobalState2()
-    
     ContentView()
-        .environmentObject(globalState)
-        .environment(globalState2)
+        .environment(globalState)
 }
 

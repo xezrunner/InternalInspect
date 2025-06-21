@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct PacketListLabel: View {
-    @EnvironmentObject var globalState: GlobalState
+    @Environment(GlobalState.self) var globalState
     
     @State var packet: Packet
     

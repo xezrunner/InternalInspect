@@ -1,10 +1,12 @@
 import SwiftUI
 
 struct DebugUILayer: View {
-    @EnvironmentObject var globalState: GlobalState
+    @Environment(GlobalState.self) var globalState
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
+        @Bindable var globalState = globalState
+        
         ZStack {}
             .sheet(isPresented: $globalState.showConsole) {
                 ConsoleView()
