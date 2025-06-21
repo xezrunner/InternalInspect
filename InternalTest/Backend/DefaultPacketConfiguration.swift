@@ -8,6 +8,7 @@ let packetGroups = [
         PacketDefinition(packetType: .PACKET_ELIGIBILITY, "INVALID"),
     ]),
     
+    /*
     PacketGroup(handlePath: "/System/Library/PrivateFrameworks/AssistantServices.framework/AssistantServices", [
         PacketDefinition("AFDeviceSupportsSystemAssistantExperience"),
         PacketDefinition("AFDeviceSupportsSAEByDeviceCapabilityAndFeatureFlags"),
@@ -374,5 +375,6 @@ let packetGroups = [
         PacketDefinition(packetType: PacketType.PACKET_OBJC, "-[BSPlatform test]"),
     ])
     */
+     */
     
 ]

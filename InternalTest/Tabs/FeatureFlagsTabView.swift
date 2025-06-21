@@ -13,12 +13,12 @@ import SwiftUI
     var selectedDomain: String?
     
     init() {
-        dictionary = FeatureFlagsSupport.getAllFF()
+        dictionary = FeatureFlagsSupport._getAllFFWithStates()
     }
     
     // TODO: duplicate:
     func reloadDictionary() {
-        dictionary = FeatureFlagsSupport.getAllFF()
+        dictionary = FeatureFlagsSupport._getAllFFWithStates()
     }
 }
 
@@ -38,50 +38,68 @@ struct FeatureFlagDomainEntryView: View {
 }
 
 struct FeatureFlagFeatureEntryView: View {
+    @Environment(GlobalState2.self) var globalState: GlobalState2
+    
     @State var feature: String
     @State var result: FeatureFlagState
     
     var body: some View {
-        Button(action: {
-            FeatureFlagsSupport.setFeature(newState: !result.isEnabled(), domain: result.domain, feature: feature)
-        }) {
-//        NavigationLink(value: feature, label: {
-            HStack {
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(feature).bold()
-                    
-                    Group {
-                        Text("domain: ") + Text(result.domain).bold()
-                    }
-                    .font(.callout)
-                    
-                    Group {
-                        Text("value: ") +
-                        Text(String(describing: result.value)).bold()
-                        
-                        if result.isNotDeclared {
-                            Text("This feature flag is not declared in the system, so it defaults to being off.")
-                        }
-                        
-                        if !result.phase.isEmpty {
-                            Text("phase: ") +
-                            Text(result.phase).bold()
-                        }
-                        
-                        if !result.disclosureRequired.isEmpty {
-                            Text("disclosure required: ") +
-                            Text(result.disclosureRequired).bold()
-                        }
-                    }
-                    .font(.subheadline)
-                    .monospaced()
+        Button {
+            toggleFeature(domainName: result.domain, featureName: feature)
+        } label: {
+            featureEntryLabel
+        }
+    }
+    
+    func toggleFeature(domainName: String, featureName: String) {
+        FeatureFlagsSupport.setFeature(newState: !result.isEnabled(), domain: domainName, feature: featureName)
+        
+        guard let domain = globalState.featureFlagsTabViewState.dictionary[domainName] else { return }
+        guard domain[featureName] != nil else { return }
+        let response = FeatureFlagsSupport.getFeature(domain: domainName, feature: featureName)
+        
+        globalState.featureFlagsTabViewState.dictionary[domainName]![featureName] = response
+    }
+    
+    var featureEntryLabel: some View {
+        HStack {
+            VStack(alignment: .leading, spacing: 2) {
+                Text(feature).bold()
+                
+                HStack(spacing: 0) {
+                    Text("domain: "); Text(result.domain).bold()
                 }
-                Spacer()
-                Circle()
-                    .fill(result.isEnabled() ? .green : .red)
-                    .frame(height: 16)
-                    .aspectRatio(1, contentMode: .fit)
+                .font(.callout)
+                
+                VStack {
+                    HStack(spacing: 0) {
+                        Text("value: "); Text("\(result.value) (\(result.value == 0 ? "disabled" : "enabled"))").bold()
+                    }
+                    
+                    if result.isNotDeclared {
+                        Text("This feature flag is not declared in the system, so it defaults to being off.")
+                    }
+                    
+                    if !result.phase.isEmpty {
+                        HStack(spacing: 0) {
+                            Text("phase: "); Text(result.phase).bold()
+                        }
+                    }
+                    
+                    if !result.disclosureRequired.isEmpty {
+                        HStack(spacing: 0) {
+                            Text("disclosure required: "); Text(result.disclosureRequired).monospaced()
+                        }
+                    }
+                }
+                .font(.subheadline)
+                .monospaced()
             }
+            Spacer()
+            Circle()
+                .fill(result.isEnabled() ? .green : .red)
+                .frame(height: 16)
+                .aspectRatio(1, contentMode: .fit)
         }
     }
 }

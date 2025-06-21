@@ -18,12 +18,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property                     BOOL isNotDeclared;
 
 @property (nonatomic, strong) NSDictionary *attributes;
-@property (nonatomic, strong) NSString *domain;
-@property (nonatomic, strong) NSString *feature;
-@property                     long long value;
-@property (nonatomic, strong) id buildVersion;
-@property (nonatomic, strong) NSString *phase;
-@property (nonatomic, strong) NSString *disclosureRequired;
+@property (nonatomic, strong) NSString     *domain;
+@property (nonatomic, strong) NSString     *feature;
+@property                     long long    value;
+@property (nonatomic, strong) id           buildVersion;
+@property (nonatomic, strong) NSString     *phase;
+@property (nonatomic, strong) NSString     *disclosureRequired;
 
 - (BOOL)isEnabled;
 

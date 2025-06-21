@@ -10,18 +10,24 @@ public typealias FeatureFlags_FeaturesDictionary = [String: FeatureFlagState]
 
 class FeatureFlagsSupport {
     
-    public static func getAllFF() -> FeatureFlagsDictionary {
+    public static func getAllSystemFF() -> [String: Set<String>] {
+        var all: [String: Set<String>] = [:]
+        let domains = FeatureFlagsBridge.getDomains() as? Set<String> ?? []
+        for domain in domains {
+            let features = FeatureFlagsBridge.getFeaturesForDomain(domain) as? Set<String> ?? []
+            all[domain] = features
+        }
+        return all
+    }
+    
+    public static func _getAllFFWithStates() -> FeatureFlagsDictionary {
         var all: FeatureFlagsDictionary = [:]
         
         let domains = FeatureFlagsBridge.getDomains() as? Set<String> ?? []
         for domain in domains {
             all[domain] = [:]
             
-            var features = FeatureFlagsBridge.getFeaturesForDomain(domain) as? Set<String> ?? []
-            if domain == "Siri" { // TEMP: @CustomFeatureFlags
-                features.insert("sae")
-                features.insert("sae_override")
-            }
+            let features = FeatureFlagsBridge.getFeaturesForDomain(domain) as? Set<String> ?? []
             
             for feature in features {
                 all[domain]?[feature] = FeatureFlagsBridge.getValue(domain, feature)
@@ -31,10 +37,12 @@ class FeatureFlagsSupport {
         return all
     }
     
-    @MainActor public static func setFeature(newState: Bool, domain: String, feature: String) {
+    public static func getFeature(domain: String, feature: String) -> FeatureFlagState {
+        return FeatureFlagsBridge.getValue(domain, feature)
+    }
+    
+    public static func setFeature(newState: Bool, domain: String, feature: String) {
         FeatureFlagsBridge.setFeature(newState, domain, feature)
-        
-        InternalTestApp.globalState2.featureFlagsTabViewState.reloadDictionary()
     }
     
     
