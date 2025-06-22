@@ -18,8 +18,8 @@ struct macOSMainView: View {
                 }
             }
         }
-        .toolbar {
-            MainToolbar()
-        }
+//        .toolbar {
+//            MainToolbar()
+//        }
     }
 }

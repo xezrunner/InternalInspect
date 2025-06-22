@@ -31,39 +31,42 @@ struct FeatureFlagsTab: View {
         @Bindable var state = state
         
         return NavigationSplitView(preferredCompactColumn: .constant(NavigationSplitViewColumn.sidebar)) {
-            let filtered = state.filteredDomains(query: domainsSearchQuery)
-            
-            List(filtered, id: \.key, selection: $selectedDomain) { domain, features in
-                FeatureFlagDomainEntryView(domain: domain, features: features)
-            }
-            .searchable(text: $domainsSearchQuery, placement: .sidebar)
-            .toolbar(removing: .sidebarToggle)
-            .navigationSplitViewColumnWidth(min: 250, ideal: 300)
+            domainsSidebar
         } detail: {
             let filtered = state.filteredFeatures(domain: selectedDomain, query: featuresSearchQuery)
             
             if !filtered.isEmpty {
-                List(filtered, id: \.key) { feature, result in
-                    FeatureFlagFeatureEntryView(feature: feature, result: result)
-                }
-//                .safeAreaInset(edge: .top) {
-//                    HStack {
-//                        Image(systemName: "magnifyingglass")
-//                        TextField("Search features", text: $featuresSearchQuery, prompt: Text("Search features..."))
-//                            .textFieldStyle(.plain)
-//                    }
-//                    .padding(6)
-//                    .background {
-//                        Capsule().fill(.ultraThinMaterial)
-//                    }
-//                    .padding(.horizontal)
-//                }
-                .searchable(text: $featuresSearchQuery, placement: .toolbarPrincipal)
-            } else {
+                featuresDetail(filtered: filtered)
+            } else if selectedDomain != nil {
                 noFeaturesView
+            } else {
+                EmptyView()
             }
         }
         .navigationSplitViewStyle(.balanced)
+        .toolbar {
+            ToolbarItem {
+                Button("Add feature") {}
+            }
+        }
+    }
+    
+    var domainsSidebar: some View {
+        let filtered = state.filteredDomains(query: domainsSearchQuery)
+        
+        return List(filtered, id: \.key, selection: $selectedDomain) { domain, features in
+            FeatureFlagDomainEntryView(domain: domain, features: features)
+        }
+        .searchable(text: $domainsSearchQuery, placement: .sidebar)
+        .toolbar(removing: .sidebarToggle)
+        .navigationSplitViewColumnWidth(min: 250, ideal: 300)
+    }
+    
+    func featuresDetail(filtered: [(key: String, value: FeatureFlagState)]) -> some View {
+        List(filtered, id: \.key) { feature, result in
+            FeatureFlagFeatureEntryView(feature: feature, result: result)
+        }
+        .searchable(text: $featuresSearchQuery, placement: .toolbarPrincipal)
     }
     
     var progressView: some View {
