@@ -26,25 +26,16 @@ struct UIKitMainView: View {
     @State var selectedTab: MainTab = .featureFlags
     
     var body: some View {
-        VStack {
-            // UIKit needs a NavigationView for toolbars to work:
-            NavigationView {
-                
-                TabView(selection: $selectedTab) {
-                    ForEach(MainTab.allCases) { tab in
-                        Tab(tab.rawValue, systemImage: tab.icon, value: tab) {
-                            tab.view()
-                        }
-                    }
+        TabView(selection: $selectedTab) {
+            ForEach(MainTab.allCases) { tab in
+                Tab(tab.rawValue, systemImage: tab.icon, value: tab) {
+                    tab.view()
                 }
-#if os(macOS)
-                .tabViewStyle(.sidebarAdaptable)
-#endif
-                .toolbar {
-                    MainToolbar()
-                }
-                
             }
+        }
+        .tabViewStyle(.sidebarAdaptable)
+        .toolbar {
+            MainToolbar()
         }
     }
 }

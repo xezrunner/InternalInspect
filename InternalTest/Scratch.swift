@@ -9,7 +9,9 @@ import SwiftUI
 
 struct Scratch: View {
     var body: some View {
-        
+        List(0...3, id: \.self) { index in
+            Text(index.description)
+        }
     }
 }
 

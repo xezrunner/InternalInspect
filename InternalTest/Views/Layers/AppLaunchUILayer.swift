@@ -42,6 +42,7 @@ struct AppLaunchUILayer: View {
                     Button("commit") {_ = openApp(input)}.buttonStyle(.bordered)
 #endif
                 }
+                .padding()
                 .overlay(PopupCloseOverlayButton())
                 .presentationBackground(colorScheme == .light ? Color.white : Color.black)
 #if targetEnvironment(simulator)

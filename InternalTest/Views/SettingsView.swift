@@ -28,8 +28,8 @@ struct SettingsPacketGroupView: View {
 }
 
 struct SettingsView: View {
-    @Environment(\.colorScheme) var colorScheme
     @Environment(GlobalState.self) var globalState
+    @Environment(\.colorScheme) var colorScheme
     
     @State var groupSelection: PacketGroup? = nil
     

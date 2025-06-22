@@ -36,7 +36,6 @@ struct PacketsTab: View {
         } detail: {
             PacketGroupDetailView(group: selectedGroupBinding)
         }
-        
         .navigationSplitViewStyle(.balanced)
     }
 }

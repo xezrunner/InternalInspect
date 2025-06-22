@@ -10,6 +10,7 @@ struct SettingsUILayer: View {
         ZStack {}
             .sheet(isPresented: $globalState.showSettings) {
                 SettingsView()
+                    .environment(globalState)
                     .overlay(PopupCloseOverlayButton())
                     .presentationBackground(colorScheme == .light ? Color.white : Color.black)
                     .presentationDragIndicator(.visible)

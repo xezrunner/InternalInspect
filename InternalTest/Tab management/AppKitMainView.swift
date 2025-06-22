@@ -8,15 +8,18 @@
 import SwiftUI
 
 struct macOSMainView: View {
-    @State var selectedTab: MainTab? = MainTab.packets.id
+    @State var selectedTab: MainTab = MainTab.featureFlags
     
     var body: some View {
-        NavigationSplitView {
-            List(MainTab.allCases, selection: $selectedTab) { tab in
-                Text(tab.rawValue)
+        TabView(selection: $selectedTab) {
+            ForEach(MainTab.allCases) { tab in
+                Tab(tab.rawValue, systemImage: tab.icon, value: tab) {
+                    tab.view()
+                }
             }
-        } detail: {
-            selectedTab?.view()
+        }
+        .toolbar {
+            MainToolbar()
         }
     }
 }

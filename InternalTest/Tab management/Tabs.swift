@@ -12,11 +12,13 @@ enum MainTab: String, CaseIterable, Identifiable, Hashable {
     
     case packets = "Packets"
     case featureFlags = "Feature flags"
+    case scratch = "Scratch"
     
     public var icon: String {
         switch self {
         case .packets:  "shippingbox"
         case .featureFlags: "flag.filled.and.flag.crossed"
+        case .scratch: "pawprint"
         }
     }
     
@@ -27,6 +29,8 @@ enum MainTab: String, CaseIterable, Identifiable, Hashable {
             PacketsTab().environment(PacketsTabState())
         case .featureFlags:
             FeatureFlagsTab().environment(FeatureFlagsTabState())
+        case .scratch:
+            Scratch()
         }
     }
 }
