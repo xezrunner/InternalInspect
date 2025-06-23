@@ -81,9 +81,22 @@ struct FeatureFlagsTab: View {
         List(filtered, id: \.key) { feature, result in
             FeatureFlagFeatureEntryView(featureName: feature, featureState: result)
         }
+        .refreshable { await refreshFeatures(filtered: filtered) }
         .searchable(text: $featuresSearchQuery, placement: .toolbarPrincipal)
         
         .toolbar { toolbar }
+    }
+    
+    private func refreshFeatures(filtered: [(key: String, value: FeatureFlagState)]) async {
+        for (feature, currentState) in filtered {
+            let response = FeatureFlagsSupport.getFeature(domain: currentState.domain, feature: feature)
+            
+            if state.domains[currentState.domain]?[feature] != nil {
+                state.domains[currentState.domain]![feature] = response
+            } else {
+                print("pull-to-refresh: filtered features had \(selectedDomain ?? "nil")::\(feature), but it isn't in domains!");
+            }
+        }
     }
     
     var progressView: some View {
@@ -252,3 +265,4 @@ struct FeatureFlagFeatureEntryView: View {
         .padding(4)
     }
 }
+
