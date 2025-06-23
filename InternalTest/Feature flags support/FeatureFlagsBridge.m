@@ -44,7 +44,7 @@ NSObject* FFConfiguration_shared;
         result.phase              = [resultObj  valueForKey:@"_phase"];
         result.disclosureRequired = [resultObj  valueForKey:@"_disclosurerequired"];
     } else {
-        result.isNotDeclared = YES; // Mark non-declared FFs
+        result.isNotSystemDeclared = YES; // Mark non-declared FFs
         
         result.domain = domain;
         result.feature = feature;

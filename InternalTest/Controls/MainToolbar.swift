@@ -5,7 +5,7 @@ struct MainToolbar: ToolbarContent {
     
     var body: some ToolbarContent {
         #if true
-        ToolbarItemGroup(placement: .navigation) {
+        ToolbarItemGroup {
             Button("Launch application by ID", systemImage: "list.bullet") {
                 globalState.showAppLaunch = true
             }

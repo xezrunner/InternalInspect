@@ -15,16 +15,18 @@ struct FeatureFlagsTab: View {
     @State var domainsSearchQuery:  String = ""
     @State var featuresSearchQuery: String = ""
     
+    @State var isPresentingAddFeatureSheet = false
+    
     var body: some View {
         VStack {
             if state.isProgress { progressView }
             else                { mainView }
         }
-//        .task {
-//            withAnimation(.linear(duration: 0.3)) {
-//                state.reloadDictionary()
-//            }
-//        }
+        .task {
+            withAnimation(.linear(duration: 0.3)) {
+                state.reloadDictionary()
+            }
+        }
     }
     
     var mainView: some View {
@@ -35,19 +37,26 @@ struct FeatureFlagsTab: View {
         } detail: {
             let filtered = state.filteredFeatures(domain: selectedDomain, query: featuresSearchQuery)
             
-            if !filtered.isEmpty {
-                featuresDetail(filtered: filtered)
-            } else if selectedDomain != nil {
-                noFeaturesView
-            } else {
-                EmptyView()
+            Group {
+                if !filtered.isEmpty {
+                    featuresDetail(filtered: filtered)
+                } else if selectedDomain != nil {
+                    noFeaturesView
+                } else {
+                    noDomainSelectedView
+                }
+            }
+            .toolbar {
+                ToolbarItem(id: "add-feature", placement: .primaryAction) {
+                    Button("Add feature", systemImage: "plus") { isPresentingAddFeatureSheet = true }
+                }
             }
         }
         .navigationSplitViewStyle(.balanced)
-        .toolbar {
-            ToolbarItem {
-                Button("Add feature") {}
-            }
+        .sheet(isPresented: $isPresentingAddFeatureSheet) {
+            AddUserTrackedFeatureSheetView(isSheetPresented: $isPresentingAddFeatureSheet)
+                .overlay { PopupCloseOverlayButton() }
+                .environment(state)
         }
     }
     
@@ -60,11 +69,12 @@ struct FeatureFlagsTab: View {
         .searchable(text: $domainsSearchQuery, placement: .sidebar)
         .toolbar(removing: .sidebarToggle)
         .navigationSplitViewColumnWidth(min: 250, ideal: 300)
+        .id(state.domains.hashValue)
     }
     
     func featuresDetail(filtered: [(key: String, value: FeatureFlagState)]) -> some View {
         List(filtered, id: \.key) { feature, result in
-            FeatureFlagFeatureEntryView(feature: feature, result: result)
+            FeatureFlagFeatureEntryView(featureName: feature, featureState: result)
         }
         .searchable(text: $featuresSearchQuery, placement: .toolbarPrincipal)
     }
@@ -81,11 +91,21 @@ struct FeatureFlagsTab: View {
     }
     
     var noFeaturesView: some View {
-        VStack(spacing: 6) {
+        VStack(spacing: 16) {
             Image(systemName: "minus.diamond")
                 .font(.system(size: 72))
             
             Text("This domain has no registered features.")
+                .font(.title2)
+        }
+    }
+    
+    var noDomainSelectedView: some View {
+        VStack(spacing: 16) {
+            Image(systemName: "pointer.arrow.rays")
+                .font(.system(size: 72))
+            
+            Text("Select a domain to see its features.")
                 .font(.title2)
         }
     }
@@ -109,62 +129,99 @@ struct FeatureFlagDomainEntryView: View {
 struct FeatureFlagFeatureEntryView: View {
     @Environment(FeatureFlagsTabState.self) var state
     
-    @State var feature: String
-    @State var result: FeatureFlagState
+    @State var featureName:  String
+    @State var featureState: FeatureFlagState
     
     @State var isProgress = false
     
-    var body: some View {
-        Button {
-            isProgress = true
-            Task {
-                toggleFeature(domainName: result.domain, featureName: feature)
-                isProgress = false
-            }
-        } label: {
-            featureEntryLabel
+    func deleteFeature() {
+        let userTrackedFeaturesKey = "UserTrackedFeatures"
+        var array = UserDefaults.standard.array(forKey: userTrackedFeaturesKey) as? [[String: String]] ?? []
+        
+        if let idx = array.firstIndex(where: { $0["domain"] == featureState.domain && $0["feature"] == featureName }) {
+            array.remove(at: idx)
+            UserDefaults.standard.set(array, forKey: userTrackedFeaturesKey)
+            state.reloadDictionary()
+        } else {
+            print("Feature \(featureName) not in UserDefaults!")
         }
-        .disabled(isProgress)
+    }
+    
+    var body: some View {
+        Group {
+            Button {
+                isProgress = true
+                Task {
+                    toggleFeature(domainName: featureState.domain, featureName: featureName)
+                    isProgress = false
+                }
+            } label: {
+                featureEntryLabel
+            }
+            .disabled(isProgress)
+        }
+        
+        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+            if featureState.isAddedByUser {
+                Button(role: .destructive) {
+                    deleteFeature()
+                } label: {
+                    Label("Delete", systemImage: "trash")
+                }
+            }
+        }
+        .contextMenu {
+            Button(role: .destructive) {
+                deleteFeature()
+            } label: {
+                Label("Delete", systemImage: "trash")
+            }
+            .disabled(!featureState.isAddedByUser)
+        }
     }
     
     func toggleFeature(domainName: String, featureName: String) {
-        FeatureFlagsSupport.setFeature(newState: !result.isEnabled(), domain: domainName, feature: featureName)
+        FeatureFlagsSupport.setFeature(newState: !featureState.isEnabled(), domain: domainName, feature: featureName)
         
         guard let domain = state.domains[domainName] else { return }
         guard domain[featureName] != nil else { return }
         let response = FeatureFlagsSupport.getFeature(domain: domainName, feature: featureName)
         
         state.domains[domainName]![featureName] = response
-        result = response
+        featureState = response
     }
     
     var featureEntryLabel: some View {
         HStack {
             VStack(alignment: .leading, spacing: 2) {
-                Text(feature).bold()
+                Text(featureName).bold()
                 
                 VStack(alignment: .leading) {
                     HStack(spacing: 0) {
-                        Text("domain: "); Text(result.domain).bold()
+                        Text("domain: "); Text(featureState.domain).bold()
                     }
                     
                     HStack(spacing: 0) {
-                        Text("value: "); Text("\(result.value) (\(result.value == 0 ? "disabled" : "enabled"))").bold()
+                        Text("value: "); Text("\(featureState.value) (\(featureState.value == 0 ? "disabled" : "enabled"))").bold()
                     }
                     
-                    if result.isNotDeclared {
+                    if featureState.isNotSystemDeclared {
                         Text("This feature flag is not declared in the system, so it defaults to being off.")
                     }
                     
-                    if !result.phase.isEmpty {
+                    if featureState.isAddedByUser {
+                        Text("This feature flag was added by you.")
+                    }
+                    
+                    if !featureState.phase.isEmpty {
                         HStack(spacing: 0) {
-                            Text("phase: "); Text(result.phase).bold()
+                            Text("phase: "); Text(featureState.phase).bold()
                         }
                     }
                     
-                    if !result.disclosureRequired.isEmpty {
+                    if !featureState.disclosureRequired.isEmpty {
                         HStack(spacing: 0) {
-                            Text("disclosure required: "); Text(result.disclosureRequired).monospaced()
+                            Text("disclosure required: "); Text(featureState.disclosureRequired).monospaced()
                         }
                     }
                 }
@@ -181,11 +238,10 @@ struct FeatureFlagFeatureEntryView: View {
             }
             
             Circle()
-                .fill(result.isEnabled() ? .green : .red)
+                .fill(featureState.isEnabled() ? .green : .red)
                 .frame(height: 16)
                 .aspectRatio(1, contentMode: .fit)
         }
         .padding(4)
     }
 }
-

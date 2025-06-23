@@ -9,7 +9,6 @@ public typealias FeatureFlagsDictionary = [String: FeatureFlags_FeaturesDictiona
 public typealias FeatureFlags_FeaturesDictionary = [String: FeatureFlagState]
 
 class FeatureFlagsSupport {
-    
     public static func getAllSystemFF() -> [String: Set<String>] {
         var all: [String: Set<String>] = [:]
         let domains = FeatureFlagsBridge.getDomains() as? Set<String> ?? []
@@ -37,6 +36,27 @@ class FeatureFlagsSupport {
         return all
     }
     
+    public static func mergedWithUserTrackedFeatures(base: FeatureFlagsDictionary) -> FeatureFlagsDictionary {
+        let userTrackedFeaturesKey = "UserTrackedFeatures"
+        guard let userTracked = UserDefaults.standard.array(forKey: userTrackedFeaturesKey) as? [[String: String]] else {
+            return base
+        }
+        
+        var merged = base
+        for entry in userTracked {
+            guard let domain = entry["domain"], let feature = entry["feature"] else { continue }
+            var domainFeatures = merged[domain] ?? [:]
+            // Only add if not already present
+            if domainFeatures[feature] == nil {
+                var state = FeatureFlagsBridge.getValue(domain, feature)
+                state.isAddedByUser = true
+                domainFeatures[feature] = state
+                merged[domain] = domainFeatures
+            }
+        }
+        return merged
+    }
+    
     public static func getFeature(domain: String, feature: String) -> FeatureFlagState {
         return FeatureFlagsBridge.getValue(domain, feature)
     }
@@ -44,6 +64,4 @@ class FeatureFlagsSupport {
     public static func setFeature(newState: Bool, domain: String, feature: String) {
         FeatureFlagsBridge.setFeature(newState, domain, feature)
     }
-    
-    
 }

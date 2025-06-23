@@ -34,8 +34,8 @@ struct UIKitMainView: View {
             }
         }
         .tabViewStyle(.sidebarAdaptable)
-        .toolbar {
-            MainToolbar()
-        }
+//        .toolbar {
+//            MainToolbar()
+//        }
     }
 }

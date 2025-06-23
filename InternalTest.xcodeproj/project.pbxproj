@@ -18,6 +18,7 @@
 		2130EEE12C8A776C0026C1A6 /* FeatureFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2130EEE02C8A776B0026C1A6 /* FeatureFlag.swift */; };
 		2144D1712D90A79100439A81 /* FeatureFlagsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2144D1702D90A78B00439A81 /* FeatureFlagsTab.swift */; };
 		215654D02D90AA340096D778 /* FeatureFlagsSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215654CF2D90AA290096D778 /* FeatureFlagsSupport.swift */; };
+		215670572E08CAE100C54709 /* AddUserTrackedFeatureSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215670562E08CAE100C54709 /* AddUserTrackedFeatureSheetView.swift */; };
 		2157487A2CB4DC8A00AE876C /* AppLaunchUILayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215748792CB4DC8A00AE876C /* AppLaunchUILayer.swift */; };
 		2157BB392C08AA8200F19C85 /* DefaultPacketConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2157BB382C08AA8100F19C85 /* DefaultPacketConfiguration.swift */; };
 		2157BB3C2C08ABCF00F19C85 /* Packet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2157BB3B2C08ABCF00F19C85 /* Packet.swift */; };
@@ -59,6 +60,7 @@
 		2130EEE02C8A776B0026C1A6 /* FeatureFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlag.swift; sourceTree = "<group>"; };
 		2144D1702D90A78B00439A81 /* FeatureFlagsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlagsTab.swift; sourceTree = "<group>"; };
 		215654CF2D90AA290096D778 /* FeatureFlagsSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlagsSupport.swift; sourceTree = "<group>"; };
+		215670562E08CAE100C54709 /* AddUserTrackedFeatureSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserTrackedFeatureSheetView.swift; sourceTree = "<group>"; };
 		215748792CB4DC8A00AE876C /* AppLaunchUILayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLaunchUILayer.swift; sourceTree = "<group>"; };
 		2157BB382C08AA8100F19C85 /* DefaultPacketConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPacketConfiguration.swift; sourceTree = "<group>"; };
 		2157BB3B2C08ABCF00F19C85 /* Packet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Packet.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 			children = (
 				2144D1702D90A78B00439A81 /* FeatureFlagsTab.swift */,
 				2189ECE02E077143003A8C2C /* FeatureFlagsTabState.swift */,
+				215670562E08CAE100C54709 /* AddUserTrackedFeatureSheetView.swift */,
 			);
 			path = "Feature Flags";
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				21E7812A2C8B807C00EFF561 /* Packet+UI.swift in Sources */,
 				218110AF2D9067EF0044E116 /* Scratch.swift in Sources */,
 				2123DF6E2C0679DB00868B53 /* InternalTestApp.swift in Sources */,
+				215670572E08CAE100C54709 /* AddUserTrackedFeatureSheetView.swift in Sources */,
 				2130EEE12C8A776C0026C1A6 /* FeatureFlag.swift in Sources */,
 				218110B42D90748A0044E116 /* AppKitMainView.swift in Sources */,
 				219146E12E0771D300E9630C /* FeatureFlagsTabState.swift in Sources */,
@@ -555,7 +559,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "InternalTest/Feature flags support/InternalTest-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 6.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = "1,2,6,7";
 				_EXPERIMENTAL_SWIFT_EXPLICIT_MODULES = YES;
 			};
 			name = Debug;
@@ -601,7 +605,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "InternalTest/Feature flags support/InternalTest-Bridging-Header.h";
 				SWIFT_VERSION = 6.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = "1,2,6,7";
 				_EXPERIMENTAL_SWIFT_EXPLICIT_MODULES = YES;
 			};
 			name = Release;

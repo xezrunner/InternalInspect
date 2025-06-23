@@ -9,9 +9,19 @@ import SwiftUI
 
 struct Scratch: View {
     var body: some View {
-        List(0...3, id: \.self) { index in
-            Text(index.description)
+        NavigationView {
+            List(0...3, id: \.self) { index in
+                Text(index.description)
+            }
+            .toolbar {
+                ToolbarItem {
+                    Button("Test", systemImage: "gear") { }
+                }
+            }
         }
+#if !os(macOS)
+        .navigationViewStyle(StackNavigationViewStyle())
+#endif
     }
 }
 

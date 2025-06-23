@@ -15,7 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FeatureFlagState : NSObject
 
-@property                     BOOL isNotDeclared;
+@property                     BOOL isNotSystemDeclared;
+@property                     BOOL isAddedByUser;
 
 @property (nonatomic, strong) NSDictionary *attributes;
 @property (nonatomic, strong) NSString     *domain;

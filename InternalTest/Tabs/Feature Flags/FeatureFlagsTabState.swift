@@ -7,13 +7,17 @@ import Foundation
     
     var isProgress = true
     
-    init() {
-        reloadDictionary()
-    }
+//    init() {
+//        reloadDictionary()
+//    }
     
     func reloadDictionary() {
         isProgress = true
-        domains = FeatureFlagsSupport._getAllFFWithStates()
+        
+        let systemDict = FeatureFlagsSupport._getAllFFWithStates()
+        let merged = FeatureFlagsSupport.mergedWithUserTrackedFeatures(base: systemDict)
+        domains = merged
+        
         isProgress = false
     }
     
@@ -53,3 +57,4 @@ import Foundation
         }.sorted { $0.key < $1.key }
     }
 }
+
