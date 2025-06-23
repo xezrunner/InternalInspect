@@ -7,23 +7,28 @@
 
 import SwiftUI
 
-enum MainTab: String, CaseIterable, Identifiable, Hashable {
+public protocol AppTab: CaseIterable, Identifiable, Hashable, Equatable, RawRepresentable {
+    var id: Self { get }
+    
+    associatedtype Content: View
+    @ViewBuilder func view() -> Content
+    
+    var icon:     String { get }
+}
+
+public extension AppTab {
+    var id: Self { self }
+    var icon: String { get { return "gear" } }
+}
+
+enum RootTab: String, AppTab {
     var id: Self { self }
     
     case packets = "Packets"
     case featureFlags = "Feature flags"
     case scratch = "Scratch"
     
-    public var icon: String {
-        switch self {
-        case .packets:  "shippingbox"
-        case .featureFlags: "flag.filled.and.flag.crossed"
-        case .scratch: "pawprint"
-        }
-    }
-    
-    @MainActor @ViewBuilder
-    public func view() -> some View {
+    @ViewBuilder func view() -> some View {
         switch self {
         case .packets:
             PacketsTab().environment(PacketsTabState())
@@ -31,6 +36,14 @@ enum MainTab: String, CaseIterable, Identifiable, Hashable {
             FeatureFlagsTab().environment(FeatureFlagsTabState())
         case .scratch:
             Scratch()
+        }
+    }
+    
+    public var icon: String {
+        switch self {
+        case .packets:  "shippingbox"
+        case .featureFlags: "flag.filled.and.flag.crossed"
+        case .scratch: "pawprint"
         }
     }
 }

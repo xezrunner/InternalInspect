@@ -5,19 +5,11 @@ struct ContentView: View {
     @Environment(GlobalState.self) var globalState
     
     var body: some View {
-        NavigationStack {
-            ZStack {
-                
-#if os(macOS) || targetEnvironment(macCatalyst)
-                macOSMainView()
-#else
-                UIKitMainView()
-#endif
-                
-                AppLaunchUILayer()
-                SettingsUILayer()
-                DebugUILayer()
-            }
+        RootView()
+        .overlay {
+            AppLaunchUILayer()
+            SettingsUILayer()
+            DebugUILayer()
         }
     }
 }

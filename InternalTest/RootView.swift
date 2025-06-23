@@ -7,19 +7,16 @@
 
 import SwiftUI
 
-struct macOSMainView: View {
-    @State var selectedTab: MainTab = MainTab.featureFlags
+struct RootView: View {
+    @State var selectedTab: RootTab = .featureFlags
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            ForEach(MainTab.allCases) { tab in
+            ForEach(RootTab.allCases) { tab in
                 Tab(tab.rawValue, systemImage: tab.icon, value: tab) {
                     tab.view()
                 }
             }
         }
-//        .toolbar {
-//            MainToolbar()
-//        }
     }
 }
