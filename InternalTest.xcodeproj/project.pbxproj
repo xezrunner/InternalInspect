@@ -33,6 +33,8 @@
 		2198B7A82C08FB530056EB08 /* Interop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2198B7A72C08FB530056EB08 /* Interop.swift */; };
 		219FC3902D8FC8990002F41E /* FeatureFlagsBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 219FC38F2D8FC8990002F41E /* FeatureFlagsBridge.m */; };
 		21A8007E2C8B38D2009C049F /* MainToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8007D2C8B38D0009C049F /* MainToolbar.swift */; };
+		21A842AD2E0A1EE900250EF0 /* FeatureFlagFeatureEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A842AC2E0A1EE900250EF0 /* FeatureFlagFeatureEntryView.swift */; };
+		21A842AF2E0A1F1A00250EF0 /* FeatureFlagDomainEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A842AE2E0A1F1A00250EF0 /* FeatureFlagDomainEntryView.swift */; };
 		21AD64262C2B8204008DA41C /* SystemColors in Frameworks */ = {isa = PBXBuildFile; productRef = 21AD64252C2B8204008DA41C /* SystemColors */; };
 		21B61AD82C225AE800CA4DDB /* PopupCloseOverlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B61AD72C225ADD00CA4DDB /* PopupCloseOverlayButton.swift */; };
 		21BE66312D90F20400BF1D2E /* DynamicSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BE66302D90F20400BF1D2E /* DynamicSwizzle.m */; };
@@ -77,6 +79,8 @@
 		219FC38F2D8FC8990002F41E /* FeatureFlagsBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeatureFlagsBridge.m; sourceTree = "<group>"; };
 		219FC3922D8FC99D0002F41E /* FeatureFlagsSupport.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = FeatureFlagsSupport.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/PrivateFrameworks/FeatureFlagsSupport.framework/Versions/A/FeatureFlagsSupport.tbd; sourceTree = DEVELOPER_DIR; };
 		21A8007D2C8B38D0009C049F /* MainToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainToolbar.swift; sourceTree = "<group>"; };
+		21A842AC2E0A1EE900250EF0 /* FeatureFlagFeatureEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlagFeatureEntryView.swift; sourceTree = "<group>"; };
+		21A842AE2E0A1F1A00250EF0 /* FeatureFlagDomainEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlagDomainEntryView.swift; sourceTree = "<group>"; };
 		21B61AD72C225ADD00CA4DDB /* PopupCloseOverlayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupCloseOverlayButton.swift; sourceTree = "<group>"; };
 		21BE662F2D90F20400BF1D2E /* DynamicSwizzle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DynamicSwizzle.h; sourceTree = "<group>"; };
 		21BE66302D90F20400BF1D2E /* DynamicSwizzle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DynamicSwizzle.m; sourceTree = "<group>"; };
@@ -209,6 +213,8 @@
 			children = (
 				2144D1702D90A78B00439A81 /* FeatureFlagsTab.swift */,
 				2189ECE02E077143003A8C2C /* FeatureFlagsTabState.swift */,
+				21A842AE2E0A1F1A00250EF0 /* FeatureFlagDomainEntryView.swift */,
+				21A842AC2E0A1EE900250EF0 /* FeatureFlagFeatureEntryView.swift */,
 				215670562E08CAE100C54709 /* AddUserTrackedFeatureSheetView.swift */,
 			);
 			path = "Feature Flags";
@@ -350,8 +356,10 @@
 				21A8007E2C8B38D2009C049F /* MainToolbar.swift in Sources */,
 				21790EE52C22389D00801CD7 /* PacketGroupSection.swift in Sources */,
 				2166CD6F2C8BA868005EC975 /* ConsoleView.swift in Sources */,
+				21A842AF2E0A1F1A00250EF0 /* FeatureFlagDomainEntryView.swift in Sources */,
 				21F6487E2C8B57AF00AB7634 /* PacketListLabel.swift in Sources */,
 				2157BB392C08AA8200F19C85 /* DefaultPacketConfiguration.swift in Sources */,
+				21A842AD2E0A1EE900250EF0 /* FeatureFlagFeatureEntryView.swift in Sources */,
 				211DCA542C9A414A0039A1D5 /* SettingsUILayer.swift in Sources */,
 				21BE66312D90F20400BF1D2E /* DynamicSwizzle.m in Sources */,
 				2189ECDE2E076EFB003A8C2C /* PacketsTabState.swift in Sources */,
