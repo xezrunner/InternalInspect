@@ -32,7 +32,7 @@ struct FeatureFlagsTab: View {
     var mainView: some View {
         @Bindable var state = state
         
-        return NavigationSplitView(preferredCompactColumn: .constant(NavigationSplitViewColumn.sidebar)) {
+        return NavigationSplitView {
             domainsSidebar
         } detail: {
             let filtered = state.filteredFeatures(domain: selectedDomain, query: featuresSearchQuery)
