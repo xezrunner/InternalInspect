@@ -22,11 +22,7 @@ struct FeatureFlagsTab: View {
             if state.isProgress { progressView }
             else                { mainView }
         }
-        .task {
-            withAnimation(.linear(duration: 0.3)) {
-                state.reloadDictionary()
-            }
-        }
+        .animation(.linear, value: state.isProgress)
     }
     
     var mainView: some View {
@@ -46,17 +42,22 @@ struct FeatureFlagsTab: View {
                     noDomainSelectedView
                 }
             }
-            .toolbar {
-                ToolbarItem(id: "add-feature", placement: .primaryAction) {
-                    Button("Add feature", systemImage: "plus") { isPresentingAddFeatureSheet = true }
-                }
-            }
         }
         .navigationSplitViewStyle(.balanced)
         .sheet(isPresented: $isPresentingAddFeatureSheet) {
             AddUserTrackedFeatureSheetView(isSheetPresented: $isPresentingAddFeatureSheet)
                 .overlay { PopupCloseOverlayButton() }
+            
+                .presentationDetents([.medium])
+                .presentationCompactAdaptation(.popover)
+            
                 .environment(state)
+        }
+    }
+    
+    var toolbar: some ToolbarContent {
+        ToolbarItem(id: "add-feature", placement: .primaryAction) {
+            Button("Add feature", systemImage: "plus") { isPresentingAddFeatureSheet = true }
         }
     }
     
@@ -67,8 +68,12 @@ struct FeatureFlagsTab: View {
             FeatureFlagDomainEntryView(domain: domain, features: features)
         }
         .searchable(text: $domainsSearchQuery, placement: .sidebar)
-        .toolbar(removing: .sidebarToggle)
+        
         .navigationSplitViewColumnWidth(min: 250, ideal: 300)
+        .toolbar(removing: .sidebarToggle)
+        .toolbar { toolbar }
+        
+        .refreshable { state.reloadDictionary() }
         .id(state.domains.hashValue)
     }
     
@@ -77,6 +82,8 @@ struct FeatureFlagsTab: View {
             FeatureFlagFeatureEntryView(featureName: feature, featureState: result)
         }
         .searchable(text: $featuresSearchQuery, placement: .toolbarPrincipal)
+        
+        .toolbar { toolbar }
     }
     
     var progressView: some View {

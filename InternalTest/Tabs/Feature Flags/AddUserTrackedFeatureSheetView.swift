@@ -11,6 +11,27 @@ struct AddUserTrackedFeatureSheetView: View {
     
     @State var error: String?
     
+    var body: some View {
+        VStack(spacing: 24) {
+            HeroExplainer(title: "Add new feature",
+                          description: "This domain and feature will be tracked by the application in addition to system feature flags.",
+                          symbolName: "gear")
+            
+            VStack {
+                TextField("Domain",  text: $domainText,  prompt: Text("Domain name"))
+                TextField("Feature", text: $featureText, prompt: Text("Feature name"))
+            }
+            .textFieldStyle(.roundedBorder)
+            .padding()
+            
+            if error != nil { Text(error!).foregroundStyle(.orange) }
+            
+            Button("Add feature", action: performAdd)
+                .buttonStyle(.borderedProminent)
+        }
+        .padding()
+    }
+    
     func performAdd() {
         guard !domainText.trimmingCharacters(in: .whitespaces).isEmpty,
               !featureText.trimmingCharacters(in: .whitespaces).isEmpty else {
@@ -33,24 +54,5 @@ struct AddUserTrackedFeatureSheetView: View {
         state.reloadDictionary()
         
         isSheetPresented = false
-    }
-    
-    var body: some View {
-        VStack(spacing: 24) {
-            HeroExplainer(title: "Add new feature",
-                          description: "This domain and feature will be tracked by the application in addition to system feature flags.",
-                          symbolName: "gear")
-            
-            Form {
-                TextField("Domain",  text: $domainText,  prompt: Text("Domain name"))
-                TextField("Feature", text: $featureText, prompt: Text("Feature name"))
-                
-                if error != nil { Text(error!).foregroundStyle(.orange) }
-            }
-            
-            Button("Add feature", action: performAdd)
-                .buttonStyle(.borderedProminent)
-        }
-        .padding()
     }
 }

@@ -5,20 +5,21 @@ import Foundation
 @Observable class FeatureFlagsTabState {
     var domains: FeatureFlagsDictionary = [:]
     
-    var isProgress = true
+    var isProgress = false
     
-//    init() {
-//        reloadDictionary()
-//    }
+    init() {
+        reloadDictionary()
+    }
     
     func reloadDictionary() {
         isProgress = true
-        
-        let systemDict = FeatureFlagsSupport._getAllFFWithStates()
-        let merged = FeatureFlagsSupport.mergedWithUserTrackedFeatures(base: systemDict)
-        domains = merged
-        
-        isProgress = false
+        Task {
+            let systemDict = FeatureFlagsSupport._getAllFFWithStates()
+            let merged = FeatureFlagsSupport.mergedWithUserTrackedFeatures(base: systemDict)
+            domains = merged
+            
+            isProgress = false
+        }
     }
     
     func filteredDomains(query: String) -> [(key: String, value: FeatureFlags_FeaturesDictionary)] {
