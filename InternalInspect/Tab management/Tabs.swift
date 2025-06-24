@@ -1,6 +1,6 @@
 //
 //  Tabs.swift
-//  InternalTest
+//  InternalInspect
 //
 //  Created by Sebastian Kassai on 23/03/2025.
 //

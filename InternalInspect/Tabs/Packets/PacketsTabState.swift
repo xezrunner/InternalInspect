@@ -1,4 +1,4 @@
-// InternalTest::PacketsTabViewGlobalState.swift - 22.06.2025
+// InternalInspect::PacketsTabViewGlobalState.swift - 22.06.2025
 
 import Foundation
 

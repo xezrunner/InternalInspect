@@ -48,11 +48,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2112A3CB2C221CBF00D64EA9 /* InternalTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = InternalTest.entitlements; sourceTree = "<group>"; };
+		2112A3CB2C221CBF00D64EA9 /* InternalInspect.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = InternalInspect.entitlements; sourceTree = "<group>"; };
 		2112A3CC2C22253500D64EA9 /* Eligiblity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eligiblity.swift; sourceTree = "<group>"; };
 		211DCA512C9A41340039A1D5 /* DebugUILayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugUILayer.swift; sourceTree = "<group>"; };
 		211DCA532C9A41460039A1D5 /* SettingsUILayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsUILayer.swift; sourceTree = "<group>"; };
-		2123DF6A2C0679DB00868B53 /* InternalTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InternalTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2123DF6A2C0679DB00868B53 /* InternalInspect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InternalInspect.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2123DF6D2C0679DB00868B53 /* InternalTestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalTestApp.swift; sourceTree = "<group>"; };
 		2123DF6F2C0679DB00868B53 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2123DF712C0679DE00868B53 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -74,7 +74,7 @@
 		2189ECDD2E076EFA003A8C2C /* PacketsTabState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketsTabState.swift; sourceTree = "<group>"; };
 		2189ECE02E077143003A8C2C /* FeatureFlagsTabState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlagsTabState.swift; sourceTree = "<group>"; };
 		2198B7A72C08FB530056EB08 /* Interop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interop.swift; sourceTree = "<group>"; };
-		219FC38D2D8FC8990002F41E /* InternalTest-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "InternalTest-Bridging-Header.h"; sourceTree = "<group>"; };
+		219FC38D2D8FC8990002F41E /* InternalInspect-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "InternalInspect-Bridging-Header.h"; sourceTree = "<group>"; };
 		219FC38E2D8FC8990002F41E /* FeatureFlagsBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeatureFlagsBridge.h; sourceTree = "<group>"; };
 		219FC38F2D8FC8990002F41E /* FeatureFlagsBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeatureFlagsBridge.m; sourceTree = "<group>"; };
 		219FC3922D8FC99D0002F41E /* FeatureFlagsSupport.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = FeatureFlagsSupport.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/PrivateFrameworks/FeatureFlagsSupport.framework/Versions/A/FeatureFlagsSupport.tbd; sourceTree = DEVELOPER_DIR; };
@@ -129,7 +129,7 @@
 		2123DF612C0679DB00868B53 = {
 			isa = PBXGroup;
 			children = (
-				2123DF6C2C0679DB00868B53 /* InternalTest */,
+				2123DF6C2C0679DB00868B53 /* InternalInspect */,
 				219FC3912D8FC99C0002F41E /* Frameworks */,
 				2123DF6B2C0679DB00868B53 /* Products */,
 			);
@@ -138,12 +138,12 @@
 		2123DF6B2C0679DB00868B53 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2123DF6A2C0679DB00868B53 /* InternalTest.app */,
+				2123DF6A2C0679DB00868B53 /* InternalInspect.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2123DF6C2C0679DB00868B53 /* InternalTest */ = {
+		2123DF6C2C0679DB00868B53 /* InternalInspect */ = {
 			isa = PBXGroup;
 			children = (
 				21BE662E2D90F20100BF1D2E /* DynamicSwizzle */,
@@ -158,11 +158,12 @@
 				218110B32D9074810044E116 /* RootView.swift */,
 				2123DF6F2C0679DB00868B53 /* ContentView.swift */,
 				2123DF6D2C0679DB00868B53 /* InternalTestApp.swift */,
+				219FC38D2D8FC8990002F41E /* InternalInspect-Bridging-Header.h */,
 				2123DF712C0679DE00868B53 /* Assets.xcassets */,
-				2112A3CB2C221CBF00D64EA9 /* InternalTest.entitlements */,
+				2112A3CB2C221CBF00D64EA9 /* InternalInspect.entitlements */,
 				2123DF732C0679DE00868B53 /* Preview Content */,
 			);
-			path = InternalTest;
+			path = InternalInspect;
 			sourceTree = "<group>";
 		};
 		2123DF732C0679DE00868B53 /* Preview Content */ = {
@@ -238,7 +239,6 @@
 				215654CF2D90AA290096D778 /* FeatureFlagsSupport.swift */,
 				219FC38E2D8FC8990002F41E /* FeatureFlagsBridge.h */,
 				219FC38F2D8FC8990002F41E /* FeatureFlagsBridge.m */,
-				219FC38D2D8FC8990002F41E /* InternalTest-Bridging-Header.h */,
 			);
 			path = "Feature flags support";
 			sourceTree = "<group>";
@@ -277,9 +277,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2123DF692C0679DB00868B53 /* InternalTest */ = {
+		2123DF692C0679DB00868B53 /* InternalInspect */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2123DF782C0679DE00868B53 /* Build configuration list for PBXNativeTarget "InternalTest" */;
+			buildConfigurationList = 2123DF782C0679DE00868B53 /* Build configuration list for PBXNativeTarget "InternalInspect" */;
 			buildPhases = (
 				2123DF662C0679DB00868B53 /* Sources */,
 				2123DF672C0679DB00868B53 /* Frameworks */,
@@ -289,12 +289,12 @@
 			);
 			dependencies = (
 			);
-			name = InternalTest;
+			name = InternalInspect;
 			packageProductDependencies = (
 				21AD64252C2B8204008DA41C /* SystemColors */,
 			);
 			productName = InternalTest;
-			productReference = 2123DF6A2C0679DB00868B53 /* InternalTest.app */;
+			productReference = 2123DF6A2C0679DB00868B53 /* InternalInspect.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -313,7 +313,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2123DF652C0679DB00868B53 /* Build configuration list for PBXProject "InternalTest" */;
+			buildConfigurationList = 2123DF652C0679DB00868B53 /* Build configuration list for PBXProject "InternalInspect" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -329,7 +329,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2123DF692C0679DB00868B53 /* InternalTest */,
+				2123DF692C0679DB00868B53 /* InternalInspect */,
 			);
 		};
 /* End PBXProject section */
@@ -528,11 +528,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = InternalTest/InternalTest.entitlements;
+				CODE_SIGN_ENTITLEMENTS = InternalInspect/InternalInspect.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"InternalTest/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"InternalInspect/Preview Content\"";
 				DEVELOPMENT_TEAM = W7TTKAZX72;
 				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_PREVIEWS = YES;
@@ -551,7 +551,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.xezrunner.InternalTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xezrunner.InternalInspect;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				REGISTER_APP_GROUPS = YES;
@@ -561,7 +561,7 @@
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "InternalTest/Feature flags support/InternalTest-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "InternalInspect/InternalInspect-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_STRICT_CONCURRENCY = minimal;
 				SWIFT_VERSION = 5.0;
@@ -577,11 +577,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = InternalTest/InternalTest.entitlements;
+				CODE_SIGN_ENTITLEMENTS = InternalInspect/InternalInspect.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"InternalTest/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"InternalInspect/Preview Content\"";
 				DEVELOPMENT_TEAM = W7TTKAZX72;
 				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_PREVIEWS = YES;
@@ -600,7 +600,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.xezrunner.InternalTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xezrunner.InternalInspect;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				REGISTER_APP_GROUPS = YES;
@@ -610,7 +610,7 @@
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "InternalTest/Feature flags support/InternalTest-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "InternalInspect/InternalInspect-Bridging-Header.h";
 				SWIFT_STRICT_CONCURRENCY = minimal;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,6,7";
@@ -621,7 +621,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2123DF652C0679DB00868B53 /* Build configuration list for PBXProject "InternalTest" */ = {
+		2123DF652C0679DB00868B53 /* Build configuration list for PBXProject "InternalInspect" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2123DF762C0679DE00868B53 /* Debug */,
@@ -630,7 +630,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2123DF782C0679DE00868B53 /* Build configuration list for PBXNativeTarget "InternalTest" */ = {
+		2123DF782C0679DE00868B53 /* Build configuration list for PBXNativeTarget "InternalInspect" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2123DF792C0679DE00868B53 /* Debug */,

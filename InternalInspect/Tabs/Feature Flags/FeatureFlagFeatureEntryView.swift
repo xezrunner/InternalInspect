@@ -1,4 +1,4 @@
-// InternalTest::FeatureFlagFeatureEntryView.swift - 24.06.2025
+// InternalInspect::FeatureFlagFeatureEntryView.swift - 24.06.2025
 import SwiftUI
 
 struct FeatureFlagFeatureEntryView: View {

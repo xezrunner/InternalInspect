@@ -1,4 +1,4 @@
-// InternalTest::FeatureFlagsTabViewState.swift - 22.06.2025
+// InternalInspect::FeatureFlagsTabViewState.swift - 22.06.2025
 
 import Foundation
 
