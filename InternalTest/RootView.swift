@@ -18,5 +18,20 @@ struct RootView: View {
                 }
             }
         }
+        .tabViewStyle(.sidebarAdaptable)
+        .availability_tabViewSolariumTweaks()
+    }
+}
+
+extension View {
+    @ViewBuilder func availability_tabViewSolariumTweaks() -> some View {
+#if os(iOS)
+        if #available(iOS 26.0, *) {
+            self
+                .tabBarMinimizeBehavior(.onScrollDown)
+        } else { self }
+#else
+        self
+#endif
     }
 }

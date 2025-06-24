@@ -43,6 +43,10 @@ struct FeatureFlagsTab: View {
                 }
             }
         }
+#if os(macOS)
+        // On macOS, we can put the toolbar on a container view and it's happy:  :ToolbarWeirdness
+        .toolbar { toolbar }
+#endif
         .navigationSplitViewStyle(.balanced)
         .sheet(isPresented: $isPresentingAddFeatureSheet) {
             AddUserTrackedFeatureSheetView(isSheetPresented: $isPresentingAddFeatureSheet)
@@ -68,12 +72,16 @@ struct FeatureFlagsTab: View {
             FeatureFlagDomainEntryView(domain: domain, features: features)
         }
         .searchable(text: $domainsSearchQuery, placement: .sidebar)
+        .refreshable { state.reloadDictionary() }
         
         .navigationSplitViewColumnWidth(min: 250, ideal: 300)
         .toolbar(removing: .sidebarToggle)
-        .toolbar { toolbar }
         
-        .refreshable { state.reloadDictionary() }
+#if os(iOS)
+        // On iOS, we have to put the toolbar on the Views inside container views... Bad!  :ToolbarWeirdness
+        .toolbar { toolbar }
+#endif
+        
         .id(state.domains.hashValue)
     }
     
@@ -81,10 +89,12 @@ struct FeatureFlagsTab: View {
         List(filtered, id: \.key) { feature, result in
             FeatureFlagFeatureEntryView(featureName: feature, featureState: result)
         }
-        .refreshable { await refreshFeatures(filtered: filtered) }
         .searchable(text: $featuresSearchQuery, placement: .toolbarPrincipal)
+        .refreshable { await refreshFeatures(filtered: filtered) }
         
-        .toolbar { toolbar }
+#if os(iOS)
+        .toolbar { toolbar } // :ToolbarWeirdness
+#endif
     }
     
     private func refreshFeatures(filtered: [(key: String, value: FeatureFlagState)]) async {
