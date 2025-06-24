@@ -38,6 +38,7 @@ struct FeatureFlagFeatureEntryView: View {
         }
     }
     
+    // FIXME: unsetting does not work properly! It causes a SwiftUI crash as well.
     func deleteFeature() {
         if featureState.isNotSystemDeclared {
             FeatureFlagsSupport.deleteUserAddedFeature(domain: featureState.domain, feature: featureName)
@@ -61,40 +62,46 @@ struct FeatureFlagFeatureEntryView: View {
     var featureEntryLabel: some View {
         HStack {
             VStack(alignment: .leading, spacing: 2) {
-                Text(featureName).bold()
+                Text(featureName)
+                    .bold(featureState.isEnabled())
                 
-                VStack(alignment: .leading) {
+                Group {
                     HStack(spacing: 0) {
-                        Text("domain: "); Text(featureState.domain).bold()
+                        Text("domain: ")
+                        Text(featureState.domain)
+                            .bold(featureState.isEnabled())
                     }
                     
                     HStack(spacing: 0) {
-                        Text("value: "); Text("\(featureState.value) (\(featureState.value == 0 ? "disabled" : "enabled"))").bold()
-                    }
-                    
-                    if featureState.isNotSystemDeclared {
-                        Text("This feature flag is not declared in the system, so it defaults to being off.")
-                    }
-                    
-                    if featureState.isAddedByUser {
-                        Text("This feature flag was added by you.")
-                    }
-                    
-                    if !featureState.phase.isEmpty {
-                        HStack(spacing: 0) {
-                            Text("phase: "); Text(featureState.phase).bold()
-                        }
-                    }
-                    
-                    if !featureState.disclosureRequired.isEmpty {
-                        HStack(spacing: 0) {
-                            Text("disclosure required: "); Text(featureState.disclosureRequired).monospaced()
-                        }
+                        Text("value: ")
+                        Text("\(featureState.value) (\(featureState.value == 0 ? "disabled" : "enabled"))")
+                            .bold(featureState.isEnabled())
                     }
                 }
-                .font(.subheadline)
-                .monospaced()
+                
+                if featureState.isNotSystemDeclared {
+                    Text("This feature flag is not declared in the system, so it defaults to being off.")
+                }
+                
+                if featureState.isAddedByUser {
+                    Text("This feature flag was added by you.")
+                }
+                
+                if !featureState.phase.isEmpty {
+                    HStack(spacing: 0) {
+                        Text("phase: "); Text(featureState.phase).bold(featureState.isEnabled())
+                    }
+                }
+                
+                if !featureState.disclosureRequired.isEmpty {
+                    HStack(spacing: 0) {
+                        Text("disclosure required: "); Text(featureState.disclosureRequired).monospaced()
+                    }
+                }
             }
+            .font(.subheadline)
+            .monospaced()
+            .opacity(featureState.isEnabled() ? 1 : 0.7)
             
             Spacer()
             
@@ -110,6 +117,7 @@ struct FeatureFlagFeatureEntryView: View {
                 .aspectRatio(1, contentMode: .fit)
         }
         .padding(4)
+        .tint(.primary)
     }
 }
 
