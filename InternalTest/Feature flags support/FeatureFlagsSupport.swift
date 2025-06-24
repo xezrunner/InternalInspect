@@ -65,11 +65,23 @@ class FeatureFlagsSupport {
         FeatureFlagsBridge.setFeature(newState, domain, feature)
     }
     
-    public static func deleteDomain(domain: String) {
+    public static func deleteUserAdded(domain: String) {
         let userTrackedFeaturesKey = "UserTrackedFeatures"
         var array = UserDefaults.standard.array(forKey: userTrackedFeaturesKey) as? [[String: String]] ?? []
         
         array.removeAll { $0["domain"] == domain }
         UserDefaults.standard.set(array, forKey: userTrackedFeaturesKey)
+    }
+    
+    public static func deleteUserAddedFeature(domain: String, feature: String) {
+        let userTrackedFeaturesKey = "UserTrackedFeatures"
+        var array = UserDefaults.standard.array(forKey: userTrackedFeaturesKey) as? [[String: String]] ?? []
+        
+        if let idx = array.firstIndex(where: { $0["domain"] == domain && $0["feature"] == feature }) {
+            array.remove(at: idx)
+            UserDefaults.standard.set(array, forKey: userTrackedFeaturesKey)
+        } else {
+            print("Feature \(feature) not in UserDefaults!")
+        }
     }
 }

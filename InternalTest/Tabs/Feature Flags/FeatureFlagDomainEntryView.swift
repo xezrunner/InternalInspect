@@ -43,7 +43,7 @@ struct FeatureFlagDomainEntryView: View {
     }
     
     func deleteDomain() {
-        FeatureFlagsSupport.deleteDomain(domain: domain)
+        FeatureFlagsSupport.deleteUserAdded(domain: domain)
         state.reloadDictionary()
     }
 }

@@ -4,23 +4,10 @@ import SwiftUI
 struct FeatureFlagFeatureEntryView: View {
     @Environment(FeatureFlagsTabState.self) var state
     
-    @State var featureName:  String
+    @State var featureName:  String // TODO: is this needed if we already have it in featureState?
     @State var featureState: FeatureFlagState
     
     @State var isProgress = false
-    
-    func deleteFeature() {
-        let userTrackedFeaturesKey = "UserTrackedFeatures"
-        var array = UserDefaults.standard.array(forKey: userTrackedFeaturesKey) as? [[String: String]] ?? []
-        
-        if let idx = array.firstIndex(where: { $0["domain"] == featureState.domain && $0["feature"] == featureName }) {
-            array.remove(at: idx)
-            UserDefaults.standard.set(array, forKey: userTrackedFeaturesKey)
-            state.reloadDictionary()
-        } else {
-            print("Feature \(featureName) not in UserDefaults!")
-        }
-    }
     
     var body: some View {
         Group {
@@ -38,21 +25,24 @@ struct FeatureFlagFeatureEntryView: View {
         
         .swipeActions(edge: .trailing, allowsFullSwipe: true) {
             if featureState.isAddedByUser {
-                Button(role: .destructive) {
-                    deleteFeature()
-                } label: {
-                    Label("Delete", systemImage: "trash")
-                }
+                deleteButton
             }
         }
         .contextMenu {
-            Button(role: .destructive) {
-                deleteFeature()
-            } label: {
-                Label("Delete", systemImage: "trash")
-            }
-            .disabled(!featureState.isAddedByUser)
+            deleteButton
+                .disabled(!featureState.isAddedByUser)
         }
+    }
+    
+    var deleteButton: some View {
+        Button(role: .destructive, action: deleteFeature) {
+            Label("Delete", systemImage: "trash")
+        }
+    }
+    
+    func deleteFeature() {
+        FeatureFlagsSupport.deleteUserAddedFeature(domain: featureState.domain, feature: featureName)
+        state.reloadDictionary()
     }
     
     func toggleFeature(domainName: String, featureName: String) {

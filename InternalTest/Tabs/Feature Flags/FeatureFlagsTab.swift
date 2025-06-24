@@ -125,7 +125,7 @@ struct FeatureFlagsTab: View {
             Image(systemName: "minus.diamond")
                 .font(.system(size: 72))
             
-            Text("This domain has no registered features.")
+            Text("This domain has no registered features")
                 .font(.title2)
         }
     }
@@ -135,7 +135,7 @@ struct FeatureFlagsTab: View {
             Image(systemName: "pointer.arrow.rays")
                 .font(.system(size: 72))
             
-            Text("Select a domain to see its features.")
+            Text("Select a domain to see its features")
                 .font(.title2)
         }
     }
