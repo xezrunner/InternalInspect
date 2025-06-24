@@ -10,6 +10,8 @@ import SwiftUI
 struct SearchTab: View {
     @Environment(SearchTabState.self) var state
     
+    @State var featureFlagsTabState = FeatureFlagsTabState()
+    
     @Binding var searchQuery: String
     @State private var expandedDomains: Set<String> = []
     
@@ -57,32 +59,20 @@ struct SearchTab: View {
             }
             
             .id(state.domains.hashValue)
+            
+            .environment(featureFlagsTabState)
         }
     }
 }
 
 struct SearchFeatureRow: View {
+    @Environment(FeatureFlagsTabState.self) var featureFlagsTabstate
     @Environment(SearchTabState.self) var state
     
     let domain: String
     let feature: String
     var body: some View {
         let featureState = FeatureFlagsSupport.getFeature(domain: domain, feature: feature)
-        
-        Button {
-            FeatureFlagsSupport.setFeature(newState: !featureState.isEnabled(), domain: domain, feature: feature)
-            state.reloadDictionary() // FIXME: bad!  @Performance
-        } label: {
-            HStack {
-                Text(feature)
-                
-                Spacer()
-                
-                Circle()
-                    .fill(featureState.isEnabled() ? .green : .red)
-                    .frame(height: 16)
-                    .aspectRatio(1, contentMode: .fit)
-            }
-        }
+        FeatureFlagFeatureEntryView(featureName: feature, featureState: featureState)
     }
 }

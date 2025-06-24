@@ -34,6 +34,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)invalidateCache;
 
++ (FeatureFlagState*)refreshState:(FeatureFlagState*) state;
+
 + (FeatureFlagState*)getValue:(NSString*)domain :(NSString*)feature;
 
 + (void)unsetFeature:(NSString*)feature domain:(NSString*)domain;

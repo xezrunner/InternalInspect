@@ -34,7 +34,7 @@ struct FeatureFlagDomainEntryView: View {
     
     var deleteButton: some View {
         Button(role: .destructive, action: deleteDomain) {
-            Label("Delete manually added features or domain", systemImage: "trash")
+            Label("Delete manually added features or domains", systemImage: "trash")
         }
     }
     

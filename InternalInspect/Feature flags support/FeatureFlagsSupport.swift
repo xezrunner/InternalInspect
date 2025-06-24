@@ -71,6 +71,10 @@ class FeatureFlagsSupport {
         return FeatureFlagsBridge.getValue(domain, feature)
     }
     
+    public static func refreshFeatureState(state: FeatureFlagState) -> FeatureFlagState {
+        return FeatureFlagsBridge.refreshState(state)
+    }
+    
     public static func setFeature(newState: Bool, domain: String, feature: String) {
         FeatureFlagsBridge.setFeature(newState, domain, feature)
     }

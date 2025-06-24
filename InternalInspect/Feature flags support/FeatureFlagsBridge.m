@@ -35,6 +35,10 @@ NSObject* FFConfiguration_shared;
     [FFConfiguration_shared performSelector:sel];
 }
 
++ (FeatureFlagState*)refreshState:(FeatureFlagState*) state {
+    return [FeatureFlagsBridge getValue:state.domain :state.feature];
+}
+
 + (FeatureFlagState*)getValue:(NSString*)domain :(NSString*)feature {
     SEL stateSel = NSSelectorFromString(@"stateForFeature:domain:");
     NSObject* resultObj = [FFConfiguration_shared performSelector: stateSel withObject:feature withObject:domain];

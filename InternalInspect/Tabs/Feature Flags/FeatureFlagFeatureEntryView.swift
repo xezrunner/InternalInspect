@@ -32,8 +32,8 @@ struct FeatureFlagFeatureEntryView: View {
     }
     
     var deleteButton: some View {
-        Button(role: .destructive) {
-            withAnimation { deleteFeature() }
+        Button(role: featureState.isNotSystemDeclared ? .destructive : nil) {
+            deleteFeature()
         } label: {
             Label(featureState.isNotSystemDeclared ? "Delete" : "Unset",
                   systemImage: featureState.isNotSystemDeclared ? "trash" : "xmark.circle")
@@ -41,20 +41,16 @@ struct FeatureFlagFeatureEntryView: View {
     }
     
     func deleteFeature() {
-        // Remove from local state dictionary first so SwiftUI is in sync before animation
-        // This prevents an assertion about item count in the list as well.
-        if var domainFeatures = state.domains[featureState.domain] {
-            domainFeatures.removeValue(forKey: featureName)
-            state.domains[featureState.domain] = domainFeatures
-        }
-
         if featureState.isNotSystemDeclared {
+            if var domainFeatures = state.domains[featureState.domain] {
+                domainFeatures.removeValue(forKey: featureName)
+                state.domains[featureState.domain] = domainFeatures
+            }
             FeatureFlagsSupport.deleteUserAddedFeature(domain: featureState.domain, feature: featureName)
         } else {
             FeatureFlagsSupport.unsetFeature(domain: featureState.domain, feature: featureName)
+            featureState = FeatureFlagsSupport.refreshFeatureState(state: featureState)
         }
-        
-        state.reloadDictionary()
     }
     
     func toggleFeature(domainName: String, featureName: String) {
