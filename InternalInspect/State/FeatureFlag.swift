@@ -17,6 +17,11 @@ struct FeatureFlag: Identifiable {
 
 struct GlobalFeatureFlags {
     var flags: [FeatureFlag] = [
+        FeatureFlag(name: "EnableGlobalSearch",
+                    description: "Enable global search tab and behavior.",
+                    symbol: "magnifyingglass.circle.fill",
+                    value: false),
+        
         FeatureFlag(name: "ShowDebugInformation",
                     description: "Show additional debugging information about packets.",
                     symbol: "square.stack.3d.up.trianglebadge.exclamationmark.fill",

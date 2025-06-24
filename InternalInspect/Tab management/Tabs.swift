@@ -27,10 +27,10 @@ public extension AppTab {
 enum RootTab: String, AppTab {
     var id: Self { self }
     
-    case packets = "Packets"
+    case packets      = "Packets"
     case featureFlags = "Feature flags"
-//    case scratch = "Scratch"
-    case search = "Search"
+    case settings     = "Settings"
+    case search       = "Search"
     
     @ViewBuilder func view(searchQuery: Binding<String>) -> some View {
         switch self {
@@ -38,8 +38,8 @@ enum RootTab: String, AppTab {
             PacketsTab().environment(PacketsTabState())
         case .featureFlags:
             FeatureFlagsTab().environment(FeatureFlagsTabState())
-//        case .scratch:
-//            Scratch()
+        case .settings:
+            DebugSettingsView()
         case .search:
             SearchTab(searchQuery: searchQuery).environment(SearchTabState())
         }
@@ -47,14 +47,10 @@ enum RootTab: String, AppTab {
     
     public var icon: String {
         switch self {
-        case .search:
-            "magnifyingglass"
-        case .packets:
-            "shippingbox"
-        case .featureFlags:
-            "flag.filled.and.flag.crossed"
-//        case .scratch:
-//            "pawprint"
+        case .search:       "magnifyingglass"
+        case .packets:      "shippingbox"
+        case .featureFlags: "flag.filled.and.flag.crossed"
+        case .settings:     "gear"
         }
     }
     
