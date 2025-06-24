@@ -30,6 +30,7 @@ struct FeatureFlagsTab: View {
         
         return NavigationSplitView {
             domainsSidebar
+                .task { state.reloadDictionary() }
         } detail: {
             let filtered = state.filteredFeatures(domain: selectedDomain, query: featuresSearchQuery)
             

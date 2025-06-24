@@ -1,10 +1,4 @@
-//
-//  SearchTab.swift
-//  InternalInspect
-//
-//  Created by AI Assistant on 24/06/2025.
-//
-
+// InternalInspect::SearchTab.swift - 24.06.2025
 import SwiftUI
 
 struct SearchTab: View {
@@ -16,51 +10,43 @@ struct SearchTab: View {
     @State private var expandedDomains: Set<String> = []
     
     var body: some View {
-        let domains = state.filteredDomains(searchQuery: searchQuery)
-        
         NavigationStack {
             Form {
-                Section("Feature Flags") {
-                    List(domains) { domainFeatures in
-                        DisclosureGroup(isExpanded: Binding(
-                            get: { expandedDomains.contains(domainFeatures.id) },
-                            set: { isOpen in
-                                if isOpen { expandedDomains.insert(domainFeatures.id) }
-                                else { expandedDomains.remove(domainFeatures.id) }
-                            })
-                        ) {
-                            ForEach(domainFeatures.features, id: \.self) { feature in
-                                SearchFeatureRow(domain: domainFeatures.id, feature: feature)
-                            }
-                        } label: {
-                            Label {
-                                HStack {
-                                    Text(domainFeatures.id)
-                                    Spacer()
-                                    Text("\(domainFeatures.features.count)")
-                                        .foregroundStyle(.secondary).font(.callout)
-                                }
-                            } icon: {
-                                EmptyView()
-                            }
-                            .labelStyle(.titleOnly)
-                        }
+                featureFlagsSection
+                    .environment(featureFlagsTabState)
+                    .task { featureFlagsTabState.reloadDictionary() }
+            }
+        }
+    }
+    
+    func featureFlagsDisclosureGroupBinding(domainName: String) -> Binding<Bool> {
+        Binding {
+            expandedDomains.contains(domainName)
+        } set: { isOpen in
+            if isOpen { expandedDomains.insert(domainName) }
+            else      { expandedDomains.remove(domainName) }
+        }
+
+    }
+    
+    var featureFlagsSection: some View {
+        let domains = featureFlagsTabState.filteredDomains(query: searchQuery)
+        
+        return Section("Feature Flags") {
+            List(domains, id: \.key) { domain, features in
+                let featuresArray = featureFlagsTabState.filteredFeatures(domain: domain, query: searchQuery)
+                DisclosureGroup {
+                    ForEach(featuresArray, id: \.key) { feature, state in
+                        FeatureFlagFeatureEntryView(featureName: feature, featureState: state)
+                    }
+                } label: {
+                    HStack {
+                        Text(domain)
+                        Spacer()
+                        Text("\(featuresArray.count)")
                     }
                 }
             }
-            
-            .overlay {
-                if state.isProgress {
-                    VStack(spacing: 8) {
-                        ProgressView().progressViewStyle(.circular).padding(.horizontal, 48)
-                        Text("Loading feature flags...").bold()
-                    }
-                }
-            }
-            
-            .id(state.domains.hashValue)
-            
-            .environment(featureFlagsTabState)
         }
     }
 }
@@ -70,9 +56,10 @@ struct SearchFeatureRow: View {
     @Environment(SearchTabState.self) var state
     
     let domain: String
-    let feature: String
+    @State var featureState: FeatureFlagState
+    
     var body: some View {
-        let featureState = FeatureFlagsSupport.getFeature(domain: domain, feature: feature)
-        FeatureFlagFeatureEntryView(featureName: feature, featureState: featureState)
+        FeatureFlagFeatureEntryView(featureName: featureState.feature, featureState: featureState)
+            .id(featureState.hashValue)
     }
 }

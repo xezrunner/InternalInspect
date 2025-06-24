@@ -7,9 +7,9 @@ import Foundation
     
     var isProgress = false
     
-    init() {
-        reloadDictionary()
-    }
+//    init() {
+//        reloadDictionary()
+//    }
     
     func reloadDictionary() {
         isProgress = true
