@@ -89,6 +89,7 @@ struct FeatureFlagsTab: View {
     func featuresDetail(filtered: [(key: String, value: FeatureFlagState)]) -> some View {
         List(filtered, id: \.key) { feature, result in
             FeatureFlagFeatureEntryView(featureName: feature, featureState: result)
+                .id(result.hash)
         }
         .searchable(text: $featuresSearchQuery, placement: .toolbarPrincipal)
         .refreshable { await refreshFeatures(filtered: filtered) }

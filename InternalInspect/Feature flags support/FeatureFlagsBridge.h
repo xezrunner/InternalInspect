@@ -32,7 +32,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FeatureFlagsBridge : NSObject
 
++ (void)invalidateCache;
+
 + (FeatureFlagState*)getValue:(NSString*)domain :(NSString*)feature;
+
++ (void)unsetFeature:(NSString*)feature domain:(NSString*)domain;
 
 + (void)setFeature:(BOOL)newState :(NSString*)domain :(NSString*)feature;
 

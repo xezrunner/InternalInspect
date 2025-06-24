@@ -11,14 +11,17 @@ public protocol AppTab: CaseIterable, Identifiable, Hashable, Equatable, RawRepr
     var id: Self { get }
     
     associatedtype Content: View
-    @ViewBuilder func view() -> Content
+    @ViewBuilder func view(searchQuery: Binding<String>) -> Content
     
     var icon:     String { get }
+    
+    var role: TabRole? { get }
 }
 
 public extension AppTab {
     var id: Self { self }
     var icon: String { get { return "gear" } }
+    var role: TabRole? { get { nil }}
 }
 
 enum RootTab: String, AppTab {
@@ -27,8 +30,9 @@ enum RootTab: String, AppTab {
     case packets = "Packets"
     case featureFlags = "Feature flags"
 //    case scratch = "Scratch"
+    case search = "Search"
     
-    @ViewBuilder func view() -> some View {
+    @ViewBuilder func view(searchQuery: Binding<String>) -> some View {
         switch self {
         case .packets:
             PacketsTab().environment(PacketsTabState())
@@ -36,14 +40,25 @@ enum RootTab: String, AppTab {
             FeatureFlagsTab().environment(FeatureFlagsTabState())
 //        case .scratch:
 //            Scratch()
+        case .search:
+            SearchTab(searchQuery: searchQuery).environment(SearchTabState())
         }
     }
     
     public var icon: String {
         switch self {
-        case .packets:  "shippingbox"
-        case .featureFlags: "flag.filled.and.flag.crossed"
-//        case .scratch: "pawprint"
+        case .search:
+            "magnifyingglass"
+        case .packets:
+            "shippingbox"
+        case .featureFlags:
+            "flag.filled.and.flag.crossed"
+//        case .scratch:
+//            "pawprint"
         }
+    }
+    
+    public var role: TabRole? {
+        self == .search ? .search : nil
     }
 }

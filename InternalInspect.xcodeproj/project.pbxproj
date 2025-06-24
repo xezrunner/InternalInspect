@@ -17,6 +17,8 @@
 		2130EEDC2C8A769B0026C1A6 /* GlobalState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2130EEDB2C8A76930026C1A6 /* GlobalState.swift */; };
 		2130EEE12C8A776C0026C1A6 /* FeatureFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2130EEE02C8A776B0026C1A6 /* FeatureFlag.swift */; };
 		2144D1712D90A79100439A81 /* FeatureFlagsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2144D1702D90A78B00439A81 /* FeatureFlagsTab.swift */; };
+		214A49892E0A33D6008E2AF9 /* SearchTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214A49882E0A33D6008E2AF9 /* SearchTab.swift */; };
+		214A498C2E0A356C008E2AF9 /* SearchTabState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214A498B2E0A3567008E2AF9 /* SearchTabState.swift */; };
 		215654D02D90AA340096D778 /* FeatureFlagsSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215654CF2D90AA290096D778 /* FeatureFlagsSupport.swift */; };
 		215670572E08CAE100C54709 /* AddUserTrackedFeatureSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215670562E08CAE100C54709 /* AddUserTrackedFeatureSheetView.swift */; };
 		2157487A2CB4DC8A00AE876C /* AppLaunchUILayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215748792CB4DC8A00AE876C /* AppLaunchUILayer.swift */; };
@@ -60,6 +62,8 @@
 		2130EEDB2C8A76930026C1A6 /* GlobalState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalState.swift; sourceTree = "<group>"; };
 		2130EEE02C8A776B0026C1A6 /* FeatureFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlag.swift; sourceTree = "<group>"; };
 		2144D1702D90A78B00439A81 /* FeatureFlagsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlagsTab.swift; sourceTree = "<group>"; };
+		214A49882E0A33D6008E2AF9 /* SearchTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTab.swift; sourceTree = "<group>"; };
+		214A498B2E0A3567008E2AF9 /* SearchTabState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTabState.swift; sourceTree = "<group>"; };
 		215654CF2D90AA290096D778 /* FeatureFlagsSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlagsSupport.swift; sourceTree = "<group>"; };
 		215670562E08CAE100C54709 /* AddUserTrackedFeatureSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserTrackedFeatureSheetView.swift; sourceTree = "<group>"; };
 		215748792CB4DC8A00AE876C /* AppLaunchUILayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLaunchUILayer.swift; sourceTree = "<group>"; };
@@ -188,8 +192,18 @@
 			children = (
 				2189ECDB2E076EDE003A8C2C /* Packets */,
 				2189ECDC2E076EE4003A8C2C /* Feature Flags */,
+				214A498A2E0A3560008E2AF9 /* Search */,
 			);
 			path = Tabs;
+			sourceTree = "<group>";
+		};
+		214A498A2E0A3560008E2AF9 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				214A49882E0A33D6008E2AF9 /* SearchTab.swift */,
+				214A498B2E0A3567008E2AF9 /* SearchTabState.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		218110B02D9072D30044E116 /* Tab management */ = {
@@ -362,6 +376,7 @@
 				21A842AD2E0A1EE900250EF0 /* FeatureFlagFeatureEntryView.swift in Sources */,
 				211DCA542C9A414A0039A1D5 /* SettingsUILayer.swift in Sources */,
 				21BE66312D90F20400BF1D2E /* DynamicSwizzle.m in Sources */,
+				214A49892E0A33D6008E2AF9 /* SearchTab.swift in Sources */,
 				2189ECDE2E076EFB003A8C2C /* PacketsTabState.swift in Sources */,
 				21FF22142C8A70F700DB7C29 /* HeroExplainer.swift in Sources */,
 				2130EEDC2C8A769B0026C1A6 /* GlobalState.swift in Sources */,
@@ -386,6 +401,7 @@
 				2198B7A82C08FB530056EB08 /* Interop.swift in Sources */,
 				21FF22162C8A73C300DB7C29 /* DebugMenu.swift in Sources */,
 				21E5C0732C90FC3F00F6C35E /* SettingsView.swift in Sources */,
+				214A498C2E0A356C008E2AF9 /* SearchTabState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

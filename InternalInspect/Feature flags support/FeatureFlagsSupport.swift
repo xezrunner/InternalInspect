@@ -9,7 +9,11 @@ public typealias FeatureFlagsDictionary = [String: FeatureFlags_FeaturesDictiona
 public typealias FeatureFlags_FeaturesDictionary = [String: FeatureFlagState]
 
 class FeatureFlagsSupport {
+    static func invalidateCache() { FeatureFlagsBridge.invalidateCache() }
+    
     public static func getAllSystemFF() -> [String: Set<String>] {
+        invalidateCache()
+        
         var all: [String: Set<String>] = [:]
         let domains = FeatureFlagsBridge.getDomains() as? Set<String> ?? []
         for domain in domains {
@@ -20,6 +24,8 @@ class FeatureFlagsSupport {
     }
     
     public static func _getAllFFWithStates() -> FeatureFlagsDictionary {
+        invalidateCache()
+        
         var all: FeatureFlagsDictionary = [:]
         
         let domains = FeatureFlagsBridge.getDomains() as? Set<String> ?? []
@@ -46,12 +52,16 @@ class FeatureFlagsSupport {
         for entry in userTracked {
             guard let domain = entry["domain"], let feature = entry["feature"] else { continue }
             var domainFeatures = merged[domain] ?? [:]
-            // Only add if not already present
+            
             if domainFeatures[feature] == nil {
+                // Only add if not already present:
                 let state = FeatureFlagsBridge.getValue(domain, feature)
                 state.isAddedByUser = true
                 domainFeatures[feature] = state
                 merged[domain] = domainFeatures
+            } else {
+                // Mark that it's custom, even if set and registered:
+                domainFeatures[feature]?.isAddedByUser = true
             }
         }
         return merged
@@ -63,6 +73,10 @@ class FeatureFlagsSupport {
     
     public static func setFeature(newState: Bool, domain: String, feature: String) {
         FeatureFlagsBridge.setFeature(newState, domain, feature)
+    }
+    
+    public static func unsetFeature(domain: String, feature: String) {
+        FeatureFlagsBridge.unsetFeature(feature, domain: domain)
     }
     
     public static func deleteUserAdded(domain: String) {

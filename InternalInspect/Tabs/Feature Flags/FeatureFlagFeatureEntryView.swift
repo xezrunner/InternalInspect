@@ -24,24 +24,26 @@ struct FeatureFlagFeatureEntryView: View {
         }
         
         .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-            if featureState.isAddedByUser {
-                deleteButton
-            }
+            deleteButton
         }
         .contextMenu {
             deleteButton
-                .disabled(!featureState.isAddedByUser)
         }
     }
     
     var deleteButton: some View {
         Button(role: .destructive, action: deleteFeature) {
-            Label("Delete", systemImage: "trash")
+            Label(featureState.isNotSystemDeclared ? "Delete" : "Unset",
+                  systemImage: featureState.isNotSystemDeclared ? "trash" : "xmark.circle")
         }
     }
     
     func deleteFeature() {
-        FeatureFlagsSupport.deleteUserAddedFeature(domain: featureState.domain, feature: featureName)
+        if featureState.isNotSystemDeclared {
+            FeatureFlagsSupport.deleteUserAddedFeature(domain: featureState.domain, feature: featureName)
+        } else {
+            FeatureFlagsSupport.unsetFeature(domain: featureState.domain, feature: featureName)
+        }
         state.reloadDictionary()
     }
     

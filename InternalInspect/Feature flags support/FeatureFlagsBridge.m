@@ -30,6 +30,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 NSObject* FFConfiguration_shared;
 
++ (void)invalidateCache {
+    SEL sel = NSSelectorFromString(@"invalidateCache");
+    [FFConfiguration_shared performSelector:sel];
+}
+
 + (FeatureFlagState*)getValue:(NSString*)domain :(NSString*)feature {
     SEL stateSel = NSSelectorFromString(@"stateForFeature:domain:");
     NSObject* resultObj = [FFConfiguration_shared performSelector: stateSel withObject:feature withObject:domain];
@@ -59,9 +64,26 @@ NSObject* FFConfiguration_shared;
     return [FFConfiguration_shared performSelector:domainsSel];
 }
 
+
 + (NSSet*)getFeaturesForDomain:(NSString*)domain {
     SEL sel = NSSelectorFromString(@"featuresForDomain:");
     return [FFConfiguration_shared performSelector:sel withObject:domain];
+}
+
++ (void)unsetFeature:(NSString*)feature domain:(NSString*)domain {
+    SEL sel = NSSelectorFromString(@"unsetFeature:domain:levelIndex:");
+    
+    typedef NSObject* (*send_type)(NSObject*, SEL, NSString*, NSString*, int);
+    send_type func = (send_type)objc_msgSend;
+    
+    func(FFConfiguration_shared, sel_getUid(sel), feature, domain, 0x7);
+         
+    NSError* error = nil;
+    
+    SEL commitSel = NSSelectorFromString(@"commitUpdates:");
+    [FFConfiguration_shared performSelector:commitSel withObject:error];
+    
+    if (error) NSLog(@"[setFeature]: Got error: %@", error);
 }
 
 + (void)setFeature:(BOOL)newState :(NSString*)domain :(NSString*)feature {
