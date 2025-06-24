@@ -18,8 +18,9 @@ struct RootView: View {
                 }
             }
         }
-        .tabViewStyle(.sidebarAdaptable)
+//        .tabViewStyle(.sidebarAdaptable)
         .availability_tabViewSolariumTweaks()
+        .navigationSplitViewColumnWidth(min: 250, ideal: 300)
     }
 }
 

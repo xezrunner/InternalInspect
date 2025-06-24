@@ -74,8 +74,9 @@ struct FeatureFlagsTab: View {
         .searchable(text: $domainsSearchQuery, placement: .sidebar)
         .refreshable { state.reloadDictionary() }
         
-        .navigationSplitViewColumnWidth(min: 250, ideal: 300)
         .toolbar(removing: .sidebarToggle)
+        
+        .navigationSplitViewColumnWidth(min: 250, ideal: 300)
         
 #if os(iOS)
         // On iOS, we have to put the toolbar on the Views inside container views... Bad!  :ToolbarWeirdness
@@ -91,6 +92,9 @@ struct FeatureFlagsTab: View {
         }
         .searchable(text: $featuresSearchQuery, placement: .toolbarPrincipal)
         .refreshable { await refreshFeatures(filtered: filtered) }
+        
+        .scrollContentBackground(.hidden)
+        .listRowBackground(Color.clear)
         
 #if os(iOS)
         .toolbar { toolbar } // :ToolbarWeirdness
