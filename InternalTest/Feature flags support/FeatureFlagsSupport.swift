@@ -48,7 +48,7 @@ class FeatureFlagsSupport {
             var domainFeatures = merged[domain] ?? [:]
             // Only add if not already present
             if domainFeatures[feature] == nil {
-                var state = FeatureFlagsBridge.getValue(domain, feature)
+                let state = FeatureFlagsBridge.getValue(domain, feature)
                 state.isAddedByUser = true
                 domainFeatures[feature] = state
                 merged[domain] = domainFeatures
@@ -63,5 +63,13 @@ class FeatureFlagsSupport {
     
     public static func setFeature(newState: Bool, domain: String, feature: String) {
         FeatureFlagsBridge.setFeature(newState, domain, feature)
+    }
+    
+    public static func deleteDomain(domain: String) {
+        let userTrackedFeaturesKey = "UserTrackedFeatures"
+        var array = UserDefaults.standard.array(forKey: userTrackedFeaturesKey) as? [[String: String]] ?? []
+        
+        array.removeAll { $0["domain"] == domain }
+        UserDefaults.standard.set(array, forKey: userTrackedFeaturesKey)
     }
 }
