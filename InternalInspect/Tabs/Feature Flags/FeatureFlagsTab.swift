@@ -49,7 +49,7 @@ struct FeatureFlagsTab: View {
 #endif
         .navigationSplitViewStyle(.balanced)
         .sheet(isPresented: $isPresentingAddFeatureSheet) {
-            AddUserTrackedFeatureSheetView(isSheetPresented: $isPresentingAddFeatureSheet)
+            AddUserTrackedFeatureSheetView(isSheetPresented: $isPresentingAddFeatureSheet, domainText: selectedDomain ?? "")
                 .overlay { PopupCloseOverlayButton() }
             
                 .presentationDetents([.medium])
