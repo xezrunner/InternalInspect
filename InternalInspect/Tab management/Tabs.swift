@@ -26,7 +26,7 @@ enum RootTab: String, AppTab {
     
     case packets = "Packets"
     case featureFlags = "Feature flags"
-    case scratch = "Scratch"
+//    case scratch = "Scratch"
     
     @ViewBuilder func view() -> some View {
         switch self {
@@ -34,8 +34,8 @@ enum RootTab: String, AppTab {
             PacketsTab().environment(PacketsTabState())
         case .featureFlags:
             FeatureFlagsTab().environment(FeatureFlagsTabState())
-        case .scratch:
-            Scratch()
+//        case .scratch:
+//            Scratch()
         }
     }
     
@@ -43,7 +43,7 @@ enum RootTab: String, AppTab {
         switch self {
         case .packets:  "shippingbox"
         case .featureFlags: "flag.filled.and.flag.crossed"
-        case .scratch: "pawprint"
+//        case .scratch: "pawprint"
         }
     }
 }

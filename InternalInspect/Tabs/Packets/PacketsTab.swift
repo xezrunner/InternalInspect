@@ -7,35 +7,16 @@
 
 import SwiftUI
 
-struct PacketGroupDetailView: View {
-    @Binding var group: PacketGroup?
-    
-    var body: some View {
-        if let group = group {
-            List(group.packets) { packet in
-                Text(packet.funcName)
-            }
-        } else {
-            
-        }
-    }
-}
-
 struct PacketsTab: View {
     @Environment(PacketsTabState.self) var packetsTabViewState
     
     var body: some View {
-        @Bindable var state = packetsTabViewState
-        let selectedGroupBinding = $state.selectedPacketGroup
-        
-        NavigationSplitView {
-            List(packetGroups, selection: selectedGroupBinding) { group in
-                NavigationLink(group.handlePath, value: group)
-            }
-            .toolbar(removing: .sidebarToggle)
-        } detail: {
-            PacketGroupDetailView(group: selectedGroupBinding)
+        VStack(spacing: 24) {
+            Image(systemName: "book.and.wrench.fill")
+                .font(.system(size: 72))
+            
+            Text("Under Construction")
+                .font(.title2)
         }
-        .navigationSplitViewStyle(.balanced)
     }
 }
