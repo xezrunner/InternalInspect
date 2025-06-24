@@ -40,24 +40,21 @@ struct FeatureFlagFeatureEntryView: View {
         }
     }
     
-    // IMPORTANT: Remove the feature from the local state dictionary before performing system deletion/unsetting.
-    // This order keeps SwiftUI's view state in sync and prevents crashes related to collection updates during animations.
     func deleteFeature() {
         // Remove from local state dictionary first so SwiftUI is in sync before animation
+        // This prevents an assertion about item count in the list as well.
         if var domainFeatures = state.domains[featureState.domain] {
             domainFeatures.removeValue(forKey: featureName)
             state.domains[featureState.domain] = domainFeatures
         }
 
-        // Now perform the real system deletion or unsetting logic
         if featureState.isNotSystemDeclared {
             FeatureFlagsSupport.deleteUserAddedFeature(domain: featureState.domain, feature: featureName)
         } else {
             FeatureFlagsSupport.unsetFeature(domain: featureState.domain, feature: featureName)
         }
         
-        // If you want to reload from storage, do so after a delay or in a Task if needed, but the UI is already updated
-         Task { state.reloadDictionary() }
+        state.reloadDictionary()
     }
     
     func toggleFeature(domainName: String, featureName: String) {
