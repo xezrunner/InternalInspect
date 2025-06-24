@@ -32,20 +32,32 @@ struct FeatureFlagFeatureEntryView: View {
     }
     
     var deleteButton: some View {
-        Button(role: .destructive, action: deleteFeature) {
+        Button(role: .destructive) {
+            withAnimation { deleteFeature() }
+        } label: {
             Label(featureState.isNotSystemDeclared ? "Delete" : "Unset",
                   systemImage: featureState.isNotSystemDeclared ? "trash" : "xmark.circle")
         }
     }
     
-    // FIXME: unsetting does not work properly! It causes a SwiftUI crash as well.
+    // IMPORTANT: Remove the feature from the local state dictionary before performing system deletion/unsetting.
+    // This order keeps SwiftUI's view state in sync and prevents crashes related to collection updates during animations.
     func deleteFeature() {
+        // Remove from local state dictionary first so SwiftUI is in sync before animation
+        if var domainFeatures = state.domains[featureState.domain] {
+            domainFeatures.removeValue(forKey: featureName)
+            state.domains[featureState.domain] = domainFeatures
+        }
+
+        // Now perform the real system deletion or unsetting logic
         if featureState.isNotSystemDeclared {
             FeatureFlagsSupport.deleteUserAddedFeature(domain: featureState.domain, feature: featureName)
         } else {
             FeatureFlagsSupport.unsetFeature(domain: featureState.domain, feature: featureName)
         }
-        state.reloadDictionary()
+        
+        // If you want to reload from storage, do so after a delay or in a Task if needed, but the UI is already updated
+         Task { state.reloadDictionary() }
     }
     
     func toggleFeature(domainName: String, featureName: String) {
