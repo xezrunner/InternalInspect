@@ -1,7 +1,7 @@
 // InternalInspect::AddUserTrackedFeatureSheetView.swift - 23.06.2025
 import SwiftUI
 
-struct AddUserTrackedFeatureSheetView: View {
+struct FeatureFlagAddCustomEntrySheetView: View {
     @Environment(FeatureFlagsTabState.self) var state
     
     @Binding var isSheetPresented: Bool
