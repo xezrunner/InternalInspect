@@ -5,7 +5,8 @@ struct FeatureFlagDomainEntryView: View {
     @Environment(FeatureFlagsTabState.self) var state
     
     @State var domain: String
-    @State var features: FeatureFlags_FeaturesDictionary
+    var features: FeatureFlags_FeaturesDictionary
+    
     @State var isProgress = false
     
     var body: some View {

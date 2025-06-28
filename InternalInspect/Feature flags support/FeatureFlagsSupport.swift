@@ -5,8 +5,8 @@
 //  Created by Sebastian Kassai on 23/03/2025.
 //
 
-public typealias FeatureFlagsDictionary = [String: FeatureFlags_FeaturesDictionary]
-public typealias FeatureFlags_FeaturesDictionary = [String: FeatureFlagState]
+public typealias FeatureFlagsDictionary = [String : FeatureFlags_FeaturesDictionary]
+public typealias FeatureFlags_FeaturesDictionary = [String : FeatureFlagState]
 
 class FeatureFlagsSupport {
     static func invalidateCache() { FeatureFlagsBridge.invalidateCache() }

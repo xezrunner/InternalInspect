@@ -20,7 +20,7 @@ struct GlobalFeatureFlags {
         FeatureFlag(name: "EnableGlobalSearch",
                     description: "Enable global search tab and behavior.",
                     symbol: "magnifyingglass.circle.fill",
-                    value: true),
+                    value: false),
         
         FeatureFlag(name: "ShowDebugInformation",
                     description: "Show additional debugging information about packets.",

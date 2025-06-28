@@ -22,32 +22,40 @@ import Foundation
         }
     }
     
-    func filteredDomains(query: String) -> [(key: String, value: FeatureFlags_FeaturesDictionary)] {
+    // withFeatures: whether to include those domains that have feature names containing the query
+    func filteredDomains(query: String, withFeatures: Bool = true) -> [(key: String, value: FeatureFlags_FeaturesDictionary)] {
         let query = query.lowercased()
-        let allDomains = Array(domains)
+        var allDomains = domains
         
-        // If the query is empty, sort alphabetically
         if query.isEmpty {
             return allDomains.sorted { $0.key < $1.key }
         }
         
-        // Otherwise, score each entry by how many things match
-        let scored = allDomains.compactMap { entry -> (score: Int, key: String, value: FeatureFlags_FeaturesDictionary)? in
-            let keyMatch = entry.key.lowercased().contains(query) ? 1 : 0
-            let featureMatches = entry.value.reduce(0) { acc, feature in
-                acc + (feature.key.lowercased().contains(query) ? 1 : 0)
+        // 1. Filter the features inside the domains:
+        allDomains.forEach { (domain: String, features: FeatureFlags_FeaturesDictionary) in
+            allDomains[domain] = features.filter({ (featureName: String, _) in
+                featureName.lowercased().contains(query)
+            })
+        }
+        // 2. Match for domain names:
+        allDomains = allDomains.filter({ (domainName: String, features: FeatureFlags_FeaturesDictionary) in
+            // If there are any features filtered out from above and withFeatures is requested, we want the domain.
+            // Otherwise, only if the domain name contains the query.
+            (withFeatures && features.count > 0) ? true : domainName.lowercased().contains(query)
+        })
+        
+        // 3. Sort
+        // If features are included, sort by feature count. Otherwise, sort alphabetically.
+        let sorted = allDomains.sorted {
+            if withFeatures {
+                if $0.value.count == $1.value.count { return $0.key < $1.key }
+                return $0.value.count > $1.value.count
             }
-            let score = keyMatch + featureMatches
-            return score > 0 ? (score, entry.key, entry.value) : nil
+            
+            return $0.key < $1.key
         }
         
-        return scored.sorted {
-            if $0.score == $1.score {
-                return $0.key < $1.key
-            } else {
-                return $0.score > $1.score
-            }
-        }.map { (key: $0.key, value: $0.value) }
+        return sorted
     }
     
     func filteredFeatures(domain: String?, query: String) -> [(key: String, value: FeatureFlagState)] {

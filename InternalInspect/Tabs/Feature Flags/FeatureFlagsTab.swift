@@ -15,6 +15,8 @@ struct FeatureFlagsTab: View {
     @State var domainsSearchQuery:  String = ""
     @State var featuresSearchQuery: String = ""
     
+    @State var searchQuery: String = ""
+    
     @State var isPresentingAddFeatureSheet = false
     
     var body: some View {
@@ -32,7 +34,7 @@ struct FeatureFlagsTab: View {
             domainsSidebar
                 .task { state.reloadDictionary() }
         } detail: {
-            let filtered = state.filteredFeatures(domain: selectedDomain, query: featuresSearchQuery)
+            let filtered = state.filteredFeatures(domain: selectedDomain, query: searchQuery)
             
             Group {
                 if !filtered.isEmpty {
@@ -44,11 +46,10 @@ struct FeatureFlagsTab: View {
                 }
             }
         }
-#if os(macOS)
-        // On macOS, we can put the toolbar on a container view and it's happy:  :ToolbarWeirdness
-        .toolbar { toolbar }
-#endif
         .navigationSplitViewStyle(.balanced)
+        
+        .searchable(text: $searchQuery)
+        
         .sheet(isPresented: $isPresentingAddFeatureSheet) {
             FeatureFlagAddCustomEntrySheetView(isSheetPresented: $isPresentingAddFeatureSheet, domainText: selectedDomain ?? "")
                 .overlay { PopupCloseOverlayButton() }
@@ -60,31 +61,17 @@ struct FeatureFlagsTab: View {
         }
     }
     
-    var toolbar: some ToolbarContent {
-        ToolbarItem(id: "add-feature", placement: .primaryAction) {
-            Button("Add feature", systemImage: "plus") { isPresentingAddFeatureSheet = true }
-        }
-    }
-    
     var domainsSidebar: some View {
-        let filtered = state.filteredDomains(query: domainsSearchQuery)
+        let filtered = state.filteredDomains(query: searchQuery)
         
         return List(filtered, id: \.key, selection: $selectedDomain) { domain, features in
             FeatureFlagDomainEntryView(domain: domain, features: features)
         }
-        .searchable(text: $domainsSearchQuery, placement: .sidebar)
         .refreshable { state.reloadDictionary() }
         
         .toolbar(removing: .sidebarToggle)
         
         .navigationSplitViewColumnWidth(min: 250, ideal: 300)
-        
-#if os(iOS)
-        // On iOS, we have to put the toolbar on the Views inside container views... Bad!  :ToolbarWeirdness
-        .toolbar { toolbar }
-#endif
-        
-        .id(state.domains.hashValue)
     }
     
     func featuresDetail(filtered: [(key: String, value: FeatureFlagState)]) -> some View {
@@ -92,15 +79,10 @@ struct FeatureFlagsTab: View {
             FeatureFlagFeatureEntryView(featureName: feature, featureState: result)
                 .id(result.hashValue)
         }
-        .searchable(text: $featuresSearchQuery, placement: .toolbarPrincipal)
         .refreshable { await refreshFeatures(filtered: filtered) }
         
         .scrollContentBackground(.hidden)
         .listRowBackground(Color.clear)
-        
-#if os(iOS)
-        .toolbar { toolbar } // :ToolbarWeirdness
-#endif
     }
     
     private func refreshFeatures(filtered: [(key: String, value: FeatureFlagState)]) async {
