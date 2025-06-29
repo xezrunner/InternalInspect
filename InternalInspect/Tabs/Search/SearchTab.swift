@@ -8,6 +8,7 @@ struct SearchTab: View {
     
     @Binding var searchQuery: String
     @State private var expandedDomains: Set<String> = []
+    @State private var isFeatureFlagsSectionExpanded: Bool = true
     
     var body: some View {
         NavigationStack {
@@ -32,21 +33,27 @@ struct SearchTab: View {
     var featureFlagsSection: some View {
         let domains = featureFlagsTabState.filteredDomains(query: searchQuery)
         
-        return Section("Feature Flags") {
-            List(domains, id: \.key) { domain, features in
-                let featuresArray = featureFlagsTabState.filteredFeatures(domain: domain, query: searchQuery)
-                DisclosureGroup {
-                    ForEach(featuresArray, id: \.key) { feature, state in
-                        FeatureFlagFeatureEntryView(featureName: feature, featureState: state)
+        return Section {
+            DisclosureGroup(
+                isExpanded: $isFeatureFlagsSectionExpanded,
+                content: {
+                    List(domains, id: \.key) { domain, features in
+                        let featuresArray = featureFlagsTabState.filteredFeatures(domain: domain, query: searchQuery)
+                        DisclosureGroup {
+                            ForEach(featuresArray, id: \.key) { feature, state in
+                                FeatureFlagFeatureEntryView(featureName: feature, featureState: state)
+                            }
+                        } label: {
+                            HStack {
+                                Text(domain)
+                                Spacer()
+                                Text("\(featuresArray.count)")
+                            }
+                        }
                     }
-                } label: {
-                    HStack {
-                        Text(domain)
-                        Spacer()
-                        Text("\(featuresArray.count)")
-                    }
-                }
-            }
+                },
+                label: { Label("Feature flags", systemImage: "gear") }
+            )
         }
     }
 }

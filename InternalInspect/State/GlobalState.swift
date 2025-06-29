@@ -1,8 +1,7 @@
 import SwiftUI
 
 @Observable class GlobalState {
-    // MARK: - Feature flags
-    var featureFlags = GlobalFeatureFlags()
+    var featureFlagsOverrides = AppFeatureFlagOverrideSupport()
     
     // MARK: - UI layers
     var showSettings:      Bool = false

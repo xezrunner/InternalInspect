@@ -68,7 +68,7 @@ struct PacketDetailView: View {
                         }
                     }
                     
-                    if (packet.packetType == .PACKET_ELIGIBILITY && is_feature_flag_enabled("ShowDebugInformation")) {
+                    if (packet.packetType == .PACKET_ELIGIBILITY) {
                         if (packet.eligibilityLookupResult?.error != 0){
                             Text("ERROR")
                                 .font(.footnote.bold())

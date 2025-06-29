@@ -56,7 +56,6 @@ struct FeatureFlagsTab: View {
                 .overlay { PopupCloseOverlayButton() }
             
                 .presentationDetents([.medium])
-                .presentationCompactAdaptation(.popover)
             
                 .environment(state)
         }

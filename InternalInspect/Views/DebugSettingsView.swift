@@ -12,31 +12,43 @@ struct DebugSettingsView: View {
                           description: "Transient mode - changes will not persist!",
                           symbolName: "ant.circle.fill")
             
-            Section("Feature flags") {
-                ForEach(0 ..< globalState.featureFlags.flags.count, id: \.self) { index in
-                    let flag      = globalState.featureFlags.flags[index]
-                    let flagValue = $globalState.featureFlags.flags[index].value
-                    
-                    Toggle(isOn: flagValue, label: {
-                        Label(title: {
-                            VStack(alignment: .leading) {
-                                Text(flag.name).font(.subheadline).bold().monospaced()
-                                Text(flag.description).font(.footnote)
-                            }
-                        }, icon: {
-                            Image(systemName: flag.symbol)
-                        })
-                        .foregroundStyle(flag.value ? .primary : .secondary)
-                    })
-                }
+            Group {
+                featureFlagsSection
             }
-            .listRowBackground(Color.clear)
         }
-        .scrollContentBackground(.hidden)
-        .background(.clear)
-        .overlay(
-            PopupCloseOverlayButton()
-        )
+    }
+    
+    func featureFlagsClearButton(flag: AppFeatureFlag) -> some View {
+        Button(role: .destructive) {
+            AppFeatureFlagOverrideSupport.shared?.clearFlag(flag: flag) ?? print("no overrides!")
+        } label: {
+            Label("Unset", systemImage: "xmark.circle")
+        }
+    }
+    
+    var featureFlagsSection: some View {
+        Section("Feature flags") {
+            List(AppFeatureFlag.allCases) { flag in
+                let valueBinding = Binding(get: { flag.value }, set: {
+                    newValue in AppFeatureFlagOverrideSupport.shared?.setFlag(flag: flag, value: newValue) }
+                )
+                
+                let clearButton = featureFlagsClearButton(flag: flag)
+                
+                Toggle(isOn: valueBinding) {
+                    Label {
+                        VStack {
+                            Text(flag.rawValue)
+                            if let description = flag.description { Text(description) }
+                        }
+                    } icon: {
+                        Image(systemName: flag.symbol)
+                    }
+                }
+                .swipeActions(edge: .trailing) { clearButton }
+                .contextMenu { clearButton }
+            }
+        }
     }
 }
 

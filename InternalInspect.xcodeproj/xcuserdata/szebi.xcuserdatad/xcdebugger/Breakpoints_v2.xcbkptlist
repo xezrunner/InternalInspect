@@ -14,6 +14,15 @@
             symbolName = "setValue:feature:domain:levelIndex:buildVersion:"
             moduleName = "">
             <Locations>
+               <Location
+                  uuid = "F8F41F0E-7649-4E70-82D4-95C6DA89BD1F - 404a209403bdc5c0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[FFConfiguration setValue:feature:domain:levelIndex:buildVersion:]"
+                  moduleName = "FeatureFlagsSupport"
+                  usesParentBreakpointCondition = "Yes">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -181,6 +190,15 @@
             symbolName = "writeFeatureSetUpdatesAtLevelIndex:withError:"
             moduleName = "">
             <Locations>
+               <Location
+                  uuid = "D1EAAFF4-994B-4B53-BE54-9A3849FDF439 - e3c0fbe2febc3ccb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[FFConfiguration writeFeatureSetUpdatesAtLevelIndex:withError:]"
+                  moduleName = "FeatureFlagsSupport"
+                  usesParentBreakpointCondition = "Yes">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>

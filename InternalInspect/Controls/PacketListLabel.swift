@@ -8,6 +8,7 @@ struct PacketListLabel: View {
     let symbolSize: CGFloat = 22
     
     var body: some View {
+        #if false
         if !is_feature_flag_enabled("UseLegacyListItem") {
             Label(title: {
                 VStack(alignment: .leading, spacing: 4) {
@@ -85,5 +86,6 @@ struct PacketListLabel: View {
                 .foregroundStyle(.primary)
             }
         }
+        #endif
     }
 }

@@ -25,9 +25,9 @@ struct HeroExplainer: View {
             }
         }
         .frame(maxWidth: .infinity)
-        .padding(.vertical, is_feature_flag_enabled("NoHeroBackplate") ? 0 : 16)
+        .padding(.vertical, 16)
         .padding(.horizontal, 6) // TODO: this looks odd?
-        .listRowBackground(is_feature_flag_enabled("NoHeroBackplate") ? Color.clear : Color.secondary)
+        .listRowBackground(Color.secondary)
     }
     
     init(title: String, description: String, symbolName: String, tint: Color = .primary) {

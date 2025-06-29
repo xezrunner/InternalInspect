@@ -15,7 +15,7 @@
 		2123DF722C0679DE00868B53 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2123DF712C0679DE00868B53 /* Assets.xcassets */; };
 		2123DF752C0679DE00868B53 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2123DF742C0679DE00868B53 /* Preview Assets.xcassets */; };
 		2130EEDC2C8A769B0026C1A6 /* GlobalState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2130EEDB2C8A76930026C1A6 /* GlobalState.swift */; };
-		2130EEE12C8A776C0026C1A6 /* FeatureFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2130EEE02C8A776B0026C1A6 /* FeatureFlag.swift */; };
+		2130EEE12C8A776C0026C1A6 /* AppFeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2130EEE02C8A776B0026C1A6 /* AppFeatureFlags.swift */; };
 		2144D1712D90A79100439A81 /* FeatureFlagsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2144D1702D90A78B00439A81 /* FeatureFlagsTab.swift */; };
 		214A49892E0A33D6008E2AF9 /* SearchTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214A49882E0A33D6008E2AF9 /* SearchTab.swift */; };
 		214A498C2E0A356C008E2AF9 /* SearchTabState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214A498B2E0A3567008E2AF9 /* SearchTabState.swift */; };
@@ -60,7 +60,7 @@
 		2123DF712C0679DE00868B53 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2123DF742C0679DE00868B53 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2130EEDB2C8A76930026C1A6 /* GlobalState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalState.swift; sourceTree = "<group>"; };
-		2130EEE02C8A776B0026C1A6 /* FeatureFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlag.swift; sourceTree = "<group>"; };
+		2130EEE02C8A776B0026C1A6 /* AppFeatureFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFeatureFlags.swift; sourceTree = "<group>"; };
 		2144D1702D90A78B00439A81 /* FeatureFlagsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlagsTab.swift; sourceTree = "<group>"; };
 		214A49882E0A33D6008E2AF9 /* SearchTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTab.swift; sourceTree = "<group>"; };
 		214A498B2E0A3567008E2AF9 /* SearchTabState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTabState.swift; sourceTree = "<group>"; };
@@ -181,7 +181,7 @@
 		2130EEDF2C8A77090026C1A6 /* State */ = {
 			isa = PBXGroup;
 			children = (
-				2130EEE02C8A776B0026C1A6 /* FeatureFlag.swift */,
+				2130EEE02C8A776B0026C1A6 /* AppFeatureFlags.swift */,
 				2130EEDB2C8A76930026C1A6 /* GlobalState.swift */,
 			);
 			path = State;
@@ -390,7 +390,7 @@
 				218110AF2D9067EF0044E116 /* Scratch.swift in Sources */,
 				2123DF6E2C0679DB00868B53 /* InternalTestApp.swift in Sources */,
 				215670572E08CAE100C54709 /* FeatureFlagAddCustomEntrySheetView.swift in Sources */,
-				2130EEE12C8A776C0026C1A6 /* FeatureFlag.swift in Sources */,
+				2130EEE12C8A776C0026C1A6 /* AppFeatureFlags.swift in Sources */,
 				218110B42D90748A0044E116 /* RootView.swift in Sources */,
 				219146E12E0771D300E9630C /* FeatureFlagsTabState.swift in Sources */,
 				21EE452D2C1BB84100B63200 /* DebugSettingsView.swift in Sources */,

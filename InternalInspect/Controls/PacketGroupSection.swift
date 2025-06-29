@@ -22,14 +22,11 @@ struct PacketGroupSection: View {
                         NavigationLink(
                             "",
                             destination: {
-                                if (!is_feature_flag_enabled("UseZoomTransitions")) {
-                                    PacketDetailView(packet: packet)
-                                } else {
-                                    PacketDetailView(packet: packet)
+                                PacketDetailView(packet: packet)
+                                PacketDetailView(packet: packet)
 #if !os(macOS)
-                                        .navigationTransition(.zoom(sourceID: packet.id, in: packetExpansion))
+                                    .navigationTransition(.zoom(sourceID: packet.id, in: packetExpansion))
 #endif
-                                }
                             }
                         ).opacity(0)
                     }
