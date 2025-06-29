@@ -45,6 +45,7 @@ struct FeatureFlagsTab: View {
                     noDomainSelectedView
                 }
             }
+            .toolbar { toolbar }
         }
         .navigationSplitViewStyle(.balanced)
         
@@ -58,6 +59,12 @@ struct FeatureFlagsTab: View {
                 .presentationCompactAdaptation(.popover)
             
                 .environment(state)
+        }
+    }
+    
+    var toolbar: some ToolbarContent {
+        ToolbarItem(id: "add-feature", placement: .primaryAction) {
+            Button("Add feature", systemImage: "plus") { isPresentingAddFeatureSheet = true }
         }
     }
     
