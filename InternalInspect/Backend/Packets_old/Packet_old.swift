@@ -26,7 +26,9 @@ struct EligibilityPacket: Packet, Resolvable {
     
     // resolve()
 }
-#else
+#endif
+
+#if false
 struct PacketGroup: Identifiable, Hashable {
     init(handlePath: String, _ packetDefinitions: [PacketDefinition]) {
         self.handlePath = handlePath

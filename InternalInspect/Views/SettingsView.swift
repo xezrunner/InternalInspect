@@ -1,43 +1,14 @@
 import SwiftUI
 
-struct SettingsPacketGroupView: View {
-    @Environment(GlobalState.self) var globalState
-    
-    @Binding var group: PacketGroup?
-    
-    var body: some View {
-        
-        if let group {
-            Form {
-                HeroExplainer(
-                    title: "Packet group",
-                    description: group.handlePath,
-                    symbolName: "list.bullet.circle.fill")
-
-                
-            }
-        } else {
-            HeroExplainer(
-                title: "Select a packet group.",
-                description: "",
-                symbolName: "xmark.circle",
-                tint: .red
-            )
-        }
-    }
-}
-
 struct SettingsView: View {
     @Environment(GlobalState.self) var globalState
     @Environment(\.colorScheme) var colorScheme
-    
-    @State var groupSelection: PacketGroup? = nil
     
     var body: some View {
         NavigationSplitView(
             columnVisibility: .constant(.all),
             sidebar: {
-                List(selection: $groupSelection) {
+                List {
                     HeroExplainer(title: "Application settings",
                                   description: "",
                                   symbolName: "gear.circle.fill")
@@ -59,21 +30,12 @@ struct SettingsView: View {
                             Label("Terminology", systemImage: "info.circle.fill")
                                 .foregroundStyle(.primary)
                         }
-                        
-                        ForEach(packetGroups) { group in
-                            NavigationLink(value: group) {
-                                Text(group.handlePath)
-                                    .font(.system(size: 13))
-                                    .monospaced()
-                            }
-                        }
                     }
                 }
                 .scrollContentBackground(.hidden)
                 .toolbar(removing: .sidebarToggle)
             },
             detail: {
-                SettingsPacketGroupView(group: $groupSelection)
             }
         )
         .navigationSplitViewStyle(.balanced)

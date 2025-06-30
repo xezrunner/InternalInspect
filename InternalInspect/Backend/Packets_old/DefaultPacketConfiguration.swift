@@ -1,5 +1,7 @@
 import Foundation
 
+#if false
+
 @MainActor
 let packetGroups = [
     PacketGroup(handlePath: "/usr/lib/system/libsystem_eligibility.dylib", [
@@ -378,3 +380,4 @@ let packetGroups = [
      */
     
 ]
+#endif

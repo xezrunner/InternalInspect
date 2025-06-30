@@ -3,5 +3,5 @@
 import Foundation
 
 @Observable class PacketsTabState {
-    var selectedPacketGroup: PacketGroup?
+    
 }

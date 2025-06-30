@@ -15,7 +15,9 @@ struct RootView: View {
     var body: some View {
         TabView(selection: $selectedTab) {
             ForEach(RootTab.allCases.filter({ tab in
-                AppFeatureFlag.enableGlobalSearch.value ? true : tab != .search
+                if tab == .search { return AppFeatureFlag.enableGlobalSearch.value }
+                if tab == .packets { return AppFeatureFlag.packets.value }
+                return true
             })) { tab in
                 Tab(tab.rawValue, systemImage: tab.icon, value: tab, role: tab.role) {
                     tab.view(searchQuery: $searchQuery)
