@@ -71,11 +71,11 @@ struct FeatureFlagFeatureEntryView: View {
                     .bold(featureState.isEnabled())
                 
                 Group {
-                    HStack(spacing: 0) {
-                        Text("domain: ")
-                        Text(featureState.domain)
-                            .bold(featureState.isEnabled())
-                    }
+//                    HStack(spacing: 0) {
+//                        Text("domain: ")
+//                        Text(featureState.domain)
+//                            .bold(featureState.isEnabled())
+//                    }
                     
                     HStack(spacing: 0) {
                         Text("value: ")
