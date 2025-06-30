@@ -27,7 +27,7 @@ struct HeroExplainer: View {
         .frame(maxWidth: .infinity)
         .padding(.vertical, 16)
         .padding(.horizontal, 6) // TODO: this looks odd?
-        .listRowBackground(Color.secondary)
+        .listRowBackground(Color.primary.opacity(0.08))
     }
     
     init(title: String, description: String, symbolName: String, tint: Color = .primary) {
