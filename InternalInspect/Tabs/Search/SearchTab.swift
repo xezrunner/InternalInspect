@@ -31,14 +31,14 @@ struct SearchTab: View {
     }
     
     var featureFlagsSection: some View {
-        let domains = featureFlagsTabState.filteredDomains(query: searchQuery)
+        let domains = featureFlagsTabState.filteredDomains(query: searchQuery, withFeatures: true)
         
         return Section {
             DisclosureGroup(
                 isExpanded: $isFeatureFlagsSectionExpanded,
                 content: {
                     List(domains, id: \.key) { domain, features in
-                        let featuresArray = featureFlagsTabState.filteredFeatures(domain: domain, query: searchQuery)
+                        let featuresArray = Array(features)
                         DisclosureGroup {
                             ForEach(featuresArray, id: \.key) { feature, state in
                                 FeatureFlagFeatureEntryView(featureName: feature, featureState: state)
