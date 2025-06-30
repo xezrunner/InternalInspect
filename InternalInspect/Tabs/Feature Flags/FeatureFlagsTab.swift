@@ -9,6 +9,9 @@ import SwiftUI
 
 struct FeatureFlagsTab: View {
     @Environment(FeatureFlagsTabState.self) var state
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    
+    var isPhoneIdiom: Bool { horizontalSizeClass == .compact }
     
     @State var selectedDomain: String?
     
@@ -37,7 +40,7 @@ struct FeatureFlagsTab: View {
         } detail: {
             let filtered = state.filteredFeatures(domain: selectedDomain, query: searchQuery)
             
-            Group {
+            let view = Group {
                 if !filtered.isEmpty {
                     featuresDetail(filtered: filtered)
                 } else if selectedDomain != nil {
@@ -48,6 +51,8 @@ struct FeatureFlagsTab: View {
             }
             .navigationTitle(selectedDomain ?? "Features")
             .toolbar { toolbar }
+            
+            if isPhoneIdiom { view.searchable(text: $searchQuery) } else { view }
         }
         .navigationSplitViewStyle(.balanced)
         
@@ -78,6 +83,7 @@ struct FeatureFlagsTab: View {
         .refreshable { state.reloadDictionary() }
         
         .toolbar(removing: .sidebarToggle)
+        .toolbar { if isPhoneIdiom { toolbar } }
         
         .navigationSplitViewColumnWidth(min: 250, ideal: 300)
     }
@@ -136,4 +142,3 @@ struct FeatureFlagsTab: View {
         }
     }
 }
-
