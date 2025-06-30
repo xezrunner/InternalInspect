@@ -19,7 +19,7 @@ struct DebugSettingsView: View {
     }
     
     func featureFlagsClearButton(flag: AppFeatureFlag) -> some View {
-        Button(role: .destructive) {
+        Button() {
             AppFeatureFlagOverrideSupport.shared?.clearFlag(flag: flag) ?? print("no overrides!")
         } label: {
             Label("Unset", systemImage: "xmark.circle")
